@@ -1,0 +1,18 @@
+# Bookmarked Directories. Comments allowed.
+cache=$XDG_CACHE_HOME
+conf=$XDG_CONFIG_HOME
+docs=$XDG_DOCUMENTS_DIR
+dot=$HOME/.dotfiles
+downl=$XDG_DOWNLOAD_DIR
+gdrive=$HOME/GoogleDrive
+home=$HOME
+bin=$HOME/.local/bin
+etc=$HOME/.local/etc
+onedrive=$HOME/OneDrive
+scratch=/mnt/UNISIM/scratch
+share=$XDG_DATA_HOME
+src=$HOME/Code
+tec=/mnt/UNISIM/TEC
+tmp=/tmp
+transfer=/mnt/UNISIM/transfer
+unisim=/mnt/UNISIM/home
