@@ -1,0 +1,35 @@
+# Shell aliases definition
+
+# Use neovim for vim
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+# Use exa for ls
+[ -x "$(command -v exa)" ] && alias ls="exa --icons --color=always --group-directories-first"
+
+# use paru for pacman
+[ -x "$(command -v paru)" ] && alias pacman="paru"
+
+# use ripgrep for grep
+[ -x "$(command -v rg)" ] && alias grep="rg"
+
+# use bat for cat
+[ -x "$(command -v bat)" ] && alias cat="bat"
+
+# all-in-one unzip utility
+alias extract="aunpack"
+
+# Verbosity
+alias cp="advcp -giv"
+alias mv="advmv -giv"
+alias rm="rm -vI"
+alias mkdir="mkdir -pv"
+alias stow="stow -v"
+
+# Colorization
+alias diff="diff --color=auto"
+
+# remove orphaned packages
+alias autoremove='paru -Rns $(paru -Qtdq)'
+
+# get error messages from journalctl
+alias jctl="journalctl -p 4 -xb"

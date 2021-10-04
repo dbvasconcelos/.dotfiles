@@ -1,0 +1,51 @@
+# User configuration file of GNU readline, which provides customizable
+# command line user interfaces for many important interactive programs
+
+# Carries over site-wide readline configuration to the user
+$include /etc/inputrc
+
+# Color files by types
+set colored-stats On
+
+# Ignore case on auto completion
+set completion-ignore-case On
+
+# Sets the max number of characters to be displayed as prefix for completions
+set completion-prefix-display-length 3
+
+# Append a slash to every completion which is a symbolic link to a directory
+set mark-symlinked-directories On
+
+# Single tab for completion
+set show-all-if-ambiguous On
+set show-all-if-unmodified On
+
+# Append char to indicate type
+set visible-stats On
+
+# Vi style editing
+set editing-mode vi
+$if mode=vi
+	# Allows mode indication
+	set show-mode-in-prompt on
+
+	# Mode cursor shape
+	$if term=linux
+		set vi-ins-mode-string \1\e[?0c\2
+		set vi-cmd-mode-string \1\e[?8c\2
+	$else
+		set vi-ins-mode-string \1\e[6 q\2
+		set vi-cmd-mode-string \1\e[2 q\2
+	$endif
+
+	set keymap vi-command
+		"\C-l": clear-screen
+		"\C-a": beginning-of-line
+
+	set keymap vi-insert
+		"\C-l": clear-screen
+		"\C-a": beginning-of-line
+$endif
+
+"\C-p":history-search-backward
+"\C-n":history-search-forward
