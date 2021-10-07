@@ -1,0 +1,48 @@
+!! Xft
+Xft.dpi: 192
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+!! Default Transparency (0-1)
+*.alpha: 0.8
+
+!! Default Font
+*.font: monospace:size=10
+
+!! Color Reference:
+!! name     dark	light
+!! black    0	    8
+!! red      1	    9
+!! green    2	    10
+!! yellow   3	    11
+!! blue     4	    12
+!! purple	5	    13
+!! cyan		6	    14
+!! white	7	    15
+!!
+!! background 256
+!! foreground 257
+
+!! Gruvbox Material
+*.color0: #282828
+*.color1: #ea6962
+*.color2: #a9b665
+*.color3: #d8a657
+*.color4: #7daea3
+*.color5: #d3869b
+*.color6: #89b482
+*.color7: #a89984
+*.color8: #928374
+*.color9: #ef938e
+*.color10: #bbc585
+*.color11: #e1bb7e
+*.color12: #9dc2ba
+*.color13: #e1acbb
+*.color14: #a7c7a2
+*.color15: #e2d3ba
+*.color256: #101010
+*.color257: #d4be98
