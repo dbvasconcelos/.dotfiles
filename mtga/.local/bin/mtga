@@ -1,0 +1,4 @@
+#!/bin/sh
+gtk-launch mtga &
+sleep 30
+mtgatool.AppImage &

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=MTG Arena
+Exec=env WINEPREFIX="/home/derek/.local/share/wine/prefixes/default" /usr/bin/wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/derek/.local/share/wine/prefixes/default/dosdevices/c:/users/derek/AppData/Roaming/Microsoft/Windows/Start\\ Menu/Programs/MTG\\ Arena/MTG\\ Arena.lnk
+Type=Application
+StartupNotify=true
+Comment=MTG Arena
+Path=/home/derek/.local/share/wine/prefixes/default/dosdevices/c:/Program Files/Wizards of the Coast/MTGA/
+Icon=7A82_MTGALauncher.0
+StartupWMClass=mtgalauncher.exe
