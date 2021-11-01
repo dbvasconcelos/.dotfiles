@@ -1,0 +1,158 @@
+## LF Settings
+
+# Set the path of a previewer file to filter the content of
+# regular files for previewing. The file should be executable.
+# Two arguments are passed to the file, first is the current file name,
+# and second is the height of preview pane. SIGPIPE signal is sent when
+# enough lines are read. Preview filtering is disabled and files are
+# displayed as they are when the value of this option is left empty.
+# (default '')
+set previewer ~/.config/lf/preview
+
+# Interpreter for shell commands (needs to be POSIX compatible)
+set shell zsh
+
+# Set '-eu' options for shell commands
+# These options are used to have safer shell commands. Option '-e' is used to
+# exit on error and option '-u' is used to give error for unset variables.
+# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
+# $fx variables contain names with '*' or '?' characters. However, this option
+# is used selectively within individual commands as it can be limiting at
+# times.
+set shellopts '-euy'
+
+# Set internal field separator (IFS) to "\n" for shell commands
+# This is useful to automatically split file names in $fs and $fx properly
+# since default file separator used in these variables (i.e. 'filesep' option)
+# is newline. You need to consider the values of these options and create your
+# commands accordingly.
+set ifs "\n"
+
+# Enable borders
+set drawbox
+
+# Show hidden files
+set hidden
+
+# Leave some space at the top and the bottom of the screen
+set scrolloff 10
+
+# Allow icons
+set icons
+
+# Set the interval in seconds for periodic checks of directory updates.
+# This works by periodically calling the 'load' command.
+# Note that directories are already updated automatically in many cases.
+# This option can be useful when there is an external process changing
+# the displayed directory and you are not doing anything in lf.
+# Periodic checks are disabled when the value of this option is set to zero.
+# (default 0)
+set period 1
+
+## Commands
+
+# Create Directory
+cmd mkdir %{{
+    IFS=" "
+    mkdir -p -- "$*"
+    lf -remote "send $id select \"$*\""
+}}
+
+# Delete Files/Directories
+cmd delete ${{
+    clear; tput cup $(($(tput lines)/3)); tput bold
+    set -f
+    printf "%s\n\t" "$fx"
+    printf "delete?[y/N]"
+    read ans
+    [ $ans = "y" ] && rm -rf -- $fx && notify-send "File(s) deleted." "$fx"
+}}
+
+# y (select for copy) and P to paste soft-link
+# d (select for cut) and P to paste hard-link
+cmd link %{{
+    set -- $(cat ~/.local/share/lf/files)
+    mode="$1"
+    shift
+    if [ "$#" -lt 1 ]; then
+        lf -remote "send $id echo no files to link"
+        exit 0
+    fi
+    case "$mode" in
+        # symbolically copy mode is indicating a soft link
+        copy) ln -sr -t . -- "$@";;
+        # while a move mode is indicating a hard link
+        move) ln -t . -- "$@";;
+    esac
+    rm ~/.local/share/lf/files
+    lf -remote "send $id clear"
+}}
+
+# Show current directory in window title
+cmd on-cd &{{
+    # '&' commands run silently in background (which is what we want here),
+    # but are not connected to stdout.
+    # To make sure our escape sequence still reaches stdout we pipe it to /dev/tty
+    printf "\033]0; $(pwd | sed "s|$HOME|~|") - lf\007" > /dev/tty
+}}
+
+# Jump to file or directory using FZF
+cmd fzf_jump ${{
+    res="$(fzf --header='Jump to location of' | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ]; then
+        cmd="cd"
+    else
+        cmd="select"
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+
+# Extract command
+cmd extract ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "extract?[y/N]"
+	read ans
+	[ $ans = "y" ] && aunpack -- $fx
+}}
+
+# Compress command
+cmd compress ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "compress to: "
+    read dest
+    packdir="$(basename $dest | cut -d. -f1)"
+    mkdir $packdir
+    advcp -gr $fx $packdir
+    apack $dest $packdir
+    rm -rf $packdir
+    lf -remote "send $id unselect"
+    lf -remote "send $id select \"$dest\""
+}}
+
+## Startup actions
+on-cd
+
+## Bindings
+map <c-f> :fzf_jump
+map <c-n> push :mkdir<space>
+map <enter> shell
+map A rename # at the very end
+map C compress
+map D delete
+map E extract
+map I push A<c-a> # at the very beginning
+map J $lf -remote "send $id cd $(chooseplace 'Jump to bookmark location')"
+map P :link
+map V push :!nvim<space>
+map X !$f
+map a push A<a-b> # after extention
+map r push A<c-u> # new rename
+map i push A<a-b><a-b><a-f> # before extention
+map x $$f
+
+# Warning on nested execution
+%[ $LF_LEVEL -eq 1 ] || echo "Warning: You're in a nested lf instance!"
