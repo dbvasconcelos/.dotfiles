@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Image Viewer using sxiv that iterates over folder images
+
+[ -z "$1" ] && exit 1
+
+parent="$(dirname "$(realpath "$1")")"
+selected="$(basename "$1")"
+shifted=()
+ordered=()
+mapfile -t all < <(find $parent -type f -regex '.*\(bmp\|gif\|jpeg\|jpg\|png\|tiff\|ico\)')
+
+found=false
+for img in "${all[@]}"; do
+	[ "$(basename "$img")" == "$selected" ] && found=true
+	if $found; then
+		ordered+=("$img")
+	else
+		shifted+=("$img")
+	fi
+done
+
+for img in "${shifted[@]}"; do
+	ordered+=("$img")
+done
+
+sxiv -a "${ordered[@]}"

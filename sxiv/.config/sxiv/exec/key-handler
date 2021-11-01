@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Called by sxiv(1) after the external prefix key (C-x by default) is pressed.
+# The next key combo is passed as its first argument. Passed via stdin are the
+# images to act upon, one path per line: all marked images, if in thumbnail
+# mode and at least one image has been marked, otherwise the current image.
+# sxiv(1) blocks until this script terminates. It then checks which images
+# have been modified and reloads them.
+
+# The key combo argument has the following form: "[C-][M-][S-]KEY",
+# where C/M/S indicate Ctrl/Meta(Alt)/Shift modifier states and KEY is the X
+# keysym as listed in /usr/include/X11/keysymdef.h without the "XK_" prefix.
+notify() {
+	notify-send -i "$(readlink -f "$1")" "$2" &
+}
+
+while read -r file; do
+	case "$1" in
+		"c")
+			dest=$(chooseplace "Copy Where?")
+			[ -d "$dest" ] && cp "$file" "$dest" && notify "$file" "$file copied to $dest"
+			;;
+		"d") no-yes-prompt "Really delete $file?" "rm $file" && notify "$file" "$file deleted" ;;
+		"e") setsid -f gimp "$file" ;;
+		"f") convert -flop "$file" "$file" ;;
+		"m")
+			dest=$(chooseplace "Move Where?")
+			[ -d "$dest" ] && mv "$file" "$dest" && notify "$file" "$file moved to $dest"
+			;;
+		"r") convert -rotate 90 "$file" "$file" ;;
+		"R") convert -rotate -90 "$file" "$file" ;;
+		"y")
+			echo "$file" | tr -d '\n' | xclip -selection clipboard \
+				&& notify "$file" "$file copied to clipboard"
+			;;
+	esac
+done
