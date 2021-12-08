@@ -1,6 +1,7 @@
 " Nvim's automation settings
 
 augroup vimrc
+
 	" Remove all vimrc autocommands to avoid duplicates
 	autocmd!
 
@@ -8,7 +9,10 @@ augroup vimrc
 	autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
 	" Auto source when updating vim config
-	autocmd! BufWritePost *.vim source % | echom "Reloaded nvim"
+	autocmd! BufWritePost */.config/nvim/**.vim source % | echom "Reloaded nvim"
+
+    " Auto source when updating vim config in lua
+	autocmd! BufWritePost */.config/nvim/*.lua luafile %
 
 	" Automatically deletes all trailing whitespace and newlines at end of file on save
 	autocmd BufWritePre * %s/\s\+$//e
@@ -22,6 +26,9 @@ augroup vimrc
 
 	" Restart dunst when config is updated
 	autocmd BufWritePost dunstrc !killall dunst
+
+    " Restart bspwm when config is updated
+    autocmd BufWritePost bspwmrc !bspc wm -r
 
 	" Update system configuration file after changing local copy
 	autocmd BufWritePost ~/.local/etc/* !copy-sys-file '%:p'
