@@ -29,4 +29,5 @@ bspc rule -a Zathura state=tiled
 bspc rule -a scratchpad state=floating sticky=true
 bspc rule -a filebrowser state=floating sticky=true
 bspc rule -a calculator state=floating sticky=true
+bspc rule -a sysmgr state=floating sticky=true
 bspc rule -a youtube-music-desktop-app state=floating sticky=true

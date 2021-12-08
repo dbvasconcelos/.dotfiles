@@ -24,8 +24,12 @@ super + e
 XF86Calculator
 	tdrop -ma -w "1000" -h "1000" -x "70%" -y "15%" -n calculator $TERMINAL -c calculator -e "bc" "-l"
 
+# System Manager
+super + Escape
+    tdrop -ma -w "3000" -h "1500" -x "10%" -y "15%" -n sysmgr $TERMINAL -c sysmgr -e "btm" "--basic"
+
 # Sessionizer
-super + u
+super + p
     $TERMINAL -e sessionizer
 
 # X Session Manager
