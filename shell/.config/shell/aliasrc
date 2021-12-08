@@ -21,7 +21,7 @@ alias extract="aunpack"
 # Verbosity
 alias cp="advcp -giv"
 alias mv="advmv -giv"
-alias rm="rm -vI"
+alias rm="trash-put -vi"
 alias mkdir="mkdir -pv"
 alias stow="stow -v"
 
