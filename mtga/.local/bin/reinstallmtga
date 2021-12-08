@@ -1,0 +1,8 @@
+#!/bin/sh
+
+wine uninstaller
+rm -rfv "$WINEPREFIX/drive_c/Program Files/Wizards of the Coast/MTGA"
+rm -rfv "$WINEPREFIX/drive_c/users/derek/AppData/LocalLow/Wizards Of The Coast"
+wget "https://mtgarena.downloads.wizards.com/Live/Windows64/MTGAInstaller.exe"
+wine MTGAInstaller.exe
+rm MTGAInstaller.exe
