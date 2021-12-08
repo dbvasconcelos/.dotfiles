@@ -42,9 +42,8 @@ export WINEPREFIX="${XDG_DATA_HOME}/wine/prefixes/default"
 export MYSQL_HISTFILE="${XDG_CACHE_HOME}/mysql/mysql_history"
 
 # NPM
+export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
-export NPM_CONFIG_DEVDIR="${XDG_CONFIG_HOME}/node-gyp"
-export PATH="${PATH}:${XDG_DATA_HOME}/npm/bin"
 
 # GoLang
 export GOPATH="${XDG_DATA_HOME}/go"
