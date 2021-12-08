@@ -88,6 +88,9 @@ stty stop undef
 export NAMEDDIRRC="${ZDOTDIR}/.znameddirs"
 [ -f "${NAMEDDIRRC}" ] && source "${NAMEDDIRRC}"
 
+# NVM
+source /usr/share/nvm/init-nvm.sh
+
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
