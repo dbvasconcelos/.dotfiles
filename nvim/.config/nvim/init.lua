@@ -2,19 +2,19 @@
 vim.g.mapleader = " "
 
 -- Load Plugins
-require "dbvasconcelos.plugins"
+require("dbvasconcelos.plugins")
 
 -- Load Color Scheme
-require "dbvasconcelos.colorscheme"
+require("dbvasconcelos.colorscheme")
 
 -- Load neovim options
-require "dbvasconcelos.options"
+require("dbvasconcelos.options")
 
 -- Neovim builtin LSP configuration
-require "dbvasconcelos.lsp"
+require("dbvasconcelos.lsp")
 
 -- Telescope
-require "dbvasconcelos.telescope"
+require("dbvasconcelos.telescope")
 
 -- Keymappings
-require "dbvasconcelos.keymaps"
+require("dbvasconcelos.keymaps")

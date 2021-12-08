@@ -6,7 +6,6 @@ function M.on_attach(client)
     vim.cmd "nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>"
     vim.cmd "nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>"
     vim.cmd "nnoremap <silent> gl <cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false, border = 'single' })<CR>"
-    vim.cmd "nnoremap <silent> gp <cmd>lua require'dbvasconcelos.lsp.services'.PeekDefinition()<CR>"
     vim.cmd "nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>"
     vim.cmd "nnoremap <silent> [d :lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = single}})<CR>"
     vim.cmd "nnoremap <silent> ]d :lua vim.lsp.diagnostic.goto_next({popup_opts = {border = single}})<CR>"

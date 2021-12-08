@@ -1,3 +1,3 @@
 require("harpoon").setup({
-    nav_first_in_list = true,
+	nav_first_in_list = true,
 })
