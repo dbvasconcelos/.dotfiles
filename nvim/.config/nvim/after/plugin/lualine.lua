@@ -26,7 +26,7 @@ local diff = {
 -- lsp diagnostics component
 local diagnostics = {
 	"diagnostics",
-	sources = { "nvim_lsp" },
+	sources = { "nvim_diagnostic" },
 	-- displays diagnostics from defined severity
 	sections = { "error", "warn", "info", "hint" },
 	symbols = { error = " ", warn = " ", info = " ", hint = " " },
