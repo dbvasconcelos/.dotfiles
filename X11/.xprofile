@@ -25,9 +25,6 @@ unclutter &
 # Network applet
 nm-applet --indicator &
 
-# Music Player
-youtubemusic &
-
 # Cloud
 insync start &
 
@@ -36,3 +33,6 @@ udiskie --smart-tray &
 
 # Devices
 solaar -w hide &
+
+# Music Player
+youtubemusic &
