@@ -118,8 +118,11 @@ return packer.startup({
 			requires = {
 				{ "nvim-lua/popup.nvim" },
 				{ "nvim-lua/plenary.nvim" },
+                { "tami5/sqlite.lua" },
+                { "nvim-telescope/telescope-dap.nvim" },
 				{ "nvim-telescope/telescope-fzy-native.nvim" },
-				{ "nvim-telescope/telescope-dap.nvim" },
+				{ "nvim-telescope/telescope-media-files.nvim" },
+				{ "nvim-telescope/telescope-smart-history.nvim" },
 			},
 		})
 
