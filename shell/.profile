@@ -5,7 +5,7 @@ export PATH="${PATH}:${HOME}/.local/bin"
 
 # Default Programs
 export EDITOR="nvim"
-export TERMINAL="st"
+export TERMINAL="kitty"
 export BROWSER="google-chrome-stable"
 export READER="zathura"
 export PAGER="less"

@@ -14,23 +14,23 @@ super + w
 
 # Scratchpad terminal
 super + shift + Return
-	tdrop -ma -w "50%" -h "50%" -x "25%" -y "25%" -n scratchpad $TERMINAL -c scratchpad
+	tdrop -ma -w "50%" -h "50%" -x "25%" -y "25%" -n scratchpad $TERMINAL --class scratchpad
 
 # File Manager
 super + e
-	tdrop -ma -w "3000" -h "1500" -x "10%" -y "15%" -n filebrowser $TERMINAL -c filebrowser -e lf
+	tdrop -ma -w "3000" -h "1500" -x "10%" -y "15%" -n filebrowser $TERMINAL --class filebrowser lf
 
 # Calculator
 XF86Calculator
-	tdrop -ma -w "1000" -h "1000" -x "70%" -y "15%" -n calculator $TERMINAL -c calculator -e "bc" "-l"
+	tdrop -ma -w "1000" -h "1000" -x "70%" -y "15%" -n calculator $TERMINAL --class calculator "bc" "-l"
 
 # System Manager
 super + Escape
-    tdrop -ma -w "3000" -h "1500" -x "10%" -y "15%" -n sysmgr $TERMINAL -c sysmgr -e "btm" "--basic"
+    tdrop -ma -w "3000" -h "1500" -x "10%" -y "15%" -n sysmgr $TERMINAL --class sysmgr "btm" "--basic"
 
 # Sessionizer
 super + p
-    $TERMINAL -e sessionizer
+    $TERMINAL sessionizer
 
 # X Session Manager
 super + BackSpace
