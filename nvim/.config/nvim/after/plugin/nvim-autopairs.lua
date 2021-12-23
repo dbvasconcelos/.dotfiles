@@ -1,4 +1,4 @@
-local npairs = require('nvim-autopairs')
+local npairs = require("nvim-autopairs")
 local cmp = require("cmp")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
