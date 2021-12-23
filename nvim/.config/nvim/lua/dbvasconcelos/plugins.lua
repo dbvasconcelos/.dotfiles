@@ -1,7 +1,7 @@
 -- Bootstrap
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.system({
+	PACKER_BOOTSTRAP = vim.fn.system({
 		"git",
 		"clone",
 		"--depth",
@@ -20,8 +20,10 @@ vim.cmd([[
   augroup end
 ]])
 
+local packer = require("packer")
+
 -- Declarations
-return require("packer").startup({
+return packer.startup({
 	function(use)
 		-- Plugin Manager itself
 		use("wbthomason/packer.nvim")
@@ -53,22 +55,39 @@ return require("packer").startup({
 		-- LSP Formatting
 		use("mhartington/formatter.nvim")
 
+		-- LSP Lint
+		use("mfussenegger/nvim-lint")
+
 		-- LSP Installation
 		use("williamboman/nvim-lsp-installer")
 
+		-- LSP Problems
+		use({
+			"folke/trouble.nvim",
+			requires = "kyazdani42/nvim-web-devicons",
+		})
 		-- Commenting
 		use("numToStr/Comment.nvim")
+
+		-- Snippets
+		use({
+			"L3MON4D3/LuaSnip",
+			requires = {
+				"rafamadriz/friendly-snippets",
+			},
+		})
 
 		-- Auto Completion
 		use({
 			"hrsh7th/nvim-cmp",
 			requires = {
-				"L3MON4D3/LuaSnip",
 				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-cmdline",
 				"hrsh7th/cmp-nvim-lsp",
 				"hrsh7th/cmp-nvim-lua",
 				"hrsh7th/cmp-path",
 				"saadparwaiz1/cmp_luasnip",
+				"onsails/lspkind-nvim",
 			},
 		})
 
@@ -89,9 +108,6 @@ return require("packer").startup({
 
 		-- Treesitter
 		use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-
-		-- GoLang Utilities
-		use({ "fatih/vim-go", run = ":GoUpdateBinaries" })
 
 		-- Auto Pairing Parenthesis/Brackets/Curly
 		use("windwp/nvim-autopairs")
@@ -168,12 +184,16 @@ return require("packer").startup({
 		})
 
 		use("ThePrimeagen/vim-be-good")
+
+		if PACKER_BOOTSTRAP then
+			packer.sync()
+		end
 	end,
 
 	config = {
 		display = {
 			open_fn = function()
-				return require("packer.util").float({ border = "single" })
+				return require("packer.util").float({ border = "rounded" })
 			end,
 		},
 	},

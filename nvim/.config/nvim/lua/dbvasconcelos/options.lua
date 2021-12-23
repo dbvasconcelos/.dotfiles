@@ -1,10 +1,11 @@
 local opt = vim.opt
 
+opt.cmdheight = 2
 opt.colorcolumn = "100"
 opt.confirm = true
 opt.cursorline = true
 opt.expandtab = true
-opt.guifont = { "monospace:h18" }
+opt.guifont = "monospace:h17"
 opt.ignorecase = true
 opt.list = true
 opt.listchars.tab = '▸'

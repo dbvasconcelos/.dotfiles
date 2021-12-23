@@ -1,57 +1,42 @@
 -- Linerule symbols
 require("dbvasconcelos.lsp.signs").setup()
 
--- Pictograms
-require("dbvasconcelos.lsp.pictograms").setup()
-
 -- Handlers
 require("dbvasconcelos.lsp.handlers").setup()
+
+-- Mappings
+require("dbvasconcelos.lsp.keybindings").setup()
 
 -- Comments
 require("Comment").setup()
 
--- On init
-local on_init = function(client)
-	client.config.flags = client.config.flags or {}
-	client.config.flags.allow_incremental_sync = true
-end
+-- Lists
+require("trouble").setup()
 
-local lsp_mappings = require("dbvasconcelos.lsp.keybindings")
 local servers = require("dbvasconcelos.lsp.servers").servers
 
 -- On Attach
 local on_attach = function(client)
-	-- Mappings
-	lsp_mappings.on_attach(client)
-
-	-- Enable completion triggered by <c-x><c-o>
-	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-
 	-- Highlighting
 	if client.resolved_capabilities.document_highlight then
-		vim.api.nvim_exec(
-			[[
+		vim.cmd([[
             augroup lsp_document_highlight
-            autocmd! * <buffer>
-            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+                autocmd! * <buffer>
+                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
             augroup END
-            ]],
-			false
-		)
+        ]])
 	end
 
 	-- Code Lens
 	if client.resolved_capabilities.code_lens then
-		vim.api.nvim_exec(
-			[[
+		vim.cmd([[
             augroup lsp_document_codelens
-            au! * <buffer>
-            autocmd BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
+                autocmd! * <buffer>
+                autocmd BufEnter ++once         <buffer> lua require"vim.lsp.codelens".refresh()
+                autocmd BufWritePost,CursorHold <buffer> lua require"vim.lsp.codelens".refresh()
             augroup END
-            ]],
-			false
-		)
+        ]])
 	end
 
 	-- Attach any filetype specific options to the client
@@ -64,10 +49,6 @@ end
 -- Extended capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.codeLens = { dynamicRegistration = false }
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-	properties = { "documentation", "detail", "additionalTextEdits" },
-}
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- Setup
@@ -81,7 +62,6 @@ local setup_server = function(server, config)
 	end
 
 	config = vim.tbl_deep_extend("force", {
-		on_init = on_init,
 		on_attach = on_attach,
 		capabilities = capabilities,
 		flags = { debounce_text_changes = 50 },
@@ -94,6 +74,7 @@ end
 local lsp_installer = require("nvim-lsp-installer")
 
 local formatters = {}
+local linters = {}
 for filetype, config in pairs(servers) do
 	local supported, server = lsp_installer.get_server(config.server)
 	if supported then
@@ -109,8 +90,22 @@ for filetype, config in pairs(servers) do
 			end,
 		}
 	end
+	if config.linter then
+		linters[filetype] = config.linter
+	end
 	setup_server(server, config.lsp)
 end
 
 -- Formatters
 require("formatter").setup({ logging = false, filetype = formatters })
+
+-- Linters
+require("lint").linters_by_ft = linters
+
+-- Run lint on save
+vim.cmd([[
+    augroup lsp_document_lint
+        autocmd! * <buffer>
+        autocmd BufWritePost <buffer> lua require"lint".try_lint()
+    augroup END
+]])

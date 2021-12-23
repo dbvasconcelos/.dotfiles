@@ -25,7 +25,6 @@ wk.register({
 	["J"] = { "mzJ`z", "Concat next line" },
 	["N"] = { "Nzzzv", "Previous" },
 	["n"] = { "nzzzv", "Next" },
-	["Y"] = { "y$", "Copy to the end of line" },
 
 	-- Leader prefix
 	["<leader>"] = {
@@ -92,6 +91,7 @@ wk.register({
 				"Document Diagnostics",
 			},
 			["f"] = { "<cmd>Format<cr>", "Format" },
+			["h"] = { "<cmd>SidewaysLeft<cr>", "Move arg left" },
 			["i"] = { "<cmd>LspInfo<cr>", "Info" },
 			["j"] = {
 				"<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = 'single'}})<cr>",
@@ -101,6 +101,7 @@ wk.register({
 				"<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = 'single'}})<cr>",
 				"Prev Diagnostic",
 			},
+			["l"] = { "<cmd>SidewaysRight<cr>", "Move arg right" },
 			["q"] = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
 			["r"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 			["s"] = {
@@ -148,7 +149,11 @@ wk.register({
 		},
 
 		-- Packer group
-		p = { name = "Packer", ["s"] = { "<cmd>PackerSync<cr>", "Sync" } },
+		p = {
+			name = "Packer",
+			["i"] = { "<cmd>PackerStatus<cr>", "Info" },
+			["s"] = { "<cmd>PackerSync<cr>", "Sync" },
+		},
 
 		-- Search group
 		s = {
@@ -199,9 +204,19 @@ wk.register({
 	},
 }, { mode = "v", nowait = true })
 
+-- vim.cmd "imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : ''"
+-- vim.cmd "inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<cr>"
+--
+-- vim.cmd "snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<cr>"
+-- vim.cmd "snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<cr>"
+--
+-- vim.cmd "imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'"
+-- vim.cmd "smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'"
+
 -- Save file as sudo on files that require root permission
 vim.cmd("cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!")
 
+-- Command line movement
 vim.cmd("cnoremap <C-p> <Up>")
 vim.cmd("cnoremap <C-n> <Down>")
 vim.cmd("cnoremap <C-h> <Left>")
