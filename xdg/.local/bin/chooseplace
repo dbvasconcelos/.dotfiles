@@ -6,18 +6,18 @@
 # $1 is an optional label for prompt
 
 if [ -z "$1" ]; then
-	prompt="Choose bookmark location:"
+  prompt="Choose bookmark location:"
 else
-	prompt="$1"
+  prompt="$1"
 fi
 
 if [ -t 0 ]; then
-	selection_app="fzf --header=\"$prompt\""
+  selection_app="fzf --header=\"$prompt\""
 else
-	selection_app="dmenu -i -l 20 -p \"$prompt\""
+  selection_app="dmenu -i -l 20 -p \"$prompt\""
 fi
 user_dirs="${XDG_CONFIG_HOME}/user-dirs.dirs"
 user_bookmarks="${XDG_CONFIG_HOME}/user-bookmarks.dirs"
 # shellcheck source=/dev/null
-[ -f  "$user_dirs" ] && set -o allexport && . "$user_dirs" && set +o allexport
-cat "$user_bookmarks" | envsubst | grep -v "^#" | cut -d= -f2 | cut -d'#' -f1 | eval "$selection_app" | sed "s|~|$HOME|"
+[ -f "$user_dirs" ] && set -o allexport && . "$user_dirs" && set +o allexport
+envsubst <"$user_bookmarks" | grep -v "^#" | cut -d= -f2 | cut -d'#' -f1 | eval "$selection_app" | sed "s|~|$HOME|"

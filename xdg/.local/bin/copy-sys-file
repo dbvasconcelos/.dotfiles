@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Copy a local edited file to its system counterpart
-
-[ -f "$1" ] || exit 1
-
-sudo -A cp --preserve=mode,xattr "$1" "${1/$HOME\/.local//}"

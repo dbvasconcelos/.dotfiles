@@ -16,5 +16,7 @@ image/gif=sxiv.desktop;
 
 text/x-shellscript=nvim.desktop;
 text/plain=nvim.desktop;
-
-video/x-matroska=mpv.desktop
+application/xml=nvim.desktop;
+application/json=nvim.desktop;
+application/yaml=nvim.desktop;
+application/yml=nvim.desktop;
