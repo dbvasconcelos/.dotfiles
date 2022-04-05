@@ -24,15 +24,21 @@ alias extract="aunpack"
 # Verbosity
 alias cp="advcp -giv"
 alias mv="advmv -giv"
-alias rm="trash-put -vi"
+alias rm="rm -vI"
+alias trash="trash-put -f"
 alias mkdir="mkdir -pv"
-alias stow="stow -v"
 
 # Colorization
 alias diff="diff --color=auto"
 
 # remove orphaned packages
-alias autoremove='paru -Rns $(paru -Qtdq)'
+alias autoremove='if [ -z "$(paru -Qtdq)" ]; then echo "no orphan packages"; else paru -Rns $(paru -Qtdq); fi'
 
 # get error messages from journalctl
 alias jctl="journalctl -p 4 -xb"
+
+# kill all pbs jobs
+qdelall="qselect -u $USER | xargs qdel"
+
+# enable correct editor when sudoing
+alias sudo="sudo EDITOR=$EDITOR"

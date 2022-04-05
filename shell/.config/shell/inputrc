@@ -4,7 +4,7 @@
 # Carries over site-wide readline configuration to the user
 $include /etc/inputrc
 
-# Color files by types
+# Colorized completion
 set colored-stats On
 
 # Ignore case on auto completion
