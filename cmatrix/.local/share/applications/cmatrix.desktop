@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=cmatrix
+Exec=kitty --class cmatrix cmatrix
+Icon=cmatrix-icon
+Terminal=true
