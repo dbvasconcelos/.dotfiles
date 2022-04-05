@@ -1,0 +1,10 @@
+[Unit]
+Description=Mopidy music server
+After=network.target
+After=sound.target
+
+[Service]
+ExecStart=/usr/bin/mopidy
+
+[Install]
+WantedBy=default.target
