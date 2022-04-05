@@ -3,7 +3,6 @@
 #
 # wm independent hotkeys
 #
-
 # terminal emulator
 super + Return
 	$TERMINAL
@@ -14,19 +13,26 @@ super + w
 
 # Scratchpad terminal
 super + shift + Return
-	tdrop -ma -w "50%" -h "50%" -x "25%" -y "25%" -n scratchpad $TERMINAL --class scratchpad
+	tdrop -a -n scratchpad -w "50%" -h "50%" -x "25%" -y "25%" $TERMINAL
 
 # File Manager
 super + e
-	tdrop -ma -w "3000" -h "1500" -x "10%" -y "15%" -n filebrowser $TERMINAL --class filebrowser lf
+	tdrop -a -n filebrowser -w "3000" -h "1500" -x "10%" -y "15%" $TERMINAL "lf"
 
 # Calculator
 XF86Calculator
-	tdrop -ma -w "1000" -h "1000" -x "70%" -y "15%" -n calculator $TERMINAL --class calculator "bc" "-l"
+	tdrop -a -n calculator -w "1000" -h "1000" -x "70%" -y "15%" $TERMINAL "bc" "-l"
 
 # System Manager
 super + Escape
-    tdrop -ma -w "3000" -h "1500" -x "10%" -y "15%" -n sysmgr $TERMINAL --class sysmgr "btm" "--basic"
+    tdrop -a -n sysmgr -w "3000" -h "1500" -x "10%" -y "15%" $TERMINAL "btm" "--basic"
+
+# Music Player
+super +
+    tdrop -a -n sysmgr -w "3000" -h "1500" -x "10%" -y "15%" $TERMINAL "btm" "--basic"
+
+super + F8
+    $TERMINAL "ncmpcpp"
 
 # Sessionizer
 super + p
@@ -38,11 +44,10 @@ super + BackSpace
 
 # program launcher
 super + r
-	dmenu_run
+	rofi -show drun -theme simplemenu
 
-# Select Emoji from list
-super + F11
-	select-glyph
+super + R
+	dmenu_run
 
 # Idle Screen
 XF86MonBrightnessDown
@@ -52,11 +57,19 @@ XF86MonBrightnessDown
 Print
 	take-screenshot
 
+# Media Keys
+XF86AudioPrev
+    playerctl -p mopidy previous
+XF86AudioPlay
+    playerctl -p mopidy play-pause
+XF86AudioNext
+    playerctl -p mopidy next
+
 # Volume
 XF86AudioMute
-	pulsemixer --toggle-mute
+	pulseaudio-control togmute
 XF86Audio{Raise,Lower}Volume
-	pulsemixer --change-volume {+,-}3
+	pulseaudio-control {up, down}
 
 #
 # bspwm hotkeys
@@ -67,7 +80,7 @@ super + alt + {q,r}
 	bspc {quit,wm -r}
 
 # close and kill
-super + {_,shift + }q
+super + {_,shift +}q
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
@@ -78,9 +91,9 @@ super + m
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest window
+# swap the current node and the biggest local node
 super + @space
-	bspc node -s biggest.window
+	bspc node -s biggest.local
 
 #
 # state/flags
@@ -100,14 +113,10 @@ super + ctrl + {m,x,y,z}
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
-
-# focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+	{bspc node -f, bspwm_smart_move} {west,south,north,east}
 
 # focus the next/previous window in the current desktop
-super + {_,shift + }c
+super + {comma,period}
 	bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
@@ -115,8 +124,8 @@ super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
+super + {_,shift +} Tab
+	bspc {node, desktop} -f last
 
 # focus the older or newer node in the focus history
 super + {o,i}
