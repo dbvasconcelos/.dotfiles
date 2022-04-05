@@ -1,38 +1,35 @@
-# xprofile: allows you to execute commands at the beginning of the X user session
+# .xprofile: allows you to execute commands at the beginning of the X user session
 # before the window manager is started.
 
+# X Colors
+xrdb "${XDG_CONFIG_HOME}/X11/xresources"
+
+# Wallpaper
+setbg
+
 # keyboard
-set-keyboard &
+setkb
+
+# Window compositor
+picom &
+
+# Network Manager Applet
+nm-applet --indicator &
+
+# Cloud Storage
+insync start &
+
+# Night light
+redshift &
 
 # Hotkeys
 sxhkd &
 
-# Window Compositor
-picom &
-
-# Wallpaper
-xwallpaper --zoom "$HOME/.config/X11/background" &
-
-# Notifications
-dunst &
-
-# Night light
-redshift -l -22.90556:-47.06083 &
-
 # Hide mouse pointer when idle
 unclutter &
-
-# Network applet
-nm-applet --indicator &
-
-# Cloud
-insync start &
 
 # Automount devices
 udiskie --smart-tray &
 
 # Devices
 solaar -w hide &
-
-# Music Player
-youtubemusic &

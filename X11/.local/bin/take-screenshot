@@ -7,13 +7,13 @@ picsdir=$(xdg-user-dir PICTURES)
 
 # Runs maim and saves the image on a file
 maim2file() {
-	picname="$picsdir/screenshot-$(date '+%Y-%m-%d-%H%M').png"
-    maim "$@" "$picname" && notify-send "Screenshot created" "$picname" && exit
+  picname="$picsdir/screenshot-$(date '+%Y-%m-%d-%H%M').png"
+  maim "$@" "$picname" && notify-send -u low "Screenshot created" "$picname" && exit
 }
 
 # Runs maim and saves the image on the clipboard
 maim2clipboard() {
-    maim "$@" | xclip -selection clipboard -t image/png && notify-send "Screenshot copied to clipboard" && exit
+  maim "$@" | xclip -selection clipboard -t image/png && notify-send -u low "Screenshot copied to clipboard" && exit
 }
 
 options="\
