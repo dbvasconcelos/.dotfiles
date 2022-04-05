@@ -1,13 +1,15 @@
 local M = {}
 
 function M.setup()
-	vim.cmd("nnoremap <silent> K :lua vim.lsp.buf.hover()<cr>")
-	vim.cmd("nnoremap <silent> [d :lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = single}})<cr>")
-	vim.cmd("nnoremap <silent> ]d :lua vim.lsp.diagnostic.goto_next({popup_opts = {border = single}})<cr>")
-	vim.cmd("nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<cr>")
-	vim.cmd("nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>")
-	vim.cmd("nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<cr>")
-	vim.cmd("nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<cr>")
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = 0 })
+	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = 0 })
+	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+	vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
+	vim.keymap.set("n", "gL", vim.diagnostic.open_float, { buffer = 0 })
+	vim.keymap.set("n", "gi", "<cmd>Trouble lsp_implementations<cr>", { buffer = 0 })
+	vim.keymap.set("n", "gr", "<cmd>Trouble lsp_references<cr>", { buffer = 0 })
 end
 
 return M

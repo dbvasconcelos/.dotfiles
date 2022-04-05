@@ -1,4 +1,19 @@
 require("gitsigns").setup({
+	on_attach = function(bufnr)
+		-- Navigation
+		vim.keymap.set(
+			"n",
+			"]h",
+			"&diff ? ']h' : '<cmd>Gitsigns next_hunk<CR>'",
+			{ expr = true, buffer = bufnr }
+		)
+		vim.keymap.set(
+			"n",
+			"[h",
+			"&diff ? '[h' : '<cmd>Gitsigns prev_hunk<CR>'",
+			{ expr = true, buffer = bufnr }
+		)
+	end,
 	signs = {
 		add = {
 			hl = "GitSignsAdd",
@@ -31,5 +46,4 @@ require("gitsigns").setup({
 			linehl = "GitSignsChangeLn",
 		},
 	},
-	keymaps = {},
 })

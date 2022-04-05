@@ -7,8 +7,6 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 
-require("luasnip.loaders.from_vscode").lazy_load()
-
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0
@@ -17,17 +15,6 @@ local has_words_before = function()
 end
 
 cmp.setup({
-	formatting = {
-		format = lspkind.cmp_format({
-			menu = {
-				buffer = "[Buffer]",
-				nvim_lsp = "[LSP]",
-				luasnip = "[LuaSnip]",
-				nvim_lua = "[Lua]",
-			},
-		}),
-	},
-
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)
@@ -47,7 +34,7 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
+			elseif luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
 			elseif has_words_before() then
 				cmp.complete()
@@ -68,11 +55,29 @@ cmp.setup({
 
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "luasnip" },
-		{ name = "buffer" },
+		{ name = "cmp_tabnine" },
+		{ name = "buffer", keyword_length = 5 },
 		{ name = "path" },
 		{ name = "nvim_lua" },
 	}),
+
+	confirmation = {
+		default_behavior = cmp.ConfirmBehavior.Replace,
+	},
+
+	formatting = {
+		format = lspkind.cmp_format({
+			menu = {
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				luasnip = "[Snippet]",
+				nvim_lua = "[NVIM]",
+				cmp_tabnine = "[T9]",
+			},
+		}),
+	},
 
 	documentation = {
 		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
@@ -80,7 +85,13 @@ cmp.setup({
 })
 
 -- Use buffer source for `/`.
-cmp.setup.cmdline("/", { sources = { { name = "buffer" } } })
+cmp.setup.cmdline("/", {
+	sources = cmp.config.sources({
+		{ name = "nvim_lsp_document_symbol" },
+	}, {
+		{ name = "buffer" },
+	}),
+})
 
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(":", {

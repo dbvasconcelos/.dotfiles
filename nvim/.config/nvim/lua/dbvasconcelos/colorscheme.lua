@@ -1,22 +1,11 @@
 -- Enables 24-bit RGB color in the |TUI|
 vim.opt.termguicolors = true
 
--- Set a darker background on sidebar-like windows
-vim.g.gruvbox_sidebars = { "qf", "vista_kind", "terminal", "packer" }
-
 -- Apply Theme
-local colorscheme = "gruvbox-flat"
-
-local colorscheme_installed, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not colorscheme_installed then
-	vim.notify("colorscheme " .. colorscheme .. " not found!")
-	return
-end
+vim.cmd("colorscheme gruvbox-flat")
 
 -- Highlight color codes
 require("colorizer").setup({ "*" }, {
-	RGB = true, -- #RGB hex codes
-	RRGGBB = true, -- #RRGGBB hex codes
 	RRGGBBAA = true, -- #RRGGBBAA hex codes
 	rgb_fn = true, -- CSS rgb() and rgba() functions
 	hsl_fn = true, -- CSS hsl() and hsla() functions

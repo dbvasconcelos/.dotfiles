@@ -12,18 +12,16 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.cmd("packadd packer.nvim")
 end
 
--- Auto sync plugins when editing this file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
+-- Auto compile plugins when editing this file
+local group = vim.api.nvim_create_augroup("packer_user_config", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "plugins.lua",
+	command = "source <afile> | PackerCompile",
+	group = group,
+})
 
-local packer = require("packer")
-
--- Declarations
-return packer.startup({
+-- Plugin Declarations
+return require("packer").startup({
 	function(use)
 		-- Plugin Manager itself
 		use("wbthomason/packer.nvim")
@@ -31,43 +29,45 @@ return packer.startup({
 		-- Color Scheme
 		use("eddyekofo94/gruvbox-flat.nvim")
 
+		-- Auto Pairing Parenthesis/Brackets/Curly
+		use("windwp/nvim-autopairs")
+
+		-- Auto Completion
+		use({
+			"hrsh7th/nvim-cmp",
+			requires = {
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-cmdline",
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-nvim-lsp-signature-help",
+				"hrsh7th/cmp-nvim-lsp-document-symbol",
+				"hrsh7th/cmp-nvim-lua",
+				"hrsh7th/cmp-path",
+				"saadparwaiz1/cmp_luasnip",
+				"onsails/lspkind-nvim",
+				{ "tzachar/cmp-tabnine", run = "./install.sh" },
+			},
+		})
+
+		-- Debugging
+		use({
+			"mfussenegger/nvim-dap",
+			requires = {
+				"rcarriga/nvim-dap-ui",
+				"theHamsta/nvim-dap-virtual-text",
+				"Pocco81/DAPInstall.nvim",
+				"leoluz/nvim-dap-go",
+			},
+		})
+
+		-- Git Signs
+		use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
+
 		-- Status Line
 		use({
 			"nvim-lualine/lualine.nvim",
-			requires = { "kyazdani42/nvim-web-devicons", opt = true },
+			requires = { "kyazdani42/nvim-web-devicons", "arkav/lualine-lsp-progress" },
 		})
-
-		-- File Tree
-		use({
-			"kyazdani42/nvim-tree.lua",
-			requires = "kyazdani42/nvim-web-devicons",
-		})
-
-		-- Terminal
-		use("akinsho/nvim-toggleterm.lua")
-
-		-- Clipboard
-		use("AckslD/nvim-neoclip.lua")
-
-		-- LSP Support
-		use("neovim/nvim-lspconfig")
-
-		-- LSP Formatting
-		use("mhartington/formatter.nvim")
-
-		-- LSP Lint
-		use("mfussenegger/nvim-lint")
-
-		-- LSP Installation
-		use("williamboman/nvim-lsp-installer")
-
-		-- LSP Problems
-		use({
-			"folke/trouble.nvim",
-			requires = "kyazdani42/nvim-web-devicons",
-		})
-		-- Commenting
-		use("numToStr/Comment.nvim")
 
 		-- Snippets
 		use({
@@ -77,40 +77,50 @@ return packer.startup({
 			},
 		})
 
-		-- Auto Completion
-		use({
-			"hrsh7th/nvim-cmp",
-			requires = {
-				"hrsh7th/cmp-buffer",
-				"hrsh7th/cmp-cmdline",
-				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-nvim-lua",
-				"hrsh7th/cmp-path",
-				"saadparwaiz1/cmp_luasnip",
-				"onsails/lspkind-nvim",
-			},
-		})
-
-		-- Debugging
-		use({
-			"mfussenegger/nvim-dap",
-			requires = "theHamsta/nvim-dap-virtual-text",
-		})
-
 		-- Refactoring
 		use({
 			"ThePrimeagen/refactoring.nvim",
 			requires = {
 				{ "nvim-lua/plenary.nvim" },
-				{ "nvim-treesitter/nvim-treesitter" },
 			},
 		})
 
-		-- Treesitter
-		use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+		-- Terminal
+		use("akinsho/nvim-toggleterm.lua")
 
-		-- Auto Pairing Parenthesis/Brackets/Curly
-		use("windwp/nvim-autopairs")
+		-- File Tree
+		use({
+			"kyazdani42/nvim-tree.lua",
+			requires = { "kyazdani42/nvim-web-devicons" },
+		})
+
+		-- Treesitter
+		use({
+			"nvim-treesitter/nvim-treesitter",
+			run = ":TSUpdate",
+			requires = {
+				"nvim-treesitter/nvim-treesitter-textobjects",
+			},
+		})
+
+		-- Testing
+		use({
+			"rcarriga/vim-ultest",
+			requires = { "vim-test/vim-test" },
+			run = ":UpdateRemotePlugins",
+		})
+
+		-- LSP Support
+		use({
+			"neovim/nvim-lspconfig",
+			requires = {
+				"williamboman/nvim-lsp-installer",
+				"numToStr/Comment.nvim",
+				"mfussenegger/nvim-lint",
+				"mhartington/formatter.nvim",
+				{ "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" },
+			},
+		})
 
 		-- Fuzzy Finder
 		use({
@@ -118,11 +128,12 @@ return packer.startup({
 			requires = {
 				{ "nvim-lua/popup.nvim" },
 				{ "nvim-lua/plenary.nvim" },
-                { "tami5/sqlite.lua" },
-                { "nvim-telescope/telescope-dap.nvim" },
+				{ "tami5/sqlite.lua" },
+				{ "nvim-telescope/telescope-dap.nvim" },
 				{ "nvim-telescope/telescope-fzy-native.nvim" },
 				{ "nvim-telescope/telescope-media-files.nvim" },
 				{ "nvim-telescope/telescope-smart-history.nvim" },
+				{ "AckslD/nvim-neoclip.lua" },
 			},
 		})
 
@@ -144,23 +155,6 @@ return packer.startup({
 		-- Repeat command (.) for plugins
 		use("tpope/vim-repeat")
 
-		-- Git Signs
-		use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
-
-		-- Extend block navigation to language keywords
-		use("andymass/vim-matchup")
-
-		-- Argument Utility
-		use("AndrewRadev/sideways.vim")
-
-		-- Projects
-		use({
-			"ahmedkhalf/project.nvim",
-			config = function()
-				require("project_nvim").setup({})
-			end,
-		})
-
 		-- Marks
 		use({
 			"ThePrimeagen/harpoon",
@@ -170,26 +164,26 @@ return packer.startup({
 		-- Create parent folders when writing new file
 		use("jessarcher/vim-heritage")
 
-		-- Editor Config per project
-		use("editorconfig/editorconfig-vim")
+		-- Editorconfig integration
+		use("gpanders/editorconfig.nvim")
 
 		-- Async compilation
 		use("tpope/vim-dispatch")
 
-		-- Testing
-		use("vim-test/vim-test")
-
 		use({
 			"antoinemadec/FixCursorHold.nvim",
 			run = function()
-				vim.g.curshold_updatime = 1000
+				vim.g.curshold_updatime = 100
 			end,
 		})
 
 		use("ThePrimeagen/vim-be-good")
 
+		-- NSIS syntax highlighting
+		use({ "k-takata/vim-nsis", ft = "nsis" })
+
 		if PACKER_BOOTSTRAP then
-			packer.sync()
+			require("packer").sync()
 		end
 	end,
 

@@ -1,50 +1,21 @@
-local M = {}
-
-M.servers = {
+local M = {
 	go = {
-		server = "gopls",
+		server_id = "gopls",
 		lsp = {
-			settings = { gopls = { codelenses = { test = true } } },
-			flags = { debounce_text_changes = 200 },
-		},
-		linter = {
-			"golangcilint",
-		},
-		callback = function(_)
-			vim.cmd([[
-                augroup lsp_golang
-                    autocmd! BufwritePre <buffer>
-                    autocmd BufwritePre <buffer> :lua vim.lsp.buf.formatting_sync()
-                    autocmd BufwritePre <buffer> :lua require"dbvasconcelos.lsp.actions".organize_imports()
-                augroup END
-            ]])
-		end,
-	},
-
-	cpp = {
-		server = "clangd",
-		lsp = {
-			cmd = {
-				"clangd",
-				"--background-index",
-				"--suggest-missing-includes",
-				"--clang-tidy",
-				"--header-insertion=iwyu",
+			settings = {
+				gopls = {
+					buildFlags = { "-tags=wireinject" },
+				},
 			},
 		},
-		formatter = {
-			exe = "clang-format",
-			args = { "--assume-filename", vim.api.nvim_buf_get_name(0) },
-			stdin = true,
-			cwd = vim.fn.expand("%:p:h"), -- Run clang-format in cwd of the file.
-		},
-		linter = {
-			"clangtidy",
+		debugger = "go_delve",
+		linters = {
+			"golangcilint",
 		},
 	},
 
 	lua = {
-		server = "sumneko_lua",
+		server_id = "sumneko_lua",
 		lsp = {
 			settings = {
 				Lua = {
@@ -69,40 +40,91 @@ M.servers = {
 		},
 		formatter = {
 			exe = "stylua",
-			args = {
-				"--config-path " .. os.getenv("XDG_CONFIG_HOME") .. "/stylua/stylua.toml",
-				"-",
-			},
+			args = { "--config-path " .. vim.fn.expand("~/.config/stylua/stylua.toml"), "-" },
 			stdin = true,
 		},
-		linter = {
+		linters = {
 			"luacheck",
 		},
 	},
 
-	php = { server = "intelephense", lsp = true },
+	php = { server_id = "intelephense", lsp = true },
 
-	vim = { server = "vimls", lsp = true, linter = { "vint" } },
-
-	bash = {
-		server = "bashls",
-		lsp = true,
-		formatter = { exe = "shfmt", args = { "-i", 2 }, stdin = true },
-		linter = { "shellcheck" },
-	},
+	vim = { server_id = "vimls", lsp = true },
 
 	sh = {
-		server = "bashls",
+		server_id = "bashls",
 		lsp = true,
-		formatter = { exe = "shfmt", args = { "-i", 2 }, stdin = true },
-		linter = { "shellcheck" },
+		formatter = {
+			exe = "shfmt",
+			args = { "-i", "2", "-ci" },
+			stdin = true,
+		},
+		linters = {
+			"shellcheck",
+		},
 	},
 
-	html = { server = "html", lsp = true },
+	bash = {
+		server_id = "bashls",
+		lsp = true,
+		formatter = {
+			exe = "shfmt",
+			args = { "-i", "2", "-ci" },
+			stdin = true,
+		},
+		linters = {
+			"shellcheck",
+		},
+	},
 
-	json = { server = "jsonls", lsp = true },
+	html = {
+		server_id = "html",
+		lsp = true,
+		formatter = {
+			exe = "prettier",
+			args = {
+				"--stdin-filepath",
+				vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+			},
+			stdin = true,
+		},
+	},
 
-	dockerfile = { server = "dockerls", lsp = true },
+	json = {
+		server_id = "jsonls",
+		lsp = true,
+		formatter = {
+			exe = "prettier",
+			args = {
+				"--stdin-filepath",
+				vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+				"--double-quote",
+			},
+			stdin = true,
+		},
+	},
+
+	yaml = {
+		server_id = "yamlls",
+		lsp = true,
+		formatter = {
+			exe = "prettier",
+			args = {
+				"--stdin-filepath",
+				vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+			},
+			stdin = true,
+		},
+	},
+
+	dockerfile = {
+		server_id = "dockerls",
+		lsp = true,
+		linters = {
+			"hadolint",
+		},
+	},
 }
 
 return M
