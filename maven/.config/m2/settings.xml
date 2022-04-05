@@ -1,0 +1,62 @@
+<settings>
+    <localRepository>/home/derek/.local/share/m2</localRepository>
+    <servers>
+        <server>
+            <id>nexus</id>
+            <username>udev01</username>
+            <password>{MMbpWXxz57UHjlJDM8FxhmMbNj4jDtzvYpeUl0y4x4o=}</password>
+        </server>
+        <server>
+            <id>dev01</id>
+            <username>udev01</username>
+            <password>{MMbpWXxz57UHjlJDM8FxhmMbNj4jDtzvYpeUl0y4x4o=}</password>
+        </server>
+    </servers>
+
+    <mirrors>
+        <mirror>
+            <!--This sends everything else to /public -->
+            <id>nexus</id>
+            <mirrorOf>*</mirrorOf>
+            <!-- your address may differ: -->
+            <url>http://dev01.unisim.cepetro.unicamp.br:8081/repository/maven-public</url>
+        </mirror>
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>nexus</id>
+            <!--Enable snapshots for the built in central repo to direct -->
+            <!--all requests to nexus via the mirror -->
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>http://central</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <url>http://central</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <!--make the profile active all the time -->
+        <activeProfile>nexus</activeProfile>
+    </activeProfiles>
+</settings>

@@ -1,2 +1,2 @@
-cache="${XDG_CACHE_HOME}/npm"
-tmp="${XDG_RUNTIME_DIR}/npm"
+cache=${XDG_CACHE_HOME}/npm
+init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js

@@ -1,23 +1,23 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Creates a tmux session for the selected project
 
 if [[ $# -eq 1 ]]; then
-    selected=$1
+  selected=$1
 else
-    items=`find "${HOME}/Code/" -maxdepth 2 -mindepth 2 -type d`
-    items+=("$HOME/.dotfiles")
-    selected=`echo "$items" | fzf`
+  items=$(find "${HOME}/Code/" -maxdepth 2 -mindepth 2 -type d)
+  items+=("$HOME/.dotfiles")
+  selected=$(echo "$items" | fzf)
 fi
 
-session_name=`basename $selected | tr . _`
+session_name=$(basename $selected | tr . _)
 
 tmux switch-client -t $session_name
 if [[ $? -eq 0 ]]; then
-    exit 0
+  exit 0
 fi
 
-tmux new-session -c $selected -d -s $session_name \
-    && tmux send-keys -t $session_name vim Enter \
-    && tmux switch-client -t $session_name \
-    || tmux new -c $selected -A -s $session_name
+tmux new-session -c $selected -d -s $session_name &&
+  tmux send-keys -t $session_name vim Enter &&
+  tmux switch-client -t $session_name ||
+  tmux new -c $selected -A -s $session_name

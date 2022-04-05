@@ -1,1 +1,4 @@
-std = "lua51+nvim"
+std="lua51"
+globals = {
+    "vim",
+}

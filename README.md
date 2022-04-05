@@ -2,46 +2,45 @@
 
 Personal Linux Customization
 
-These configurations follows the stow software approach of linked files.
+These configurations follows the stow[https://www.gnu.org/software/stow/] software approach of linked files.
 
 The files structure follows how it is supposed to be relative to the user home folder.
 
 For example:
 
 .dotfiles/
-    program1/
-        .program1conf
-    program2/
+    program-1/
+        .program-1.conf
+    program-2/
         .config/
-            program2/
+            program-2/
                 [...some files]
         .local/
             share/
-                program2/
+                program-2/
                     [...some files]
-    program3/
-        .program3/
+    program-3/
+        .program-3/
             [...some files]
-        .program3conf
 
 Will result in:
 
 /home/user/
+    .program-1.conf
     .config/
-        program2/
+        program-2/
             [...some files]
     .local/
         share/
-            program2/
+            program-2/
                 [...some files]
-    .program3/
+    .program-3/
         [...some files]
-    .program3conf
 
 ## Installation
 
-To install the configuration files run the make install command
+To install the configuration files run ```make install```
 
 ## Removal
 
-To uninstall the configuration files run the make clean command
+To uninstall the configuration files run ```make clean```

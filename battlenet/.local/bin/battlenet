@@ -1,3 +1,0 @@
-#!/bin/sh
-gtk-launch battlenet &
-wine "$WINEPREFIX/drive_c/Program Files/Hearthstone Deck Tracker/Hearthstone Deck Tracker.exe" &

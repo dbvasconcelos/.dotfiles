@@ -1,7 +1,0 @@
-#!/bin/sh
-
-sleep 5
-# Launch YM desktop app listening to track changes
-ytmdesktop | while read -r input; do
-	echo "$input" | grep 'Listen:' && polybar-msg hook music 1
-done

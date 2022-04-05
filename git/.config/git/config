@@ -3,3 +3,9 @@
 	email=derek@cepetro.unicamp.br
 [init]
 	defaultBranch = main
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[diff]
+	colorMoved = zebra

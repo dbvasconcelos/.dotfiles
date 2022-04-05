@@ -3,7 +3,7 @@
 printf "Beginning upgrade.\\n"
 
 paru -Syu
-polybar-msg hook packages 1
+polybar-msg action "#packages.hook.0"
 
 printf "\\nUpgrade complete.\\nPress <Enter> to exit window.\\n\\n"
 read -r _
