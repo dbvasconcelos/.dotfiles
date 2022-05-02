@@ -3,10 +3,6 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- Don't show matching
 vim.opt.shortmess:append("c")
 
-local cmp = require("cmp")
-local lspkind = require("lspkind")
-local luasnip = require("luasnip")
-
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0
@@ -14,6 +10,9 @@ local has_words_before = function()
 			== nil
 end
 
+local lspkind = require("lspkind")
+local luasnip = require("luasnip")
+local cmp = require("cmp")
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -21,11 +20,16 @@ cmp.setup({
 		end,
 	},
 
-	mapping = {
+	window = {
+		documentation = {
+			border = "rounded",
+		},
+	},
+
+	mapping = cmp.mapping.preset.insert({
 		["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 		["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-		["<C-y>"] = cmp.config.disable,
 		["<C-e>"] = cmp.mapping({
 			i = cmp.mapping.abort(),
 			c = cmp.mapping.close(),
@@ -51,7 +55,7 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
-	},
+	}),
 
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
@@ -70,17 +74,13 @@ cmp.setup({
 	formatting = {
 		format = lspkind.cmp_format({
 			menu = {
-				buffer = "[Buffer]",
 				nvim_lsp = "[LSP]",
 				luasnip = "[Snippet]",
-				nvim_lua = "[NVIM]",
 				cmp_tabnine = "[T9]",
+				buffer = "[Buffer]",
+				nvim_lua = "[NVIM]",
 			},
 		}),
-	},
-
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 	},
 })
 

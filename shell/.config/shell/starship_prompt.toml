@@ -1,5 +1,10 @@
+format = "[▎](yellow)$all"
+
 [aws]
 symbol = "  "
+
+[character]
+format = "[▎](yellow)$symbol "
 
 [conda]
 symbol = " "

@@ -1,0 +1,5 @@
+[Unit]
+Description=picom X11 compositor
+
+[Service]
+ExecStart=picom

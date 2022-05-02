@@ -4,7 +4,7 @@
     follow = keyboard
     width = 370
     height = 350
-    offset = 5x50
+    offset = 5x55
     frame_width = 1
     corner_radius = 7
     frame_color = "#d4be98"

@@ -1,0 +1,8 @@
+configuration {
+    font:                           "sans 20";
+    icon-theme:                     "Gruvbox-Material-Dark";
+    drun-display-format:            "{name}";
+    disable-history:                false;
+    sidebar-mode:                   false;
+    hide-scrollbar:                 true;
+}

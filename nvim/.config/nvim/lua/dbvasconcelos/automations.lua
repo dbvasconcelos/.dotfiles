@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("BufWritePre", { command = [[ %s/\n\+\%$//e ]], grou
 -- Update binds when sxhkdrc is updated
 vim.api.nvim_create_autocmd(
 	"BufWritePost",
-	{ pattern = "sxhkdrc", command = "!pkill -USR1 -x sxhkd", group = group }
+	{ pattern = "sxhkdrc", command = "!systemctl --user restart sxhkd.service", group = group }
 )
 
 -- Run xrdb whenever Xdefaults or Xresources are updated
@@ -35,10 +35,11 @@ vim.api.nvim_create_autocmd(
 )
 
 -- Restart bspwm when config is updated
-vim.api.nvim_create_autocmd(
-	"BufWritePost",
-	{ pattern = { "bspwmrc", "**/polybar/config" }, command = "!bspc wm -r", group = group }
-)
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = { "bspwmrc", "**/polybar/config.ini" },
+	command = "!systemctl --user restart polybar.service",
+	group = group,
+})
 
 -- When bookmarks files are updated, renew configs with new material
 vim.api.nvim_create_autocmd("BufWritePost", {

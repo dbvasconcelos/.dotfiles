@@ -1,0 +1,5 @@
+[Unit]
+Description=Hides idle pointer
+
+[Service]
+ExecStart=unclutter

@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-opt.cmdheight = 2
+opt.cmdheight = 1
 opt.colorcolumn = "100"
 opt.confirm = true
 opt.cursorline = true
@@ -23,6 +23,7 @@ opt.showmatch = true
 opt.showmode = false
 opt.sidescrolloff = 8
 opt.signcolumn = "yes"
+opt.spelllang = { "en_us" }
 opt.smartcase = true
 opt.smartindent = true
 opt.softtabstop = 4

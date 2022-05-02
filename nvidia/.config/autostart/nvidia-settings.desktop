@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=nvidia-settings --config=/home/derek/.config/nvidia/settings --load-config-only
+Terminal=false
+Categories=HardwareSettings;System;Settings;
+Name=NVIDIA X Server Settings
+Comment=Configure NVIDIA X Server Settings

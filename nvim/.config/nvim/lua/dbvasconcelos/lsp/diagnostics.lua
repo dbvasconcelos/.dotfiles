@@ -5,7 +5,7 @@ M.setup = function()
 	require("trouble").setup()
 
 	-- Show line diagnostics automatically in hover window
-	local group = vim.api.nvim_create_augroup("lsp_diagnostics", { clear = true })
+	local group = vim.api.nvim_create_augroup("lsp_diagnostics", {})
 	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 		callback = function()
 			vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
@@ -28,15 +28,7 @@ M.setup = function()
 		},
 	})
 
-	vim.api.nvim_create_autocmd("BufEnter", {
-		callback = function()
-			require("lint").try_lint()
-		end,
-		once = true,
-		group = group,
-	})
-
-	vim.api.nvim_create_autocmd("TextChanged", {
+	vim.api.nvim_create_autocmd({ "BufEnter", "TextChanged" }, {
 		callback = function()
 			require("lint").try_lint()
 		end,

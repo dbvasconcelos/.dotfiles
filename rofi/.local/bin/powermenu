@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+uptime=$(uptime -p | sed -e 's/up //g')
+
+rofi_command="rofi -theme powermenu -dmenu -selected-row 2"
+
+# Options
+shutdown=" shutdown"
+reboot="屢 reboot"
+lock=" lock"
+suspend="⏾ suspend"
+logout=" logout"
+
+options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
+
+chosen="$(echo -e "$options" | $rofi_command -p "System:")"
+case $chosen in
+  "$shutdown") systemctl poweroff ;;
+  "$reboot") systemctl reboot ;;
+  "$lock") xset dpms force off ;;
+  "$suspend") systemctl suspend ;;
+  "$logout") bspc quit ;;
+esac

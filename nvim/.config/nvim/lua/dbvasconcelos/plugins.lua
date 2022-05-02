@@ -13,7 +13,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 -- Auto compile plugins when editing this file
-local group = vim.api.nvim_create_augroup("packer_user_config", { clear = true })
+local group = vim.api.nvim_create_augroup("packer_user_config", {})
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "plugins.lua",
 	command = "source <afile> | PackerCompile",
@@ -55,13 +55,19 @@ return require("packer").startup({
 			requires = {
 				"rcarriga/nvim-dap-ui",
 				"theHamsta/nvim-dap-virtual-text",
-				"Pocco81/DAPInstall.nvim",
+				"Pocco81/dap-buddy.nvim",
 				"leoluz/nvim-dap-go",
 			},
 		})
 
 		-- Git Signs
 		use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
+
+		-- Marks
+		use({
+			"ThePrimeagen/harpoon",
+			requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
+		})
 
 		-- Status Line
 		use({
@@ -155,12 +161,6 @@ return require("packer").startup({
 		-- Repeat command (.) for plugins
 		use("tpope/vim-repeat")
 
-		-- Marks
-		use({
-			"ThePrimeagen/harpoon",
-			requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
-		})
-
 		-- Create parent folders when writing new file
 		use("jessarcher/vim-heritage")
 
@@ -168,7 +168,16 @@ return require("packer").startup({
 		use("gpanders/editorconfig.nvim")
 
 		-- Async compilation
-		use("tpope/vim-dispatch")
+		use({ "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } })
+
+		-- Games to improve vim skills
+		use("ThePrimeagen/vim-be-good")
+
+		-- Motion
+		use("ggandor/lightspeed.nvim")
+
+		-- NSIS syntax highlighting
+		use({ "k-takata/vim-nsis", ft = "nsis" })
 
 		use({
 			"antoinemadec/FixCursorHold.nvim",
@@ -176,11 +185,6 @@ return require("packer").startup({
 				vim.g.curshold_updatime = 100
 			end,
 		})
-
-		use("ThePrimeagen/vim-be-good")
-
-		-- NSIS syntax highlighting
-		use({ "k-takata/vim-nsis", ft = "nsis" })
 
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()

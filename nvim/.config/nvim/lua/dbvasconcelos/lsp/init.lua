@@ -47,10 +47,6 @@ for ft, config in pairs(servers) do
 	if config.linters then
 		linters[ft] = config.linters
 	end
-
-	if config.debugger then
-		installers.assure_installed_debugger(config.debugger)
-	end
 end
 
 require("formatter").setup({

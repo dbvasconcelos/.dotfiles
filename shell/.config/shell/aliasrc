@@ -42,3 +42,6 @@ qdelall="qselect -u $USER | xargs qdel"
 
 # enable correct editor when sudoing
 alias sudo="sudo EDITOR=$EDITOR"
+
+# nvidia settings
+alias nvidia-settings="nvidia-settings --config /home/derek/.config/nvidia/settings"

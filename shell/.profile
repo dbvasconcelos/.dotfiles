@@ -30,6 +30,9 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME/shell/starship_prompt.toml"
 # GTK
 export GTK_IM_MODULE=cedilla
 
+# QT
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+
 # Fix Java on tiling window managers
 export _JAVA_AWT_WM_NONREPARENTING=1
 
@@ -40,28 +43,30 @@ export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
 export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 # XDG compliance
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export CUDA_CACHE_PATH="$XDG_CACHE_HOME/cuda"
-export MYSQL_HISTFILE="$XDG_DATA_HOME/mysql_history"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NODE_REPL_HISTORY="$XDG_CACHE_HOME/npm/node_repl_history"
+export TREE_SITTER_DIR="$XDG_CONFIG_HOME/tree-sitter"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export MYSQL_HISTFILE="$XDG_DATA_HOME/mysql_history"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export STACK_ROOT="$XDG_DATA_HOME/stack"
-export TREE_SITTER_DIR="$XDG_CONFIG_HOME/tree-sitter"
-export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export WINEPREFIX="$XDG_DATA_HOME/wine/prefixes/default"
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/cuda"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export PERL_CPANM_HOME="$XDG_DATA_HOME/cpanm"
 
 # GoLang
 export GOPATH="$XDG_DATA_HOME/go"
 export PATH="$PATH:$GOPATH/bin"
-export GO111MODULE=on
-export GODEBUG=cgocheck=0
 
-# Docker
-export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
-export DOCKER_BUILDKIT=1
+# Ruby
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
 
 # Ask sudo password in dmenu
 export SUDO_ASKPASS="$HOME/.local/bin/askpass"
@@ -71,16 +76,3 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
 # Less
 export LESSHISTFILE="-" # No History
-
-# LF
-LF_ICONS=$(sed ~/.config/lf/icons \
-            -e '/^[ \t]*#/d'      \
-            -e '/^[ \t]*$/d'      \
-            -e 's/[ \t]\+/=/g'    \
-            -e 's/$/ /')
-export LF_ICONS=${LF_ICONS//$'\n'/:}
-
-# Auto start X when on TTY1
-# if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-#   exec startx "$XDG_CONFIG_HOME/X11/xinitrc" -- vt1 &> /dev/null
-# fi

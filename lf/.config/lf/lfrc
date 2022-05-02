@@ -48,9 +48,6 @@ cmd recol ${{
     fi
 }}
 
-# Send to trash
-cmd trash %trash-put $fx
-
 # Yank paths to clipboard
 cmd yank-path ${{
     printf '%s' "$fx" |
@@ -116,7 +113,7 @@ cmd compress ${{
 # Set background
 cmd setbg "$1"
 
-# Fzf Hump
+# Fzf jump
 cmd fzy-jump $lf -remote "send $id select '$(fzf)'"
 
 # Bookmark dir jump
