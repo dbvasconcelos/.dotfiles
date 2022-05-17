@@ -32,6 +32,9 @@ return require("packer").startup({
 		-- Auto Pairing Parenthesis/Brackets/Curly
 		use("windwp/nvim-autopairs")
 
+		-- Buffer line
+		use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" })
+
 		-- Auto Completion
 		use({
 			"hrsh7th/nvim-cmp",
@@ -45,7 +48,6 @@ return require("packer").startup({
 				"hrsh7th/cmp-path",
 				"saadparwaiz1/cmp_luasnip",
 				"onsails/lspkind-nvim",
-				{ "tzachar/cmp-tabnine", run = "./install.sh" },
 			},
 		})
 
@@ -69,10 +71,13 @@ return require("packer").startup({
 			requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
 		})
 
+		-- Motion
+		use("ggandor/leap.nvim")
+
 		-- Status Line
 		use({
 			"nvim-lualine/lualine.nvim",
-			requires = { "kyazdani42/nvim-web-devicons", "arkav/lualine-lsp-progress" },
+			requires = "kyazdani42/nvim-web-devicons",
 		})
 
 		-- Snippets
@@ -124,6 +129,7 @@ return require("packer").startup({
 				"numToStr/Comment.nvim",
 				"mfussenegger/nvim-lint",
 				"mhartington/formatter.nvim",
+				"j-hui/fidget.nvim",
 				{ "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" },
 			},
 		})
@@ -162,7 +168,7 @@ return require("packer").startup({
 		use("tpope/vim-repeat")
 
 		-- Create parent folders when writing new file
-		use("jessarcher/vim-heritage")
+		use("jghauser/mkdir.nvim")
 
 		-- Editorconfig integration
 		use("gpanders/editorconfig.nvim")
@@ -173,11 +179,12 @@ return require("packer").startup({
 		-- Games to improve vim skills
 		use("ThePrimeagen/vim-be-good")
 
-		-- Motion
-		use("ggandor/lightspeed.nvim")
-
 		-- NSIS syntax highlighting
 		use({ "k-takata/vim-nsis", ft = "nsis" })
+
+		use({ "baskerville/vim-sxhkdrc", ft = "sxhkdrc" })
+
+		use({ "VebbNix/lf-vim", ft = "lf" })
 
 		use({
 			"antoinemadec/FixCursorHold.nvim",

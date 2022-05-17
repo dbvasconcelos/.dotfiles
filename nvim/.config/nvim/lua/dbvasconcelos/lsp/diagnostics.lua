@@ -4,15 +4,6 @@ M.setup = function()
 	-- Quickfix lists
 	require("trouble").setup()
 
-	-- Show line diagnostics automatically in hover window
-	local group = vim.api.nvim_create_augroup("lsp_diagnostics", {})
-	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-		callback = function()
-			vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-		end,
-		group = group,
-	})
-
 	-- diagnostics appearance on buffer
 	vim.diagnostic.config({
 		underline = true,
@@ -28,7 +19,25 @@ M.setup = function()
 		},
 	})
 
-	vim.api.nvim_create_autocmd({ "BufEnter", "TextChanged" }, {
+	local group = vim.api.nvim_create_augroup("lsp_diagnostics", {})
+
+	-- Show line diagnostics automatically in hover window
+	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+		callback = function()
+			vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+		end,
+		group = group,
+	})
+
+	vim.api.nvim_create_autocmd("BufEnter", {
+		callback = function()
+			require("lint").try_lint()
+		end,
+		group = group,
+	})
+
+	-- Run linter on text change
+	vim.api.nvim_create_autocmd("TextChanged", {
 		callback = function()
 			require("lint").try_lint()
 		end,

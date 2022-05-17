@@ -27,13 +27,10 @@ cmp.setup({
 	},
 
 	mapping = cmp.mapping.preset.insert({
-		["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-		["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-		["<C-e>"] = cmp.mapping({
-			i = cmp.mapping.abort(),
-			c = cmp.mapping.close(),
-		}),
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -59,24 +56,18 @@ cmp.setup({
 
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_signature_help" },
+		{ name = "nvim_lua" },
 		{ name = "luasnip" },
-		{ name = "cmp_tabnine" },
+	}, {
 		{ name = "buffer", keyword_length = 5 },
 		{ name = "path" },
-		{ name = "nvim_lua" },
 	}),
-
-	confirmation = {
-		default_behavior = cmp.ConfirmBehavior.Replace,
-	},
 
 	formatting = {
 		format = lspkind.cmp_format({
 			menu = {
 				nvim_lsp = "[LSP]",
 				luasnip = "[Snippet]",
-				cmp_tabnine = "[T9]",
 				buffer = "[Buffer]",
 				nvim_lua = "[NVIM]",
 			},

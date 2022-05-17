@@ -1,4 +1,4 @@
-# lfrc: LF file browser settings.
+# File browser settings.
 
 set previewer stpv
 set cleaner stpvimgclr

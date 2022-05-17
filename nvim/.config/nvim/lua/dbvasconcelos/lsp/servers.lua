@@ -1,22 +1,69 @@
 local M = {
+	bash = {
+		lsp = "bashls",
+		config = true,
+		formatter = {
+			exe = "shfmt",
+			args = { "-i", "2", "-ci" },
+			stdin = true,
+		},
+		linters = {
+			"shellcheck",
+		},
+	},
+
+	dockerfile = {
+		lsp = "dockerls",
+		config = true,
+		linters = {
+			"hadolint",
+		},
+	},
+
 	go = {
-		server_id = "gopls",
-		lsp = {
+		lsp = "gopls",
+		config = {
 			settings = {
 				gopls = {
 					buildFlags = { "-tags=wireinject" },
 				},
 			},
 		},
-		debugger = "go_delve",
 		linters = {
 			"golangcilint",
 		},
 	},
 
+	html = {
+		lsp = "html",
+		config = true,
+		formatter = {
+			exe = "prettier",
+			args = {
+				"--stdin-filepath",
+				vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+			},
+			stdin = true,
+		},
+	},
+
+	json = {
+		lsp = "jsonls",
+		config = true,
+		formatter = {
+			exe = "prettier",
+			args = {
+				"--stdin-filepath",
+				vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+				"--double-quote",
+			},
+			stdin = true,
+		},
+	},
+
 	lua = {
-		server_id = "sumneko_lua",
-		lsp = {
+		lsp = "sumneko_lua",
+		config = {
 			settings = {
 				Lua = {
 					runtime = {
@@ -26,7 +73,7 @@ local M = {
 					},
 					diagnostics = {
 						-- Get the language server to recognize the `vim` global
-						globals = { "vim", "package" },
+						globals = { "vim" },
 					},
 					workspace = {
 						-- Make the server aware of Neovim runtime files
@@ -45,13 +92,17 @@ local M = {
 		},
 	},
 
-	php = { server_id = "intelephense", lsp = true },
+	php = {
+		lsp = "intelephense",
 
-	vim = { server_id = "vimls", lsp = true },
+		config = true,
+	},
+
+	python = { lsp = "pyright", config = true },
 
 	sh = {
-		server_id = "bashls",
-		lsp = true,
+		lsp = "bashls",
+		config = true,
 		formatter = {
 			exe = "shfmt",
 			args = { "-i", "2", "-ci" },
@@ -59,52 +110,12 @@ local M = {
 		},
 		linters = {
 			"shellcheck",
-		},
-	},
-
-	bash = {
-		server_id = "bashls",
-		lsp = true,
-		formatter = {
-			exe = "shfmt",
-			args = { "-i", "2", "-ci" },
-			stdin = true,
-		},
-		linters = {
-			"shellcheck",
-		},
-	},
-
-	html = {
-		server_id = "html",
-		lsp = true,
-		formatter = {
-			exe = "prettier",
-			args = {
-				"--stdin-filepath",
-				vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-			},
-			stdin = true,
-		},
-	},
-
-	json = {
-		server_id = "jsonls",
-		lsp = true,
-		formatter = {
-			exe = "prettier",
-			args = {
-				"--stdin-filepath",
-				vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-				"--double-quote",
-			},
-			stdin = true,
 		},
 	},
 
 	yaml = {
-		server_id = "yamlls",
-		lsp = true,
+		lsp = "yamlls",
+		config = true,
 		formatter = {
 			exe = "prettier",
 			args = {
@@ -112,14 +123,6 @@ local M = {
 				vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
 			},
 			stdin = true,
-		},
-	},
-
-	dockerfile = {
-		server_id = "dockerls",
-		lsp = true,
-		linters = {
-			"hadolint",
 		},
 	},
 }

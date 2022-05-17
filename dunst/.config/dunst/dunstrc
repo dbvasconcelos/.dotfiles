@@ -1,4 +1,4 @@
-# dunstrc: notification settings.
+# Notification settings.
 
 [global]
     follow = keyboard

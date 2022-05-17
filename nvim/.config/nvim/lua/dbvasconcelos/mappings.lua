@@ -2,9 +2,7 @@
 -- Global Mappings
 ----
 
-vim.keymap.set("", "Q", "<nop>", { desc = "Disable ex mode" })
-
-vim.keymap.set("", "gf", ":edit <cfile><cr>", { desc = "Allow gf to open non-existent files" })
+vim.keymap.set("", "gf", ":e <cfile><cr>", { desc = "Allow gf to open non-existent files" })
 
 ----
 -- Visual Only Mappings
@@ -74,6 +72,8 @@ vim.keymap.set("n", "<cr>", "{-> v:hlsearch ? ':nohl<cr>' : '<cr>'}()", { expr =
 -- Normal Mode Mappings
 ----
 
+vim.keymap.set("n", "Q", "<nop>", { desc = "Disable ex mode" })
+
 vim.keymap.set("n", "<M-j>", ":m .+1<cr>==", { desc = "Move lines down" })
 vim.keymap.set("n", "<M-k>", ":m .-2<cr>==", { desc = "Move lines up" })
 
@@ -93,6 +93,9 @@ vim.keymap.set("n", "<F2>", "<cmd>lua require'dap'.step_into()<cr>", { desc = "S
 vim.keymap.set("n", "<F3>", "<cmd>lua require'dap'.step_over()<cr>", { desc = "Step over (Debug)" })
 vim.keymap.set("n", "<F4>", "<cmd>lua require'dap'.step_out()<cr>", { desc = "Step out (Debug)" })
 vim.keymap.set("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>", { desc = "Continue (Debug)" })
+
+vim.keymap.set("n", "]b", ":BufferLineCycleNext<cr>", { desc = "Next Buffer" })
+vim.keymap.set("n", "[b", ":BufferLineCyclePrev<cr>", { desc = "Previous Buffer" })
 
 ----
 -- Leader Mappings powered by whichkey
@@ -126,15 +129,23 @@ wk.register({
 		},
 		["a"] = { "ggVG", "Select All" },
 		["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-		["q"] = { "<cmd>q<cr>", "Quit" },
 		["w"] = { "<cmd>w!<cr>", "Save" },
 		["x"] = { "<cmd>!xdg-open %<cr><cr>", "Open file in the default app" },
 		["y"] = { '"+y', "Yank to clipboard" },
+		["Y"] = { '"+Y', "Yank line to clipboard" },
 
 		-- Buffer group
 		b = {
 			name = "Buffer",
+			["1"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "Goto Buffer #1" },
+			["2"] = { "<cmd>BufferLineGoToBuffer 2<cr>", "Goto Buffer #2" },
+			["3"] = { "<cmd>BufferLineGoToBuffer 3<cr>", "Goto Buffer #3" },
+			["4"] = { "<cmd>BufferLineGoToBuffer 4<cr>", "Goto Buffer #4" },
+			["5"] = { "<cmd>BufferLineGoToBuffer 5<cr>", "Goto Buffer #5" },
 			["c"] = { "<cmd>Telescope neoclip<cr>", "Clipboard" },
+			["h"] = { "<cmd>BufferLineCloseLeft<cr>", "Close left" },
+			["l"] = { "<cmd>BufferLineCloseRight<cr>", "Close right" },
+			["p"] = { "<cmd>BufferLineTogglePin<cr>", "Pin" },
 			["q"] = { "<cmd>bp|bd #<cr>", "Close" },
 			["r"] = {
 				":%s//gc<left><left><left>",
@@ -207,9 +218,10 @@ wk.register({
 		l = {
 			name = "LSP",
 			["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-			["f"] = { "<cmd>lua.vim.lsp.buf.formatting_sync<cr>", "Format" },
+			["f"] = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
 			["I"] = { "<cmd>LspInstallInfo<cr>", "Installed" },
 			["i"] = { "<cmd>LspInfo<cr>", "Info" },
+			["l"] = { "<cmd>lua require('lint').try_lint()<cr>", "Lint" },
 			["p"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Problems" },
 			["P"] = {
 				"<cmd>TroubleToggle workspace_diagnostics<cr>",

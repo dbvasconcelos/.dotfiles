@@ -1,12 +1,26 @@
 -- Comments
 require("Comment").setup()
 
+-- Progress
+require("fidget").setup({})
+
 -- Linerule symbols
 require("dbvasconcelos.lsp.signs").setup()
 
 -- Diagnostics
 require("dbvasconcelos.lsp.diagnostics").setup()
 
+-- LSP Install
+require("nvim-lsp-installer").setup({
+	automatic_installation = true,
+})
+
+local custom_oninit = require("dbvasconcelos.lsp.oninit")
+local custom_onattach = require("dbvasconcelos.lsp.onattach")
+local updated_capabilities = require("dbvasconcelos.lsp.capabilities")
+local custom_handlers = require("dbvasconcelos.lsp.handlers")
+
+local lspconfig = require("lspconfig")
 local setup_server = function(server, config)
 	if not config then
 		return
@@ -17,35 +31,32 @@ local setup_server = function(server, config)
 	end
 
 	config = vim.tbl_deep_extend("force", {
-		on_attach = require("dbvasconcelos.lsp.onattach"),
-		capabilities = require("dbvasconcelos.lsp.capabilities"),
-		handlers = require("dbvasconcelos.lsp.handlers"),
+		on_init = custom_oninit,
+		on_attach = custom_onattach,
+		capabilities = updated_capabilities,
+		handlers = custom_handlers,
 	}, config)
 
-	server:setup(config)
+	lspconfig[server].setup(config)
 end
 
 local linters = {}
 local formatters = {}
 
 local servers = require("dbvasconcelos.lsp.servers")
-local installers = require("dbvasconcelos.lsp.installers")
-for ft, config in pairs(servers) do
-	if config.server_id then
-		local server = installers.assure_installed_lsp(config.server_id)
-		setup_server(server, config.lsp)
-	end
+for ft, server in pairs(servers) do
+	setup_server(server.lsp, server.config)
 
-	if config.formatter then
+	if server.formatter then
 		formatters[ft] = {
 			function()
-				return config.formatter
+				return server.formatter
 			end,
 		}
 	end
 
-	if config.linters then
-		linters[ft] = config.linters
+	if server.linters then
+		linters[ft] = server.linters
 	end
 end
 

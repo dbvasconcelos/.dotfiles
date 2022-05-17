@@ -70,7 +70,6 @@ require("lualine").setup({
 		lualine_b = { branch, diff },
 		lualine_c = { "filename" },
 		lualine_x = {
-			"lsp_progress",
 			diagnostics,
 			encoding,
 			fileformat,

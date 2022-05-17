@@ -1,5 +1,5 @@
 #!/bin/bash
-# .bashrc: interactive bash startup script.
+# Interactive bash startup script.
 
 export HISTCONTROL=erasedups
 

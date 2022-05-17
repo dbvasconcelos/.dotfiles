@@ -1,6 +1,4 @@
-#
-# bspwm hotkeys
-#
+# bspwm window manager hotkeys.
 
 # quit/restart bspwm
 super + alt + {q,r}

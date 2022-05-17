@@ -1,13 +1,17 @@
+# Git global configuration.
+
 [user]
 	name=Derek Vasconcelos
 	email=derek@cepetro.unicamp.br
+
 [init]
 	defaultBranch = main
+
 [pull]
 	rebase = true
+
 [fetch]
 	prune = true
+
 [diff]
 	colorMoved = zebra
-[url "https://github.com/"]
-	insteadOf = git://github.com/

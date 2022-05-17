@@ -8,6 +8,10 @@ super + Return
 super + w
 	$BROWSER
 
+# Browser
+super + W
+	$BROWSER --incognito
+
 # Scratchpad terminal
 super + shift + Return
 	tdrop -a -n scratchpad -w "50%" -h "50%" -x "25%" -y "25%" $TERMINAL

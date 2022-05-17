@@ -10,10 +10,11 @@ vim.api.nvim_create_autocmd("BufWritePre", { command = [[ %s/\s\+$//e ]], group 
 vim.api.nvim_create_autocmd("BufWritePre", { command = [[ %s/\n\+\%$//e ]], group = group })
 
 -- Update binds when sxhkdrc is updated
-vim.api.nvim_create_autocmd(
-	"BufWritePost",
-	{ pattern = "sxhkdrc", command = "!systemctl --user restart sxhkd.service", group = group }
-)
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "sxhkdrc",
+	command = "!killall -s USR1 sxhkd && notify-send 'Sxhkd' 'Hotkeys Updated'",
+	group = group,
+})
 
 -- Run xrdb whenever Xdefaults or Xresources are updated
 vim.api.nvim_create_autocmd(
@@ -35,11 +36,16 @@ vim.api.nvim_create_autocmd(
 )
 
 -- Restart bspwm when config is updated
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = { "bspwmrc", "**/polybar/config.ini" },
-	command = "!systemctl --user restart polybar.service",
-	group = group,
-})
+vim.api.nvim_create_autocmd(
+	"BufWritePost",
+	{ pattern = "bspwmrc", command = "bspwm wm -r", group = group }
+)
+
+-- Restart polybar when config is updated
+vim.api.nvim_create_autocmd(
+	"BufWritePost",
+	{ pattern = "**/polybar/config.ini", command = "!polybar-msg cmd restart", group = group }
+)
 
 -- When bookmarks files are updated, renew configs with new material
 vim.api.nvim_create_autocmd("BufWritePost", {
@@ -51,7 +57,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- Highlight yanks
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
-		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+		vim.highlight.on_yank()
 	end,
 	group = group,
 })
