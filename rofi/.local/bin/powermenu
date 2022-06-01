@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-uptime=$(uptime -p | sed -e 's/up //g')
-
 rofi_command="rofi -theme powermenu -dmenu -selected-row 2"
 
 # Options
