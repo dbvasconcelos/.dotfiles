@@ -2,9 +2,6 @@
 
 # global environment settings for login shells
 
-# shellcheck disable=SC2046
-export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
-
 # Default Programs
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -26,6 +23,3 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
 # Fix Java on tiling window managers
 export _JAVA_AWT_WM_NONREPARENTING=1
-
-# shellcheck source=/dev/null
-. "$XDG_CONFIG_HOME/shell/dev-env.sh"
