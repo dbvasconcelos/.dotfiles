@@ -30,7 +30,7 @@ if [ -x "$(command -v advcp)" ]; then
 else
     alias cp="cp -iv"
     alias mv="mv -iv"
-elif
+fi
 [ -x "$(command -v trash-put)" ] && alias trash="trash-put -f"
 
 # Colorization
