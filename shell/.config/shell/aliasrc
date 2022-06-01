@@ -16,23 +16,28 @@
 [ -x "$(command -v bat)" ] && alias cat="bat"
 
 # fix ssh for kitty
-alias ssh="kitty +kitten ssh"
+[ -x "$(command -v kitty)" ] && alias ssh="kitty +kitten ssh"
 
 # all-in-one unzip utility
-alias extract="aunpack"
+[ -x "$(command -v aunpack)" ] && alias extract="aunpack"
 
 # Verbosity
-alias cp="advcp -giv"
-alias mv="advmv -giv"
 alias rm="rm -vI"
-alias trash="trash-put -f"
 alias mkdir="mkdir -pv"
+if [ -x "$(command -v advcp)" ]; then
+    alias cp="advcp -giv"
+    alias mv="advmv -giv"
+else
+    alias cp="cp -iv"
+    alias mv="mv -iv"
+elif
+[ -x "$(command -v trash-put)" ] && alias trash="trash-put -f"
 
 # Colorization
 alias diff="diff --color=auto"
 
 # remove orphaned packages
-alias autoremove='if [ -z "$(paru -Qtdq)" ]; then echo "no orphan packages"; else paru -Rns $(paru -Qtdq); fi'
+[ -x "$(command -v paru)" ] && alias autoremove='if [ -z "$(paru -Qtdq)" ]; then echo "no orphan packages"; else paru -Rns $(paru -Qtdq); fi'
 
 # get error messages from journalctl
 alias jctl="journalctl -p 4 -xb"
@@ -44,4 +49,4 @@ qdelall="qselect -u $USER | xargs qdel"
 alias sudo="sudo EDITOR=$EDITOR"
 
 # nvidia settings
-alias nvidia-settings="nvidia-settings --config /home/derek/.config/nvidia/settings"
+[ -x "$(command -v nvidia-settings)" ] && alias nvidia-settings="nvidia-settings --config /home/derek/.config/nvidia/settings"

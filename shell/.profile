@@ -1,4 +1,4 @@
-# .zprofile: global environment settings for zsh login shells
+# global environment settings for login shells
 
 # Adds '~/.local/bin' to $PATH
 export PATH="$PATH:$HOME/.local/bin"

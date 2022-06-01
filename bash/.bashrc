@@ -10,4 +10,4 @@ export HISTCONTROL=erasedups
 [ -f "$BOOKMARK_ALIASRC" ] && source "$BOOKMARK_ALIASRC"
 
 # Prompt
-eval "$(starship init bash)"
+[ -x "$(command -v starship)" ] && eval "$(starship init bash)"
