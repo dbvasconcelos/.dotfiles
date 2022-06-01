@@ -9,5 +9,5 @@ Wants=wallpaper.service
 Wants=picom.service
 Wants=polybar.service
 Wants=unclutter.service
-Wants=sxhkd.service
+Wants=sxhkd@bspwm.service
 Wants=numlockx.service

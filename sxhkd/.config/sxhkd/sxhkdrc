@@ -29,9 +29,6 @@ super + Escape
     tdrop -a -n sysmgr -w "3000" -h "1500" -x "10%" -y "15%" $TERMINAL "btm" "--basic"
 
 # Music Player
-super + m
-    $TERMINAL "ncmpcpp"
-
 super + F8
     $TERMINAL "ncmpcpp"
 
