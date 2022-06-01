@@ -1,49 +1,39 @@
 require("gitsigns").setup({
 	on_attach = function(bufnr)
-		-- Navigation
+		local gs = package.loaded.gitsigns
+
+		vim.keymap.set("n", "]h", function()
+			if vim.wo.diff then
+				return "]h"
+			end
+			vim.schedule(function()
+				gs.next_hunk()
+			end)
+			return "<Ignore>"
+		end, { expr = true, buffer = bufnr, desc = "Next Hunk" })
+
+		vim.keymap.set("n", "[h", function()
+			if vim.wo.diff then
+				return "[h"
+			end
+			vim.schedule(function()
+				gs.prev_hunk()
+			end)
+			return "<Ignore>"
+		end, { expr = true, buffer = bufnr, desc = "Previous Hunk" })
+
 		vim.keymap.set(
-			"n",
-			"]h",
-			"&diff ? ']h' : '<cmd>Gitsigns next_hunk<CR>'",
-			{ expr = true, buffer = bufnr }
-		)
-		vim.keymap.set(
-			"n",
-			"[h",
-			"&diff ? '[h' : '<cmd>Gitsigns prev_hunk<CR>'",
-			{ expr = true, buffer = bufnr }
+			{ "o", "x" },
+			"ih",
+			":<C-U>Gitsigns select_hunk<CR>",
+			{ buffer = bufnr, desc = "Inside Hunk" }
 		)
 	end,
 	signs = {
-		add = {
-			hl = "GitSignsAdd",
-			text = "▎",
-			numhl = "GitSignsAddNr",
-			linehl = "GitSignsAddLn",
-		},
-		change = {
-			hl = "GitSignsChange",
-			text = "▎",
-			numhl = "GitSignsChangeNr",
-			linehl = "GitSignsChangeLn",
-		},
-		delete = {
-			hl = "GitSignsDelete",
-			text = "契",
-			numhl = "GitSignsDeleteNr",
-			linehl = "GitSignsDeleteLn",
-		},
-		topdelete = {
-			hl = "GitSignsDelete",
-			text = "契",
-			numhl = "GitSignsDeleteNr",
-			linehl = "GitSignsDeleteLn",
-		},
-		changedelete = {
-			hl = "GitSignsChange",
-			text = "▎",
-			numhl = "GitSignsChangeNr",
-			linehl = "GitSignsChangeLn",
-		},
+		add = { text = "▎" },
+		change = { text = "▎" },
+		delete = { text = "契" },
+		topdelete = { text = "契" },
+		changedelete = { text = "▎" },
 	},
 })

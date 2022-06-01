@@ -113,14 +113,6 @@ wk.setup({
 
 -- Normal Mode
 wk.register({
-	["[d"] = "Previous diagnostic",
-	["]d"] = "Next diagnostic",
-	["[h"] = "Previous hunk",
-	["]h"] = "Next hunk",
-	["[p"] = "Previous paramater",
-	["]p"] = "Next parameter",
-	["[["] = "Previous class",
-	["]["] = "Next class",
 	["<leader>"] = {
 		-- No group
 		["/"] = {

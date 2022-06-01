@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd(
 -- Restart bspwm when config is updated
 vim.api.nvim_create_autocmd(
 	"BufWritePost",
-	{ pattern = "bspwmrc", command = "bspwm wm -r", group = group }
+	{ pattern = "bspwmrc", command = "!bspc wm -r", group = group }
 )
 
 -- Restart polybar when config is updated

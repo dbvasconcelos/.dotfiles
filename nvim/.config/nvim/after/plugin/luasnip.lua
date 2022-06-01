@@ -15,6 +15,6 @@ vim.keymap.set({ "i", "s" }, "<C-l>", function()
 	if ls.choice_active() then
 		ls.change_choice(1)
 	end
-end)
+end, { desc = "Change snippet choice" })
 
 require("luasnip.loaders.from_vscode").lazy_load()

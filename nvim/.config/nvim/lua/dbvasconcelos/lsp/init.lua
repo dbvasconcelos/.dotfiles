@@ -2,7 +2,7 @@
 require("Comment").setup()
 
 -- Progress
-require("fidget").setup({})
+require("fidget").setup()
 
 -- Linerule symbols
 require("dbvasconcelos.lsp.signs").setup()
