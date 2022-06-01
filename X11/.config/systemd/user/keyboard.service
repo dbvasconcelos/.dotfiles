@@ -1,0 +1,5 @@
+[Unit]
+Description=Keyboard Configuration
+
+[Service]
+ExecStart=/home/derek/.local/bin/setkb
