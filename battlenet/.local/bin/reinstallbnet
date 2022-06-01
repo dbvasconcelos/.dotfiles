@@ -1,0 +1,12 @@
+#!/bin/sh
+# Reinstalls Battle.net client
+
+wine uninstaller
+rm -rfv "$WINEPREFIX/drive_c/Program Files (x86)/Battle.net/"
+rm -rfv "$WINEPREFIX/drive_c/Program Files (x86)/Hearthstone/"
+rm -rfv "$WINEPREFIX/drive_c/users/derek/AppData/Local/Battle.net/"
+rm -rfv "$WINEPREFIX/drive_c/users/derek/AppData/Local/Blizzard*"
+rm -rfv "$WINEPREFIX/drive_c/users/derek/AppData/LocalLow/Blizzard*"
+wget -O Battle.net-Setup.exe "https://www.battle.net/download/getInstallerForGame?os=win&gameProgram=BATTLENET_APP&version=Live&id=undefined"
+wine Battle.net-Setup.exe
+rm Battle.net-Setup.exe
