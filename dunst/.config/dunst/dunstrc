@@ -18,17 +18,14 @@
 [urgency_low]
     background = "#32302f"
     foreground = "#d4be98"
-    icon = /usr/share/icons/Gruvbox-Material-Dark/32x32/status/dialog-information.svg
     timeout = 3
 
 [urgency_normal]
     background = "#32302f"
     foreground = "#d4be98"
-    icon = /usr/share/icons/Gruvbox-Material-Dark/32x32/status/dialog-warning.svg
     timeout = 5
 
 [urgency_critical]
     background = "#32302f"
     foreground = "#d4be98"
-    icon = /usr/share/icons/Gruvbox-Material-Dark/32x32/status/dialog-error.svg
     timeout = 10
