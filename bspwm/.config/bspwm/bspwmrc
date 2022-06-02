@@ -27,5 +27,4 @@ bspc rule -a cmatrix state=fullscreen
 bspc rule -a mtga.exe state=tiled
 bspc rule -a battle.net.exe state=floating
 
-systemctl --user import-environment
 systemctl --user start bspwm.target
