@@ -35,6 +35,7 @@ require("telescope").load_extension("dap")
 require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("media_files")
 require("telescope").load_extension("neoclip")
+require("telescope").load_extension("projects")
 require("telescope").load_extension("smart_history")
 
 -- Clipboard Extension

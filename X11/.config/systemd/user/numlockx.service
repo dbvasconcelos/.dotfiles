@@ -1,5 +1,0 @@
-[Unit]
-Description=Numlock activation
-
-[Service]
-ExecStart=numlockx

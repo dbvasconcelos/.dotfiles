@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-NoDisplay=false
-Name=udiskie
-Categories=Utility;
-TryExec=udiskie
-Exec=udiskie --smart-tray

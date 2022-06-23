@@ -113,6 +113,11 @@ local M = {
 		},
 	},
 
+	tex = {
+		lsp = "texlab",
+		config = true,
+	},
+
 	yaml = {
 		lsp = "yamlls",
 		config = true,

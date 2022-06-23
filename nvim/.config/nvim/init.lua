@@ -24,4 +24,4 @@ require("dbvasconcelos.lsp")
 require("dbvasconcelos.telescope")
 
 -- Keymappings
-require("dbvasconcelos.mappings")
+require("dbvasconcelos.keymaps")

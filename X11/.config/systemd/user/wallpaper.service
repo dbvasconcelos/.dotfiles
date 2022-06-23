@@ -1,5 +1,0 @@
-[Unit]
-Description=Background Image
-
-[Service]
-ExecStart=/home/derek/.local/bin/setbg

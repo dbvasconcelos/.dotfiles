@@ -7,6 +7,7 @@ opt.cursorline = true
 opt.expandtab = true
 opt.guifont = "monospace:h17"
 opt.ignorecase = true
+opt.isfname:append("@-@")
 opt.list = true
 opt.listchars = {
 	eol = "↲",
@@ -33,5 +34,5 @@ opt.swapfile = false
 opt.tabstop = 4
 opt.title = true
 opt.undofile = true
-opt.updatetime = 1000
+opt.updatetime = 50
 opt.wrap = false

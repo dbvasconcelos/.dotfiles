@@ -1,12 +1,6 @@
 #!/bin/bash
 # Interactive bash startup script.
 
-# shellcheck disable=SC2046
-export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
-
-# shellcheck source=/dev/null
-. "$XDG_CONFIG_HOME/shell/dev-env.sh"
-
 export HISTCONTROL=erasedups
 
 # shellcheck source=/dev/null

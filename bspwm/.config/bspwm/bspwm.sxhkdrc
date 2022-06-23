@@ -41,16 +41,8 @@ super + {_,shift + }{h,j,k,l}
 	{bspc node -f, bspwm_smart_move} {west,south,north,east}
 
 # focus the next/previous window in the current desktop
-super + {comma,period}
-	bspc node -f {next,prev}.local.!hidden.window
-
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
-
-# focus the last node/desktop
 super + {_,shift +} Tab
-	bspc {node, desktop} -f last
+	bspc node -f {next,prev}.local.!hidden.window
 
 # focus the older or newer node in the focus history
 super + {o,i}

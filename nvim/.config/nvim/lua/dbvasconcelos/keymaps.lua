@@ -1,10 +1,4 @@
 ----
--- Global Mappings
-----
-
-vim.keymap.set("", "gf", ":e <cfile><cr>", { desc = "Allow gf to open non-existent files" })
-
-----
 -- Visual Only Mappings
 ----
 
@@ -16,7 +10,6 @@ vim.keymap.set("x", "p", '"_dP', { desc = "Blackhole paste" })
 
 vim.keymap.set("v", "<M-j>", ":m '>+1<cr>gv=gv", { desc = "Move lines down" })
 vim.keymap.set("v", "<M-k>", ":m '<-2<cr>gv=gv", { desc = "Move lines up" })
-
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right" })
 
@@ -30,7 +23,6 @@ vim.keymap.set(
 	"execute 'silent! write !sudo tee % >/dev/null' <bar> edit!",
 	{ desc = "Save file as sudo" }
 )
-
 vim.keymap.set("c", "<C-p>", "<Up>", { desc = "Previous command" })
 vim.keymap.set("c", "<C-n>", "<Down>", { desc = "Next command" })
 vim.keymap.set("c", "<C-h>", "<Left>", { desc = "Move cursor left" })
@@ -42,60 +34,69 @@ vim.keymap.set("c", "<C-e>", "<S-Right>", { desc = "Move cursor word forward" })
 -- Insert Mode Mappings
 ----
 
--- Move Line with <Alt> + vimkeys
-vim.keymap.set("i", "<M-j>", "<Esc>:m .+1<CR>==gi")
-vim.keymap.set("i", "<M-k>", "<Esc>:m .-2<CR>==gi")
+vim.keymap.set("i", "<M-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down" })
+vim.keymap.set("i", "<M-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up" })
 
 ----
 -- Terminal Mode Mappings
 ----
 
 -- Leave terminal mode with <esc>
-vim.keymap.set("t", "<esc>", "<C-\\><C-n>")
-
--- Navigation with <Ctrl> + vimkeys
-vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h")
-vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j")
-vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k")
-vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l")
-
--- Resizing with <Ctrl> + arrow keys
-vim.keymap.set({ "t", "n" }, "<C-Left>", "<cmd>vertical resize -2<cr>")
-vim.keymap.set({ "t", "n" }, "<C-Right>", "<cmd>vertical resize +2<cr>")
-vim.keymap.set({ "t", "n" }, "<C-Down>", "<cmd>resize +2<cr>")
-vim.keymap.set({ "t", "n" }, "<C-Up>", "<cmd>resize -2<cr>")
-
--- Clears hlsearch after doing a search with <cr>
-vim.keymap.set("n", "<cr>", "{-> v:hlsearch ? ':nohl<cr>' : '<cr>'}()", { expr = true })
+vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
+vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Focus left window" })
+vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Focus right window" })
+vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Focus above window" })
+vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Focus below window" })
+vim.keymap.set(
+	{ "t", "n" },
+	"<C-Left>",
+	"<cmd>vertical resize -2<cr>",
+	{ desc = "Decrease window size horizontally" }
+)
+vim.keymap.set(
+	{ "t", "n" },
+	"<C-Right>",
+	"<cmd>vertical resize +2<cr>",
+	{ desc = "Increase window size horizontally" }
+)
+vim.keymap.set(
+	{ "t", "n" },
+	"<C-Down>",
+	"<cmd>resize -2<cr>",
+	{ desc = "Decrease window size vertically" }
+)
+vim.keymap.set(
+	{ "t", "n" },
+	"<C-Up>",
+	"<cmd>resize +2<cr>",
+	{ desc = "Increase window size vertically" }
+)
 
 ----
 -- Normal Mode Mappings
 ----
 
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable ex mode" })
-
-vim.keymap.set("n", "<M-j>", ":m .+1<cr>==", { desc = "Move lines down" })
-vim.keymap.set("n", "<M-k>", ":m .-2<cr>==", { desc = "Move lines up" })
-
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Focus buffer to the left" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Focus buffer under" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Focus buffer above" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Focus buffer to the right" })
-
+vim.keymap.set(
+	"n",
+	"<cr>",
+	"{-> v:hlsearch ? ':nohl<cr>' : '<cr>'}()",
+	{ expr = true, desc = "Clear highlights" }
+)
+vim.keymap.set("n", "<M-j>", ":m .+1<cr>==", { desc = "Move line down" })
+vim.keymap.set("n", "<M-k>", ":m .-2<cr>==", { desc = "Move line up" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Focus left window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Focus below window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Focus above window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Focus right window" })
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Concat lines" })
-
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous match" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next match" })
-
--- Debug Controls
-vim.keymap.set("n", "<F1>", "<cmd>lua require'dap'.step_back()<cr>", { desc = "Step into (Debug)" })
-vim.keymap.set("n", "<F2>", "<cmd>lua require'dap'.step_into()<cr>", { desc = "Step into (Debug)" })
-vim.keymap.set("n", "<F3>", "<cmd>lua require'dap'.step_over()<cr>", { desc = "Step over (Debug)" })
-vim.keymap.set("n", "<F4>", "<cmd>lua require'dap'.step_out()<cr>", { desc = "Step out (Debug)" })
-vim.keymap.set("n", "<F5>", "<cmd>lua require'dap'.continue()<cr>", { desc = "Continue (Debug)" })
-
-vim.keymap.set("n", "]b", ":BufferLineCycleNext<cr>", { desc = "Next Buffer" })
-vim.keymap.set("n", "[b", ":BufferLineCyclePrev<cr>", { desc = "Previous Buffer" })
+vim.keymap.set("n", "<C-1>", "<cmd>BufferGoto 1<cr>", { desc = "Goto Buffer #1" })
+vim.keymap.set("n", "<C-2>", "<cmd>BufferGoto 2<cr>", { desc = "Goto Buffer #2" })
+vim.keymap.set("n", "<C-3>", "<cmd>BufferGoto 3<cr>", { desc = "Goto Buffer #3" })
+vim.keymap.set("n", "<C-4>", "<cmd>BufferGoto 4<cr>", { desc = "Goto Buffer #4" })
+vim.keymap.set("n", "<C-5>", "<cmd>BufferGoto 5<cr>", { desc = "Goto Buffer #5" })
 
 ----
 -- Leader Mappings powered by whichkey
@@ -119,7 +120,6 @@ wk.register({
 			"<cmd>lua require('Comment.api').toggle_current_linewise()<cr>",
 			"Comment Toggle",
 		},
-		["a"] = { "ggVG", "Select All" },
 		["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 		["w"] = { "<cmd>w!<cr>", "Save" },
 		["x"] = { "<cmd>!xdg-open %<cr><cr>", "Open file in the default app" },
@@ -129,15 +129,11 @@ wk.register({
 		-- Buffer group
 		b = {
 			name = "Buffer",
-			["1"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "Goto Buffer #1" },
-			["2"] = { "<cmd>BufferLineGoToBuffer 2<cr>", "Goto Buffer #2" },
-			["3"] = { "<cmd>BufferLineGoToBuffer 3<cr>", "Goto Buffer #3" },
-			["4"] = { "<cmd>BufferLineGoToBuffer 4<cr>", "Goto Buffer #4" },
-			["5"] = { "<cmd>BufferLineGoToBuffer 5<cr>", "Goto Buffer #5" },
 			["c"] = { "<cmd>Telescope neoclip<cr>", "Clipboard" },
-			["h"] = { "<cmd>BufferLineCloseLeft<cr>", "Close left" },
-			["l"] = { "<cmd>BufferLineCloseRight<cr>", "Close right" },
-			["p"] = { "<cmd>BufferLineTogglePin<cr>", "Pin" },
+			["f"] = { "<cmd>TZFocus<cr>", "Focus" },
+			["o"] = { "<cmd>BufferCloseAllButCurrentOrPinned<cr>", "Close others" },
+			["p"] = { "<cmd>BufferPick<cr>", "Pick" },
+			["P"] = { "<cmd>BufferPin<cr>", "Pin" },
 			["q"] = { "<cmd>bp|bd #<cr>", "Close" },
 			["r"] = {
 				":%s//gc<left><left><left>",
@@ -149,8 +145,8 @@ wk.register({
 				"Replace All (Current Word)",
 				silent = false,
 			},
-			["s"] = { "<cmd>Telescope buffers<cr>", "Search" },
 			["u"] = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
+			["z"] = { "<cmd>TZAtaraxis<cr>", "Distraction free" },
 		},
 
 		-- Debug group
@@ -166,12 +162,13 @@ wk.register({
 				"Expression",
 				silent = false,
 			},
-			["i"] = { "<cmd>DIList", "Info" },
+			["q"] = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
 			["u"] = { "<cmd>lua require('refactoring').debug.cleanup({})<cr>", "Undo Prints" },
 			["p"] = {
 				"<cmd>lua require('refactoring').debug.printf({below = false})<cr>",
 				"Print Function",
 			},
+			["t"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})", "Test" },
 			["v"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle View" },
 		},
 
@@ -225,6 +222,7 @@ wk.register({
 				"<cmd>Telescope lsp_document_symbols<cr>",
 				"Document Symbols",
 			},
+			["t"] = { "<cmd>lua require('neotest').run.run()<cr>", "Test" },
 			["S"] = {
 				"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
 				"Workspace Symbols",
@@ -234,77 +232,66 @@ wk.register({
 		-- Marks group
 		m = {
 			name = "Marks",
+			["1"] = {
+				"<cmd>lua require('harpoon.ui').nav_file(1)<cr>",
+				"Goto Mark #1",
+			},
+			["2"] = {
+				"<cmd>lua require('harpoon.ui').nav_file(2)<cr>",
+				"Goto Mark #2",
+			},
+			["3"] = {
+				"<cmd>lua require('harpoon.ui').nav_file(3)<cr>",
+				"Goto Mark #3",
+			},
+			["4"] = {
+				"<cmd>lua require('harpoon.ui').nav_file(4)<cr>",
+				"Goto Mark #4",
+			},
+			["5"] = {
+				"<cmd>lua require('harpoon.ui').nav_file(5)<cr>",
+				"Goto Mark #5",
+			},
 			["a"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add" },
 			["s"] = {
 				"<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
 				"Search",
 			},
-			["u"] = {
-				"<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>",
-				"List terminal marks",
-			},
-			["1"] = {
-				"<cmd>lua require('harpoon.ui').nav_file(1)<cr>",
-				"Navigate to mark #1",
-			},
-			["2"] = {
-				"<cmd>lua require('harpoon.ui').nav_file(2)<cr>",
-				"Navigate to mark #2",
-			},
-			["3"] = {
-				"<cmd>lua require('harpoon.ui').nav_file(3)<cr>",
-				"Navigate to mark #3",
-			},
-			["4"] = {
-				"<cmd>lua require('harpoon.ui').nav_file(4)<cr>",
-				"Navigate to mark #4",
-			},
 		},
 
-		-- Packer group
+		-- Plugins group
 		p = {
-			name = "Packer",
-			["i"] = { "<cmd>PackerStatus<cr>", "Info" },
+			name = "Plugins",
 			["s"] = { "<cmd>PackerSync<cr>", "Sync" },
 		},
 
 		-- Search group
 		s = {
+			name = "Search",
 			["."] = {
 				'<cmd>lua require"dbvasconcelos.telescope".dotfiles()<cr>',
-				"Dotfile",
+				"Dotfiles",
 			},
-			name = "Search",
 			["f"] = { "<cmd>Telescope find_files<cr>", "File" },
 			["i"] = { "<cmd>Telescope media_files<cr>", "Image" },
-			["M"] = { "<cmd>Telescope man_pages<cr>", "Man Page" },
-			["r"] = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
 			["t"] = { "<cmd>Telescope live_grep<cr>", "Text" },
 			["w"] = {
-				":lua require('telescope.builtin').grep_string({ search = <C-R>=expand('<cword>')<cr> })<cr>",
+				":lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>')})<cr>",
 				"Current Word",
 			},
-		},
-
-		-- Terminal group
-		t = {
-			name = "Terminal",
-			["h"] = { "<cmd>ToggleTerm direction=horizontal<cr>", "Toggle Horizontal" },
-			["v"] = { "<cmd>ToggleTerm direction=vertical<cr>", "Toggle Vertical" },
-			["f"] = { "<cmd>ToggleTerm direction=float<cr>", "Toggle Float" },
 		},
 
 		-- Vim group
 		v = {
 			name = "Vim",
-			["a"] = { "<cmd>Telescope autocommands", "Autocommands" },
+			["a"] = { "<cmd>Telescope autocommands<cr>", "Autocommands" },
 			["c"] = { "<cmd>Telescope commands<cr>", "Commands" },
 			["C"] = { "<cmd>Telescope command_history<cr>", "Command History" },
 			["h"] = { ":h <C-R>=expand('<cword>')<cr><cr>", "Help (Word)" },
 			["H"] = { "<cmd>Telescope help_tags<cr>", "Help Search" },
 			["k"] = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-			["o"] = { "<cmd>Telescope options", "Options" },
-			["s"] = { "<cmd>Telescope search_history", "Search History" },
+			["o"] = { "<cmd>Telescope options<cr>", "Options" },
+			["s"] = { "<cmd>Telescope search_history<cr>", "Search History" },
 		},
 	},
 }, { nowait = true })

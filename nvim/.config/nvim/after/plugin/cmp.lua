@@ -14,6 +14,11 @@ local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local cmp = require("cmp")
 cmp.setup({
+	enabled = function()
+		-- disable completion in firenvim
+		return not vim.g.started_by_firenvim
+	end,
+
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)
@@ -63,6 +68,11 @@ cmp.setup({
 		{ name = "path" },
 	}),
 
+	confirm_opts = {
+		behavior = cmp.ConfirmBehavior.Replace,
+		select = false,
+	},
+
 	formatting = {
 		format = lspkind.cmp_format({
 			menu = {
@@ -72,6 +82,10 @@ cmp.setup({
 				nvim_lua = "[NVIM]",
 			},
 		}),
+	},
+
+	experimental = {
+		ghost_text = true,
 	},
 })
 

@@ -1,6 +1,12 @@
 #!/bin/sh
 # bspwm window manager settings.
 
+# Statusbar
+"$XDG_CONFIG_HOME/polybar/launch.sh" &
+
+# Hotkeys
+sxhkd "$XDG_CONFIG_HOME/bspwm/bspwm.sxhkdrc" &
+
 # If refreshing bspwm, remove all previous rules to prevent doubling up.
 bspc rule -r "*"
 
@@ -26,5 +32,3 @@ bspc rule -a Zathura state=tiled
 bspc rule -a cmatrix state=fullscreen
 bspc rule -a mtga.exe state=tiled
 bspc rule -a battle.net.exe state=floating
-
-systemctl --user start bspwm.target

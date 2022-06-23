@@ -1,0 +1,20 @@
+#!/bin/sh
+# X profile
+
+xrdb "${XDG_CONFIG_HOME}/X11/Xresources"
+
+# Xorg utilities
+setbg &
+setkb &
+picom &
+numlockx &
+unclutter &
+
+# Autostart Programs
+nm-applet --indicator &
+udiskie --smart-tray &
+solaar -w hide &
+nvidia-settings --config="$XDG_CONFIG_HOME/nvidia/settings" --load-config-only &
+mopidy &
+insync start &
+redshift &

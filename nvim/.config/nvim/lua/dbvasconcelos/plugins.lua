@@ -1,3 +1,5 @@
+require("impatient")
+
 -- Bootstrap
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -12,12 +14,12 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.cmd("packadd packer.nvim")
 end
 
--- Auto compile plugins when editing this file
-local group = vim.api.nvim_create_augroup("packer_user_config", {})
+local augroup = vim.api.nvim_create_augroup("packer_user_config", {})
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "plugins.lua",
 	command = "source <afile> | PackerCompile",
-	group = group,
+	group = augroup,
+	desc = "Auto compile plugins when editing this file",
 })
 
 -- Plugin Declarations
@@ -26,6 +28,9 @@ return require("packer").startup({
 		-- Plugin Manager itself
 		use("wbthomason/packer.nvim")
 
+		-- speedup load
+		use("lewis6991/impatient.nvim")
+
 		-- Color Scheme
 		use("eddyekofo94/gruvbox-flat.nvim")
 
@@ -33,7 +38,7 @@ return require("packer").startup({
 		use("windwp/nvim-autopairs")
 
 		-- Buffer line
-		use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" })
+		use({ "romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons" })
 
 		-- Auto Completion
 		use({
@@ -62,6 +67,14 @@ return require("packer").startup({
 			},
 		})
 
+		-- Web Browser Integration
+		use({
+			"glacambre/firenvim",
+			run = function()
+				vim.fn["firenvim#install"](0)
+			end,
+		})
+
 		-- Git Signs
 		use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
 
@@ -88,6 +101,19 @@ return require("packer").startup({
 			},
 		})
 
+		-- Testing
+		use({
+			"nvim-neotest/neotest",
+			requires = {
+                "nvim-neotest/neotest-go",
+				"nvim-lua/plenary.nvim",
+				"nvim-treesitter/nvim-treesitter",
+				"antoinemadec/FixCursorHold.nvim",
+			},
+		})
+
+		use("ahmedkhalf/project.nvim")
+
 		-- Refactoring
 		use({
 			"ThePrimeagen/refactoring.nvim",
@@ -112,13 +138,6 @@ return require("packer").startup({
 			requires = {
 				"nvim-treesitter/nvim-treesitter-textobjects",
 			},
-		})
-
-		-- Testing
-		use({
-			"rcarriga/vim-ultest",
-			requires = { "vim-test/vim-test" },
-			run = ":UpdateRemotePlugins",
 		})
 
 		-- LSP Support
@@ -167,9 +186,6 @@ return require("packer").startup({
 		-- Repeat command (.) for plugins
 		use("tpope/vim-repeat")
 
-		-- Create parent folders when writing new file
-		use("jghauser/mkdir.nvim")
-
 		-- Editorconfig integration
 		use("gpanders/editorconfig.nvim")
 
@@ -182,9 +198,14 @@ return require("packer").startup({
 		-- NSIS syntax highlighting
 		use({ "k-takata/vim-nsis", ft = "nsis" })
 
+		-- sxhkd conf file syntax highlighting
 		use({ "baskerville/vim-sxhkdrc", ft = "sxhkdrc" })
 
+		-- lf conf file syntax highlighting
 		use({ "VebbNix/lf-vim", ft = "lf" })
+
+		-- distraction-free writing
+		use("Pocco81/TrueZen.nvim")
 
 		use({
 			"antoinemadec/FixCursorHold.nvim",

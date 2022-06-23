@@ -1,5 +1,15 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "bash", "dockerfile", "go", "lua", "yaml" },
+	ensure_installed = {
+		"bash",
+		"dockerfile",
+		"go",
+		"gomod",
+		"lua",
+		"make",
+		"proto",
+		"regex",
+		"yaml",
+	},
 	sync_install = false,
 
 	highlight = { enable = true },

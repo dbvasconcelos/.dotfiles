@@ -1,6 +1,0 @@
-[Unit]
-Description=Polybar status bar
-
-[Service]
-Type=forking
-ExecStart=/home/derek/.config/polybar/launch.sh
