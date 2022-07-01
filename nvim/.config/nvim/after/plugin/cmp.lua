@@ -1,8 +1,3 @@
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
--- Don't show matching
-vim.opt.shortmess:append("c")
-
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0
@@ -13,15 +8,15 @@ end
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local cmp = require("cmp")
+
 cmp.setup({
 	enabled = function()
-		-- disable completion in firenvim
 		return not vim.g.started_by_firenvim
 	end,
 
 	snippet = {
 		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 
@@ -60,6 +55,7 @@ cmp.setup({
 	}),
 
 	sources = cmp.config.sources({
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
@@ -76,9 +72,9 @@ cmp.setup({
 	formatting = {
 		format = lspkind.cmp_format({
 			menu = {
-				nvim_lsp = "[LSP]",
-				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
+				luasnip = "[Snip]",
+				nvim_lsp = "[LSP]",
 				nvim_lua = "[NVIM]",
 			},
 		}),
@@ -89,7 +85,7 @@ cmp.setup({
 	},
 })
 
--- Use buffer source for `/`.
+-- Search completion
 cmp.setup.cmdline("/", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
@@ -98,7 +94,7 @@ cmp.setup.cmdline("/", {
 	}),
 })
 
--- Use cmdline & path source for ':'.
+-- Command Mode completion
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),

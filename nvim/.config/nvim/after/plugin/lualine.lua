@@ -64,7 +64,11 @@ local fileformat = { "fileformat", cond = hide_in_width }
 local filetype = { "filetype", cond = hide_in_width }
 
 require("lualine").setup({
-	options = { theme = "gruvbox-flat", component_separators = { right = "" } },
+	options = {
+		theme = "gruvbox-flat",
+		component_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
+	},
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { branch, diff },

@@ -11,7 +11,6 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 		"https://github.com/wbthomason/packer.nvim",
 		install_path,
 	})
-	vim.cmd("packadd packer.nvim")
 end
 
 local augroup = vim.api.nvim_create_augroup("packer_user_config", {})
@@ -28,7 +27,7 @@ return require("packer").startup({
 		-- Plugin Manager itself
 		use("wbthomason/packer.nvim")
 
-		-- speedup load
+		-- Speedup plugin load
 		use("lewis6991/impatient.nvim")
 
 		-- Color Scheme
@@ -37,8 +36,8 @@ return require("packer").startup({
 		-- Auto Pairing Parenthesis/Brackets/Curly
 		use("windwp/nvim-autopairs")
 
-		-- Buffer line
-		use({ "romgrk/barbar.nvim", requires = "kyazdani42/nvim-web-devicons" })
+		-- Buffers
+		use("moll/vim-bbye")
 
 		-- Auto Completion
 		use({
@@ -47,14 +46,17 @@ return require("packer").startup({
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-cmdline",
 				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-nvim-lsp-signature-help",
 				"hrsh7th/cmp-nvim-lsp-document-symbol",
+				"hrsh7th/cmp-nvim-lsp-signature-help",
 				"hrsh7th/cmp-nvim-lua",
 				"hrsh7th/cmp-path",
-				"saadparwaiz1/cmp_luasnip",
 				"onsails/lspkind-nvim",
+				"saadparwaiz1/cmp_luasnip",
 			},
 		})
+
+		-- Color Code Highlighting
+		use("norcalli/nvim-colorizer.lua")
 
 		-- Debugging
 		use({
@@ -105,7 +107,7 @@ return require("packer").startup({
 		use({
 			"nvim-neotest/neotest",
 			requires = {
-                "nvim-neotest/neotest-go",
+				"nvim-neotest/neotest-go",
 				"nvim-lua/plenary.nvim",
 				"nvim-treesitter/nvim-treesitter",
 				"antoinemadec/FixCursorHold.nvim",
@@ -167,9 +169,6 @@ return require("packer").startup({
 				{ "AckslD/nvim-neoclip.lua" },
 			},
 		})
-
-		-- Color Code Highlighting
-		use("norcalli/nvim-colorizer.lua")
 
 		-- Undo Tree
 		use("mbbill/undotree")

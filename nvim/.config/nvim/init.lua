@@ -1,7 +1,7 @@
 -- Filetype detection
 vim.g.do_filetype_lua = 1
 
--- leader key
+-- Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -11,7 +11,7 @@ require("dbvasconcelos.options")
 -- Load Plugins
 require("dbvasconcelos.plugins")
 
--- Load Color Scheme
+-- Set Colorscheme
 require("dbvasconcelos.colorscheme")
 
 -- Load neovim options

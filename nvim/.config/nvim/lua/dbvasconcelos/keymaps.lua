@@ -92,11 +92,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Focus right window" })
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Concat lines" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous match" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next match" })
-vim.keymap.set("n", "<C-1>", "<cmd>BufferGoto 1<cr>", { desc = "Goto Buffer #1" })
-vim.keymap.set("n", "<C-2>", "<cmd>BufferGoto 2<cr>", { desc = "Goto Buffer #2" })
-vim.keymap.set("n", "<C-3>", "<cmd>BufferGoto 3<cr>", { desc = "Goto Buffer #3" })
-vim.keymap.set("n", "<C-4>", "<cmd>BufferGoto 4<cr>", { desc = "Goto Buffer #4" })
-vim.keymap.set("n", "<C-5>", "<cmd>BufferGoto 5<cr>", { desc = "Goto Buffer #5" })
 
 ----
 -- Leader Mappings powered by whichkey
@@ -121,6 +116,8 @@ wk.register({
 			"Comment Toggle",
 		},
 		["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+		["q"] = { ":Bdelete<cr>", "Close Buffer" },
+		["Q"] = { ":bufdo :Bdelete<cr>", "Close All Buffers" },
 		["w"] = { "<cmd>w!<cr>", "Save" },
 		["x"] = { "<cmd>!xdg-open %<cr><cr>", "Open file in the default app" },
 		["y"] = { '"+y', "Yank to clipboard" },
