@@ -10,9 +10,4 @@ export HISTCONTROL=erasedups
 [ -f "$BOOKMARK_ALIASRC" ] && source "$BOOKMARK_ALIASRC"
 
 # Prompt
-if [ -x "$(command -v starship)" ]; then
-  eval "$(starship init bash)"
-else
-  PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
-  export PS1
-fi
+[ -x "$(command -v starship)" ] && eval "$(starship init bash)"

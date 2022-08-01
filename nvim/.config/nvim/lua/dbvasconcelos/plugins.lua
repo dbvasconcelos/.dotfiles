@@ -46,12 +46,12 @@ return require("packer").startup({
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-cmdline",
 				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-nvim-lsp-document-symbol",
 				"hrsh7th/cmp-nvim-lsp-signature-help",
+				"hrsh7th/cmp-nvim-lsp-document-symbol",
 				"hrsh7th/cmp-nvim-lua",
 				"hrsh7th/cmp-path",
-				"onsails/lspkind-nvim",
 				"saadparwaiz1/cmp_luasnip",
+				"onsails/lspkind-nvim",
 			},
 		})
 
@@ -103,6 +103,19 @@ return require("packer").startup({
 			},
 		})
 
+		-- Markdown Preview
+		use({
+			"iamcco/markdown-preview.nvim",
+			run = "cd app && npm install",
+			setup = function()
+				vim.g.mkdp_filetypes = { "markdown" }
+			end,
+			ft = { "markdown" },
+		})
+
+		-- Tooling Installer
+		use("williamboman/mason.nvim")
+
 		-- Testing
 		use({
 			"nvim-neotest/neotest",
@@ -146,10 +159,8 @@ return require("packer").startup({
 		use({
 			"neovim/nvim-lspconfig",
 			requires = {
-				"williamboman/nvim-lsp-installer",
 				"numToStr/Comment.nvim",
-				"mfussenegger/nvim-lint",
-				"mhartington/formatter.nvim",
+				"jose-elias-alvarez/null-ls.nvim",
 				"j-hui/fidget.nvim",
 				{ "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" },
 			},
@@ -190,9 +201,6 @@ return require("packer").startup({
 
 		-- Async compilation
 		use({ "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } })
-
-		-- Games to improve vim skills
-		use("ThePrimeagen/vim-be-good")
 
 		-- NSIS syntax highlighting
 		use({ "k-takata/vim-nsis", ft = "nsis" })

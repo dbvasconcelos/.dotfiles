@@ -12,9 +12,6 @@ require("nvim-tree").setup({
 	renderer = {
 		group_empty = true,
 		highlight_git = true,
-		indent_markers = {
-			enable = true,
-		},
 		icons = {
 			glyphs = {
 				git = {
@@ -32,7 +29,7 @@ require("nvim-tree").setup({
 		enable = true,
 	},
 	filters = {
-		custom = { ".git/" },
+		custom = { "\\.git/" },
 	},
 })
 

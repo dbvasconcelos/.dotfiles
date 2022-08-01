@@ -1,24 +1,7 @@
 local M = {
-	bash = {
-		lsp = "bashls",
-		config = true,
-		formatter = {
-			exe = "shfmt",
-			args = { "-i", "2", "-ci" },
-			stdin = true,
-		},
-		linters = {
-			"shellcheck",
-		},
-	},
+	bash = { lsp = "bashls", config = true, },
 
-	dockerfile = {
-		lsp = "dockerls",
-		config = true,
-		linters = {
-			"hadolint",
-		},
-	},
+	dockerfile = { lsp = "dockerls", config = true, },
 
 	go = {
 		lsp = "gopls",
@@ -29,37 +12,11 @@ local M = {
 				},
 			},
 		},
-		linters = {
-			"golangcilint",
-		},
 	},
 
-	html = {
-		lsp = "html",
-		config = true,
-		formatter = {
-			exe = "prettier",
-			args = {
-				"--stdin-filepath",
-				vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-			},
-			stdin = true,
-		},
-	},
+	html = { lsp = "html", config = true, },
 
-	json = {
-		lsp = "jsonls",
-		config = true,
-		formatter = {
-			exe = "prettier",
-			args = {
-				"--stdin-filepath",
-				vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-				"--double-quote",
-			},
-			stdin = true,
-		},
-	},
+	json = { lsp = "jsonls", config = true, },
 
 	lua = {
 		lsp = "sumneko_lua",
@@ -82,54 +39,17 @@ local M = {
 				},
 			},
 		},
-		formatter = {
-			exe = "stylua",
-			args = { "--config-path " .. vim.fn.expand("~/.config/stylua/stylua.toml"), "-" },
-			stdin = true,
-		},
-		linters = {
-			"luacheck",
-		},
 	},
 
-	php = {
-		lsp = "intelephense",
-
-		config = true,
-	},
+	php = { lsp = "intelephense", config = true, },
 
 	python = { lsp = "pyright", config = true },
 
-	sh = {
-		lsp = "bashls",
-		config = true,
-		formatter = {
-			exe = "shfmt",
-			args = { "-i", "2", "-ci" },
-			stdin = true,
-		},
-		linters = {
-			"shellcheck",
-		},
-	},
+	sh = { lsp = "bashls", config = true, },
 
-	tex = {
-		lsp = "texlab",
-		config = true,
-	},
+	tex = { lsp = "texlab", config = true, },
 
-	yaml = {
-		lsp = "yamlls",
-		config = true,
-		formatter = {
-			exe = "prettier",
-			args = {
-				"--stdin-filepath",
-				vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-			},
-			stdin = true,
-		},
-	},
+	yaml = { lsp = "yamlls", config = true, },
 }
 
 return M

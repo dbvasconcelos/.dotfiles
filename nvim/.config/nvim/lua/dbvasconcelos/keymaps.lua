@@ -1,47 +1,22 @@
-----
--- Visual Only Mappings
-----
-
 vim.keymap.set("x", "p", '"_dP', { desc = "Blackhole paste" })
-
-----
--- Visual and Select Mode Mappings
-----
-
 vim.keymap.set("v", "<M-j>", ":m '>+1<cr>gv=gv", { desc = "Move lines down" })
 vim.keymap.set("v", "<M-k>", ":m '<-2<cr>gv=gv", { desc = "Move lines up" })
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right" })
-
-----
--- Command Mode Mappings
-----
-
-vim.keymap.set(
-	"c",
-	"w!!",
-	"execute 'silent! write !sudo tee % >/dev/null' <bar> edit!",
-	{ desc = "Save file as sudo" }
-)
 vim.keymap.set("c", "<C-p>", "<Up>", { desc = "Previous command" })
 vim.keymap.set("c", "<C-n>", "<Down>", { desc = "Next command" })
 vim.keymap.set("c", "<C-h>", "<Left>", { desc = "Move cursor left" })
 vim.keymap.set("c", "<C-l>", "<Right>", { desc = "Move cursor right" })
 vim.keymap.set("c", "<C-b>", "<S-Left>", { desc = "Move cursor word backwards" })
 vim.keymap.set("c", "<C-e>", "<S-Right>", { desc = "Move cursor word forward" })
-
-----
--- Insert Mode Mappings
-----
-
+vim.keymap.set(
+	"c",
+	"w!!",
+	"execute 'silent! write !sudo tee % >/dev/null' <bar> edit!",
+	{ desc = "Save file as sudo" }
+)
 vim.keymap.set("i", "<M-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down" })
 vim.keymap.set("i", "<M-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up" })
-
-----
--- Terminal Mode Mappings
-----
-
--- Leave terminal mode with <esc>
 vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
 vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Focus left window" })
 vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Focus right window" })
@@ -71,11 +46,6 @@ vim.keymap.set(
 	"<cmd>resize +2<cr>",
 	{ desc = "Increase window size vertically" }
 )
-
-----
--- Normal Mode Mappings
-----
-
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable ex mode" })
 vim.keymap.set(
 	"n",
@@ -93,9 +63,6 @@ vim.keymap.set("n", "J", "mzJ`z", { desc = "Concat lines" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous match" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next match" })
 
-----
--- Leader Mappings powered by whichkey
-----
 local wk = require("which-key")
 wk.setup({
 	plugins = {
@@ -116,6 +83,7 @@ wk.register({
 			"Comment Toggle",
 		},
 		["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+		["P"] = { "<cmd>MarkdownPreviewToggle<cr>", "Preview" },
 		["q"] = { ":Bdelete<cr>", "Close Buffer" },
 		["Q"] = { ":bufdo :Bdelete<cr>", "Close All Buffers" },
 		["w"] = { "<cmd>w!<cr>", "Save" },
@@ -129,8 +97,6 @@ wk.register({
 			["c"] = { "<cmd>Telescope neoclip<cr>", "Clipboard" },
 			["f"] = { "<cmd>TZFocus<cr>", "Focus" },
 			["o"] = { "<cmd>BufferCloseAllButCurrentOrPinned<cr>", "Close others" },
-			["p"] = { "<cmd>BufferPick<cr>", "Pick" },
-			["P"] = { "<cmd>BufferPin<cr>", "Pin" },
 			["q"] = { "<cmd>bp|bd #<cr>", "Close" },
 			["r"] = {
 				":%s//gc<left><left><left>",
@@ -205,8 +171,8 @@ wk.register({
 			name = "LSP",
 			["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 			["f"] = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
-			["I"] = { "<cmd>LspInstallInfo<cr>", "Installed" },
 			["i"] = { "<cmd>LspInfo<cr>", "Info" },
+			["I"] = { "<cmd>Mason<cr>", "Tools" },
 			["l"] = { "<cmd>lua require('lint').try_lint()<cr>", "Lint" },
 			["p"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Problems" },
 			["P"] = {

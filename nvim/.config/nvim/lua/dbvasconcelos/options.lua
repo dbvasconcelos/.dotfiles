@@ -9,11 +9,7 @@ opt.guifont = "monospace:h17"
 opt.ignorecase = true
 opt.isfname:append("@-@")
 opt.list = true
-opt.listchars = {
-	eol = "↲",
-	tab = "» ",
-	trail = "·",
-}
+opt.listchars = { eol = "↲", tab = "» ", trail = "·" }
 opt.mouse = "a"
 opt.number = true
 opt.pumheight = 10

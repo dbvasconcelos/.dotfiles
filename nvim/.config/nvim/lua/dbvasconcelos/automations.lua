@@ -4,10 +4,12 @@ vim.api.nvim_create_autocmd(
 	{ "BufNew", "BufEnter" },
 	{ command = "setlocal formatoptions-=cro", group = group, desc = "Disable auto comment" }
 )
+
 vim.api.nvim_create_autocmd(
 	"BufWritePre",
 	{ command = [[ %s/\s\+$//e ]], group = group, desc = "Delete trailing whitespaces" }
 )
+
 vim.api.nvim_create_autocmd(
 	"BufWritePre",
 	{ command = [[ %s/\n\+\%$//e ]], group = group, desc = "Delete trailing newlines" }
