@@ -1,5 +1,3 @@
-require("impatient")
-
 -- Bootstrap
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -11,6 +9,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 		"https://github.com/wbthomason/packer.nvim",
 		install_path,
 	})
+	vim.command([[packadd packer.nvim]])
 end
 
 local augroup = vim.api.nvim_create_augroup("packer_user_config", {})
@@ -26,9 +25,6 @@ return require("packer").startup({
 	function(use)
 		-- Plugin Manager itself
 		use("wbthomason/packer.nvim")
-
-		-- Speedup plugin load
-		use("lewis6991/impatient.nvim")
 
 		-- Color Scheme
 		use("eddyekofo94/gruvbox-flat.nvim")
@@ -213,13 +209,6 @@ return require("packer").startup({
 
 		-- distraction-free writing
 		use("Pocco81/TrueZen.nvim")
-
-		use({
-			"antoinemadec/FixCursorHold.nvim",
-			run = function()
-				vim.g.curshold_updatime = 100
-			end,
-		})
 
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()

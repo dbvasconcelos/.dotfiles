@@ -1,10 +1,10 @@
 # bspwm window manager hotkeys.
 
 # quit/restart bspwm
-super + alt + {q,r}
+super + ctrl + {q,r}
 	bspc {quit,wm -r}
 
-# close and kill
+# close and kill windows
 super + {_,shift +}q
 	bspc node -{c,k}
 
@@ -16,17 +16,13 @@ super + m
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest local node
-super + @space
-	bspc node -s biggest.local
-
 #
 # state/flags
 #
 
 # set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+super + {t,s,f}
+	bspc node -t {tiled,floating,fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -53,6 +49,10 @@ super + {o,i}
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# swap the current node and the biggest local node
+super + @space
+	bspc node -s biggest.local
 
 #
 # preselect

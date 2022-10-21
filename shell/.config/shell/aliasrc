@@ -21,9 +21,13 @@
 # all-in-one unzip utility
 [ -x "$(command -v aunpack)" ] && alias extract="aunpack"
 
-# Verbosity
+# Verbosity on remove
 alias rm="rm -vI"
+
+# Verbosity on mkdir
 alias mkdir="mkdir -pv"
+
+# Verbosity on mv/cp
 if [ -x "$(command -v advcp)" ]; then
     alias cp="advcp -giv"
     alias mv="advmv -giv"
@@ -31,6 +35,8 @@ else
     alias cp="cp -iv"
     alias mv="mv -iv"
 fi
+
+# Verbosity on trash
 [ -x "$(command -v trash-put)" ] && alias trash="trash-put -f"
 
 # Colorization
@@ -50,3 +56,6 @@ alias sudo="sudo EDITOR=$EDITOR"
 
 # nvidia settings
 [ -x "$(command -v nvidia-settings)" ] && alias nvidia-settings="nvidia-settings --config /home/derek/.config/nvidia/settings"
+
+# pacdiff
+alias pacdiff="sudo -E pacdiff"

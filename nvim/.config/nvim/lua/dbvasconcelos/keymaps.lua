@@ -22,30 +22,10 @@ vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Focus left window" }
 vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Focus right window" })
 vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Focus above window" })
 vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Focus below window" })
-vim.keymap.set(
-	{ "t", "n" },
-	"<C-Left>",
-	"<cmd>vertical resize -2<cr>",
-	{ desc = "Decrease window size horizontally" }
-)
-vim.keymap.set(
-	{ "t", "n" },
-	"<C-Right>",
-	"<cmd>vertical resize +2<cr>",
-	{ desc = "Increase window size horizontally" }
-)
-vim.keymap.set(
-	{ "t", "n" },
-	"<C-Down>",
-	"<cmd>resize -2<cr>",
-	{ desc = "Decrease window size vertically" }
-)
-vim.keymap.set(
-	{ "t", "n" },
-	"<C-Up>",
-	"<cmd>resize +2<cr>",
-	{ desc = "Increase window size vertically" }
-)
+vim.keymap.set({ "t", "n" }, "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "- size horz" })
+vim.keymap.set({ "t", "n" }, "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "+ size horz" })
+vim.keymap.set({ "t", "n" }, "<C-Down>", "<cmd>resize -2<cr>", { desc = "- size vert" })
+vim.keymap.set({ "t", "n" }, "<C-Up>", "<cmd>resize +2<cr>", { desc = "+ size vert" })
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable ex mode" })
 vim.keymap.set(
 	"n",
@@ -77,11 +57,6 @@ wk.setup({
 -- Normal Mode
 wk.register({
 	["<leader>"] = {
-		-- No group
-		["/"] = {
-			"<cmd>lua require('Comment.api').toggle_current_linewise()<cr>",
-			"Comment Toggle",
-		},
 		["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 		["P"] = { "<cmd>MarkdownPreviewToggle<cr>", "Preview" },
 		["q"] = { ":Bdelete<cr>", "Close Buffer" },
@@ -96,13 +71,8 @@ wk.register({
 			name = "Buffer",
 			["c"] = { "<cmd>Telescope neoclip<cr>", "Clipboard" },
 			["f"] = { "<cmd>TZFocus<cr>", "Focus" },
-			["o"] = { "<cmd>BufferCloseAllButCurrentOrPinned<cr>", "Close others" },
 			["q"] = { "<cmd>bp|bd #<cr>", "Close" },
-			["r"] = {
-				":%s//gc<left><left><left>",
-				"Replace All",
-				silent = false,
-			},
+			["r"] = { ":%s//gc<left><left><left>", "Replace All", silent = false },
 			["R"] = {
 				":%s/<C-r><C-w>//gc<left><left><left>",
 				"Replace All (Current Word)",
@@ -263,10 +233,6 @@ wk.register({
 wk.register({
 	["<leader>"] = {
 		-- No group
-		["/"] = {
-			"<esc><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<cr>",
-			"Comment Toggle",
-		},
 		["y"] = { '"+y', "Yank to Clipboard" },
 
 		-- Debug group

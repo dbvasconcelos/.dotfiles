@@ -79,10 +79,6 @@ cmp.setup({
 			},
 		}),
 	},
-
-	experimental = {
-		ghost_text = true,
-	},
 })
 
 -- Search completion

@@ -15,7 +15,7 @@ chosen="$(echo -e "$options" | $rofi_command -p "System:")"
 case $chosen in
   "$shutdown") systemctl poweroff ;;
   "$reboot") systemctl reboot ;;
-  "$lock") xset dpms force off ;;
+  "$lock") light-locker-command -l ;;
   "$suspend") systemctl suspend ;;
   "$logout") bspc quit ;;
 esac

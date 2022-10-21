@@ -1,8 +1,9 @@
 # File browser settings.
 
-set previewer stpv
-set cleaner stpvimgclr
-&stpvimg --listen $id
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
 
 set shell zsh
 set shellopts '-euy'
@@ -15,9 +16,6 @@ set icons
 set period 1
 
 ## Commands
-
-# Cleanup
-cmd on-quit $stpvimg --end $id
 
 # Directory change listener
 cmd on-cd &{{
@@ -34,8 +32,8 @@ cmd open ${{
 # Create Directory override
 cmd mkdir %{{
     IFS=" "
-        mkdir -p -- "$*"
-        lf -remote "send $id select \"$*\""
+    mkdir -p -- "$*"
+    lf -remote "send $id select \"$*\""
 }}
 
 # Dynamically set number of columns

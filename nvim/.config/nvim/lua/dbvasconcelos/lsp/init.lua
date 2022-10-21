@@ -1,7 +1,5 @@
 -- Root dir
-require("project_nvim").setup({
-	show_hidden = true,
-})
+require("project_nvim").setup()
 
 -- Comments
 require("Comment").setup()
@@ -21,7 +19,7 @@ local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local servers = require("dbvasconcelos.lsp.servers")
 
-local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 for _, server in pairs(servers) do
 	local config = {}

@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd(
 )
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = "sxhkdrc",
+	pattern = "*sxhkdrc",
 	command = "!killall -s USR1 sxhkd && notify-send 'Sxhkd' 'Hotkeys Updated'",
 	group = group,
 	desc = "Update bindings when sxhkdrc is updated",

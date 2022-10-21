@@ -76,9 +76,6 @@ bindkey '^ ' autosuggest-accept
 # Programing Language Runtime Proxy
 [ -f "/opt/asdf-vm/asdf.sh" ] && source "/opt/asdf-vm/asdf.sh"
 
-# Dynamic JAVA_HOME
-[ -f "$ASDF_DATA_DIR/plugins/java/set-java-home.zsh" ] && source "$ASDF_DATA_DIR/plugins/java/set-java-home.zsh"
-
 # LF cd
 [ -f "/usr/share/lf/lfcd.sh" ] && source "/usr/share/lf/lfcd.sh"
 
