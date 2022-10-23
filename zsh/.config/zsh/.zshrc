@@ -73,9 +73,6 @@ bindkey '^ ' autosuggest-accept
 # Syntax Highlighting Plugin
 [ -f "/usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ] && source "/usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
-# Programing Language Runtime Proxy
-[ -f "/opt/asdf-vm/asdf.sh" ] && source "/opt/asdf-vm/asdf.sh"
-
 # LF cd
 [ -f "/usr/share/lf/lfcd.sh" ] && source "/usr/share/lf/lfcd.sh"
 

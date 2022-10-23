@@ -9,10 +9,6 @@ export HISTCONTROL=erasedups
 # shellcheck source=/dev/null
 [ -f "$BOOKMARK_ALIASRC" ] && source "$BOOKMARK_ALIASRC"
 
-# Programing Language Runtime Proxy
-# shellcheck source=/dev/null
-[ -f "$ASDF_DIR/asdf.sh" ] && source "$ASDF_DIR/asdf.sh"
-
 # Prompt
 # shellcheck disable=SC2155
 if [ -x "$(command -v starship)" ]; then
