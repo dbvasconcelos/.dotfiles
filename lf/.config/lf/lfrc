@@ -1,5 +1,6 @@
 # File browser settings.
 
+# File Preview
 set previewer ctpv
 set cleaner ctpvclear
 &ctpv -s $id
@@ -14,6 +15,7 @@ set hidden
 set scrolloff 10
 set icons
 set period 1
+set autoquit on
 
 ## Commands
 
@@ -21,12 +23,6 @@ set period 1
 cmd on-cd &{{
     # Show current directory in window title
     printf "\033]0; $(pwd | sed "s|$HOME|~|") - lf\007" > /dev/tty
-}}
-
-# Open file override
-cmd open ${{
-    # opens the file in a new window and hide lf while manipulating it
-    tdrop -a auto_hide && $OPENER $fx && tdrop -a auto_show
 }}
 
 # Create Directory override
@@ -48,9 +44,7 @@ cmd recol ${{
 
 # Yank paths to clipboard
 cmd yank-path ${{
-    printf '%s' "$fx" |
-    xclip -i -selection clipboard |
-    notify-send -u low "Path(s) copied to clipboard." "$fx"
+    printf '%s' "$fx" | xclip -selection clipboard && notify-send -u low "Path(s) copied to clipboard." "$fx"
 }}
 
 # Delete Files/Directories

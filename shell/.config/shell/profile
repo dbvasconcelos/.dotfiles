@@ -1,6 +1,9 @@
 #!/bin/sh
 # global environment settings for login shells
 
+# User executables
+export PATH="$PATH:$HOME/.local/bin"
+
 # XDG Compliance
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -36,9 +39,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export OPENER="xdg-open"
 export DIFFPROG="nvim -d $1"
 
-# User executables
-export PATH="$PATH:$HOME/.local/bin"
-
 # Shell
 export HISTFILE="$XDG_DATA_HOME/shell_history"
 export HISTSIZE=1000000
@@ -67,12 +67,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 # FZF fuzzy finder
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
-
-# ASDF Runtime proxy
-export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/asdfrc"
-export ASDF_DIR="/opt/asdf-vm"
-export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
-export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 # Golang
 export GOPATH="$XDG_DATA_HOME/go"
