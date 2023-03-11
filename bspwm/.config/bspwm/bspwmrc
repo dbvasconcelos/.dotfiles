@@ -17,7 +17,7 @@ xsetroot -cursor_name left_ptr
 bspc monitor -d 1 2 3 4 5 6 7 8 9
 
 # Appearance
-bspc config border_width 3
+bspc config border_width 0
 bspc config window_gap 15
 bspc config top_padding 45
 bspc config split_ratio 0.55
@@ -31,3 +31,4 @@ bspc rule -a Gimp state=floating follow=on
 bspc rule -a Zathura state=tiled
 bspc rule -a mtga.exe state=tiled
 bspc rule -a battle.net.exe state=floating
+bspc rule -a cmatrix state=fullscreen

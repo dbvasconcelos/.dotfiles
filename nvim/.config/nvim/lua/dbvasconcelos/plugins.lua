@@ -1,16 +1,22 @@
 -- Bootstrap
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = vim.fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
-	vim.command([[packadd packer.nvim]])
+local ensure_packer = function()
+	local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+	if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+		vim.fn.system({
+			"git",
+			"clone",
+			"--depth",
+			"1",
+			"https://github.com/wbthomason/packer.nvim",
+			install_path,
+		})
+		vim.command([[packadd packer.nvim]])
+		return true
+	end
+	return false
 end
+
+local packer_bootstrap = ensure_packer()
 
 local augroup = vim.api.nvim_create_augroup("packer_user_config", {})
 vim.api.nvim_create_autocmd("BufWritePost", {
@@ -210,7 +216,7 @@ return require("packer").startup({
 		-- distraction-free writing
 		use("Pocco81/TrueZen.nvim")
 
-		if PACKER_BOOTSTRAP then
+		if packer_bootstrap then
 			require("packer").sync()
 		end
 	end,

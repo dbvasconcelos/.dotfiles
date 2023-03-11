@@ -32,7 +32,7 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 # Default Programs
 export EDITOR="nvim"
 export TERMINAL="kitty"
-export BROWSER="librewolf"
+export BROWSER="google-chrome-stable"
 export READER="zathura"
 export PAGER="less"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
