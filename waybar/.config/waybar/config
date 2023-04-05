@@ -1,0 +1,96 @@
+{
+  "layer": "top",
+  "mode": "dock",
+  "height": 50,
+  "modules-left": ["custom/launcher","wlr/workspaces","hyprland/window"],
+  "modules-center": ["custom/updates"],
+  "modules-right": ["cpu", "memory", "disk", "temperature", "custom/power_profile",  "tray", "pulseaudio", "custom/weather", "clock"],
+
+  "custom/launcher": {
+    "format": "",
+    "on-click": "pkill wofi; wofi -n",
+    "tooltip": false
+  },
+
+  "wlr/workspaces": {
+    "on-click": "activate",
+  },
+
+  "hyprland/window": {
+    "format": "{}"
+  },
+
+  "custom/updates": {
+    "exec": "sys-upgrades check",
+    "on-click": "sys-upgrades upgrade",
+    "interval": 3600,
+  },
+
+  "cpu": {
+    "format": " {usage}%",
+    "on-click": "kitty --title syscpu sh -c 'btm --default_widget_type proc -e'"
+  },
+
+  "memory": {
+    "format": " {}%",
+    "on-click": "kitty --title sysmem sh -c 'btm --default_widget_type mem -e'"
+  },
+
+  "disk": {
+    "format": "󰋊 {percentage_used}%",
+    "path": "/home",
+    "on-click": "kitty --title sysdsk sh -c 'btm --default_widget_type disk -e'"
+  },
+
+  "temperature": {
+    "thermal-zone": 1,
+    "format": " {temperatureC}°C",
+    "critical-threshold": 70,
+    "on-click": "kitty --title systmp sh -c 'btm --default_widget_type temp -e'"
+  }
+
+  "custom/power_profile": {
+    //shows the current power profile and switches to next on click
+    "exec": "asusctl profile -p | sed s:'Active profile is'::",
+    "interval": 30,
+    "format": "󰈐{}",
+    "on-click": "asusctl profile -n; pkill -SIGRTMIN+8 waybar",
+    "signal": 8
+  },
+
+  "custom/weather": {
+    "interval" : 3600,
+    "exec" : "curl -sf "v3.wttr.in?format=%c%t\n" | sed 's/\xef\xb8\x8f//' | tr -d ' +' | sed 's/^Unknown.*$//'",
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "",
+    "on-click": "pamixer -t",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+        "default": ["", "", ""]
+      }
+  },
+
+  "clock": {
+    "format": " {:%y/%m/%d (%a)  %H:%M}",
+    "locale": "pt_BR.UTF-8",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+  },
+
+}

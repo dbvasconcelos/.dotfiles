@@ -1,0 +1,12 @@
+#!/bin/bash
+
+case "$1" in
+  check)
+    pkg=$(checkupdates | wc -l)
+    aur="$(yay -Qua | wc -l)"
+    all=$((pkg+aur))
+    [[ "$all" == "0" ]] && echo "" && exit 0
+    echo " $all"
+    ;;
+  upgrade) kitty --title sysupgrade sh -c 'yay -Syu' ;;
+esac
