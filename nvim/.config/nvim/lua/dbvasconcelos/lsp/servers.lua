@@ -19,7 +19,7 @@ local M = {
 	json = { lsp = "jsonls", config = true, },
 
 	lua = {
-		lsp = "sumneko_lua",
+		lsp = "lua_ls",
 		config = {
 			settings = {
 				Lua = {
