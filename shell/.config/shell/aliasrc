@@ -1,7 +1,7 @@
 # Shell aliases definition
 
 # Remove unnecessary sudo for some system commands.
-for command in mount umount sv pacman updatedb su shutdown poweroff reboot ; do
+for command in mount umount sv updatedb su shutdown poweroff reboot ; do
 	alias $command="sudo $command"
 done; unset command
 
@@ -12,7 +12,7 @@ done; unset command
 [ -x "$(command -v exa)" ] && alias ls="exa --icons --color=always --group-directories-first"
 
 # use paru for pacman.
-[ -x "$(command -v paru)" ] && alias pacman="paru"
+[ -x "$(command -v yay)" ] && alias pacman="yay"
 
 # use ripgrep for grep.
 [ -x "$(command -v rg)" ] && alias grep="rg"
@@ -48,7 +48,7 @@ fi
 alias diff="diff --color=auto"
 
 # remove orphaned packages.
-[ -x "$(command -v paru)" ] && alias autoremove='if [ -z "$(paru -Qtdq)" ]; then echo "no orphan packages"; else paru -Rns $(paru -Qtdq); fi'
+[ -x "$(command -v yay)" ] && alias autoremove='if [ -z "$(yay -Qtdq)" ]; then echo "no orphan packages"; else paru -Rns $(paru -Qtdq); fi'
 
 # get error messages from journalctl.
 alias jctl="journalctl -p 4 -xb"
