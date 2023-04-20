@@ -37,7 +37,8 @@ tooltip label {
 #custom-volume,
 #tray,
 #custom-weather,
-#clock {
+#clock,
+#custom-session {
   background: #141617;
   opacity: 0.8;
   padding: 0px 10px;
@@ -58,7 +59,7 @@ tooltip label {
 }
 
 /* single */
-#custom-volume, #custom-updates {
+#custom-volume, #custom-updates, #custom-session {
   border-radius: 10px;
   margin-right: 10px;
 }
@@ -127,4 +128,8 @@ tooltip label {
   color: #7daea3;
   border-left: 0px;
   border-right: 0px;
+}
+
+#custom-session {
+    color: #ea6962;
 }

@@ -1,33 +1,27 @@
--- Filetype detection
-vim.g.do_filetype_lua = 1
-
--- disable providers
-vim.g.loaded_python3_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_node_provider = 0
-vim.g.loaded_perl_provider = 0
-
 -- Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Load Plugins
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup("dbvasconcelos.plugins")
+
 -- Load neovim options
 require("dbvasconcelos.options")
 
--- Load Plugins
-require("dbvasconcelos.plugins")
-
--- Set Colorscheme
-require("dbvasconcelos.colorscheme")
-
 -- Load neovim options
 require("dbvasconcelos.automations")
-
--- Neovim builtin LSP configuration
-require("dbvasconcelos.lsp")
-
--- Fuzzy Finder
-require("dbvasconcelos.telescope")
 
 -- Keymappings
 require("dbvasconcelos.keymaps")

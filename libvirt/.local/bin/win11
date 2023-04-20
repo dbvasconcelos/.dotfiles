@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo "Starting VM"
+[ "$(powerprofile status)" = "performance" ] || cpupower-gui -p
+sudo virsh start win11
+looking-glass-client -F

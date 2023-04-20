@@ -1,9 +1,0 @@
-#!/bin/sh
-
-printf "Beginning upgrade.\\n"
-
-paru -Syu
-polybar-msg action "#packages.hook.0"
-
-printf "\\nUpgrade complete.\\nPress <Enter> to exit window.\\n\\n"
-read -r _

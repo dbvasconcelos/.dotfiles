@@ -71,3 +71,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 # Golang
 export GOPATH="$XDG_DATA_HOME/go"
 PATH="$PATH:$GOPATH/bin"
+
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+  exec Hyprland
+fi

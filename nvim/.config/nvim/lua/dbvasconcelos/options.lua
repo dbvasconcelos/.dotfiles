@@ -1,11 +1,9 @@
 local opt = vim.opt
 
 opt.colorcolumn = "100"
-opt.completeopt = { "menu", "menuone", "noselect" }
 opt.confirm = true
 opt.cursorline = true
 opt.expandtab = true
-opt.guifont = "monospace:h17"
 opt.ignorecase = true
 opt.isfname:append("@-@")
 opt.list = true

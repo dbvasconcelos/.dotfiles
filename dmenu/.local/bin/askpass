@@ -1,5 +1,0 @@
-#!/bin/sh
-# Prompts the user for password. Meant to be the SUDO_ASKPASS
-# $1 = prompt message
-
-dmenu -P -nb darkred -sb red -sf white -nf gray -p "$1" <&- && echo 2>/dev/null

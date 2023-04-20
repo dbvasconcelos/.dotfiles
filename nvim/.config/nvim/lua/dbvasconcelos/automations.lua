@@ -16,45 +16,10 @@ vim.api.nvim_create_autocmd(
 )
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = "*sxhkdrc",
-	command = "!killall -s USR1 sxhkd && notify-send 'Sxhkd' 'Hotkeys Updated'",
-	group = group,
-	desc = "Update bindings when sxhkdrc is updated",
-})
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = { "xresources", "xdefaults" },
-	command = "!xrdb %",
-	group = group,
-	desc = "Run xrdb whenever Xdefaults or Xresources are updated",
-})
-
-vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "dunstrc",
 	command = "!killall dunst; notify-send 'Dunst' 'Notifications Settings Updated'",
 	group = group,
 	desc = "Restart dunst when config is updated",
-})
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = "picom.conf",
-	command = "!killall -s USR1 picom; picom -b",
-	group = group,
-	desc = "Restart picom when config is updated",
-})
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = "bspwmrc",
-	command = "!bspc wm -r",
-	group = group,
-	desc = "Restart bspwm when config is updated",
-})
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = "**/polybar/config.ini",
-	command = "!polybar-msg cmd restart",
-	group = group,
-	desc = "Restart polybar when config is updated",
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
@@ -77,4 +42,33 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	command = "!tmux source-file %",
 	group = group,
 	desc = "Update tmux when updating configuration",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
+		"help",
+		"lspinfo",
+		"man",
+		"notify",
+		"qf",
+		"checkhealth",
+	},
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+	end,
+	group = group,
+	desc = "Close filetypes with <q>",
+})
+
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	callback = function(event)
+		if event.match:match("^%w%w+://") then
+			return
+		end
+		local file = vim.loop.fs_realpath(event.match) or event.match
+		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+	end,
+	group = group,
+	desc = "Auto create dir when saving a file, in case some intermediate directory does not exist",
 })
