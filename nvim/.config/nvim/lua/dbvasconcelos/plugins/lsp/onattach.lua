@@ -1,18 +1,36 @@
-local document_highlight = function(bufnr)
-	local group = vim.api.nvim_create_augroup("lsp_document_highlight", {})
-	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-		callback = vim.lsp.buf.document_highlight,
-		buffer = bufnr,
+-- Keymaps
+local keybindings = function(bufnr)
+	local opts = { buffer = bufnr }
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+	vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+	vim.keymap.set("n", "gL", vim.diagnostic.open_float, opts)
+	vim.keymap.set("n", "gi", "<cmd>Trouble lsp_implementations<cr>", opts)
+	vim.keymap.set("n", "gr", "<cmd>Trouble lsp_references<cr>", opts)
+end
+
+-- Format
+local formatting = function(bufnr)
+	local group = vim.api.nvim_create_augroup("LspFormatting", {})
+	vim.api.nvim_create_autocmd("BufWritePre", {
 		group = group,
-	})
-	vim.api.nvim_create_autocmd("CursorMoved", {
-		callback = vim.lsp.buf.clear_references,
 		buffer = bufnr,
-		group = group,
+		callback = function()
+			vim.lsp.buf.format({
+				filter = function(client)
+					return client.name == "null-ls"
+				end,
+				bufnr = bufnr,
+			})
+		end,
 	})
 end
 
-local hover = function(bufnr)
+-- Show line diagnostics automatically in hover window
+local diagnostics_hover = function(bufnr)
 	vim.api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
 		callback = function()
@@ -27,19 +45,28 @@ local hover = function(bufnr)
 	})
 end
 
-local keybindings = require("dbvasconcelos.lsp.keybindings")
+-- Highlight symbol under cursor
+local document_highlight = function(bufnr)
+	local group = vim.api.nvim_create_augroup("lsp_document_highlight", {})
+	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+		callback = vim.lsp.buf.document_highlight,
+		buffer = bufnr,
+		group = group,
+	})
+	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+		callback = vim.lsp.buf.clear_references,
+		buffer = bufnr,
+		group = group,
+	})
+end
 
 local M = function(client, bufnr)
-	-- Mappings
-	keybindings.setup(bufnr)
-
-	-- Highlighting
+	keybindings(bufnr)
+	diagnostics_hover(bufnr)
+	formatting(bufnr)
 	if client.server_capabilities.documentHighlightProvider then
 		document_highlight(bufnr)
 	end
-
-	-- Hover
-	hover(bufnr)
 end
 
 return M

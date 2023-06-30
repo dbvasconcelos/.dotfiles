@@ -10,10 +10,17 @@ return {
 					text_objects = false, -- no help for text objects triggered after entering an operator
 				},
 			},
+			groups = {
+				mode = { "n", "v" },
+				["g"] = { name = "+goto" },
+				["]"] = { name = "+next" },
+				["["] = { name = "+prev" },
+			},
 		},
 		config = function(_, opts)
 			local wk = require("which-key")
 			wk.setup(opts)
+			wk.register(opts.groups)
 			-- Normal Mode
 			wk.register({
 				["<leader>"] = {
@@ -100,12 +107,6 @@ return {
 							"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
 							"Workspace Symbols",
 						},
-					},
-
-					-- Plugins group
-					p = {
-						name = "Plugins",
-						["s"] = { "<cmd>PackerSync<cr>", "Sync" },
 					},
 
 					-- Search group

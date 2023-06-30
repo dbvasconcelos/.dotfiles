@@ -37,13 +37,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight yanks",
 })
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = "tmux.conf",
-	command = "!tmux source-file %",
-	group = group,
-	desc = "Update tmux when updating configuration",
-})
-
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = {
 		"help",

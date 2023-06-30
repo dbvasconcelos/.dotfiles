@@ -1,8 +1,18 @@
 local M = {
-	bash = { lsp = "bashls", config = true, },
-
-	dockerfile = { lsp = "dockerls", config = true, },
-
+	-- Bash
+	bash = {
+		lsp = "bashls",
+		config = true,
+		formatter = "shfmt",
+		linter = "shellcheck",
+	},
+	-- Docker
+	dockerfile = {
+		lsp = "dockerls",
+		config = true,
+		linter = "hadolint",
+	},
+	-- Golang
 	go = {
 		lsp = "gopls",
 		config = {
@@ -12,12 +22,15 @@ local M = {
 				},
 			},
 		},
+		formatter = "goimports",
+		linter = "golangci_lint",
+		debugger = "delve",
 	},
-
-	html = { lsp = "html", config = true, },
-
-	json = { lsp = "jsonls", config = true, },
-
+	-- HTML
+	html = { lsp = "html", config = true },
+	-- JSON
+	json = { lsp = "jsonls", config = true },
+	-- Lua
 	lua = {
 		lsp = "lua_ls",
 		config = {
@@ -35,21 +48,18 @@ local M = {
 					workspace = {
 						-- Make the server aware of Neovim runtime files
 						library = vim.api.nvim_get_runtime_file("", true),
+						checkThirdParty = false,
 					},
 				},
 			},
 		},
+		formatter = "stylua",
+		linter = "luacheck",
 	},
-
-	php = { lsp = "intelephense", config = true, },
-
+	php = { lsp = "intelephense", config = true },
 	python = { lsp = "pyright", config = true },
-
-	sh = { lsp = "bashls", config = true, },
-
-	tex = { lsp = "texlab", config = true, },
-
-	yaml = { lsp = "yamlls", config = true, },
+	tex = { lsp = "texlab", config = true },
+	yaml = { lsp = "yamlls", config = true },
 }
 
 return M

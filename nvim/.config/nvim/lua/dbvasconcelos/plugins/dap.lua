@@ -54,11 +54,18 @@ return {
 		{
 			"jay-babu/mason-nvim-dap.nvim",
 			dependencies = "williamboman/mason.nvim",
-			opts = {
-				ensure_installed = {
-					"delve",
-				},
-			},
+			opts = function()
+				local debuggers = {}
+				local servers = require("dbvasconcelos.plugins.lsp.servers")
+				for _, server in pairs(servers) do
+					if server.debugger then
+						table.insert(debuggers, server.debugger)
+					end
+				end
+				return {
+					ensure_installed = debuggers,
+				}
+			end,
 		},
 	},
 	config = function()

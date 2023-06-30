@@ -1,6 +1,5 @@
 {
   "layer": "top",
-  "mode": "dock",
   "height": 50,
   "modules-left": ["custom/launcher","wlr/workspaces","hyprland/window"],
   "modules-center": ["custom/updates"],
@@ -24,7 +23,8 @@
     "exec": "sys-upgrades check",
     "on-click": "kitty --class sysupgrade sh -c 'sys-upgrades upgrade'",
     "interval": 3600,
-    "signal": 1
+    "signal": 1,
+    "tooltip": false
   },
 
   "cpu": {
@@ -47,6 +47,7 @@
     "thermal-zone": 1,
     "format": " {temperatureC}°C",
     "critical-threshold": 70,
+    "tooltip": false,
     "on-click": "kitty --title systmp sh -c 'btm --default_widget_type temp -e'"
   },
 
@@ -55,13 +56,14 @@
     "interval": 60,
     "format": "󰈐 {}",
     "on-click": "powerprofile toggle",
+    "tooltip": false,
     "signal": 2
   },
 
   "custom/weather": {
     "interval" : 3600,
     "tooltip": false,
-    "exec" : "echo $(curl -sf 'v3.wttr.in?format=%c%t' | tr -d ' +')",
+    "exec": "echo $(curl -sf 'v3.wttr.in/campinas?format=%c%t' | tr -d ' +')",
   },
 
   "tray": {
@@ -70,11 +72,12 @@
   },
 
   "custom/volume": {
-    "exec": "pulseaudio-control --format '$NODE_NICKNAME ${VOL_LEVEL}%' --node-nickname '*hdmi-stereo-extra1:' --node-nickname '*HyperX_Cloud_Flight_Wireless_Headset*: ' listen",
+    "exec": "pulseaudio-control --format '$NODE_NICKNAME ${VOL_LEVEL}%' --node-nickname '*hdmi-stereo*:' --node-nickname '*HyperX_Cloud_Flight_Wireless_Headset*: ' listen",
     "on-click": "pulseaudio-control togmute",
     "on-click-right": "pulseaudio-control --node-blacklist '*iec958-stereo' next-node",
     "on-scroll-up": "pulseaudio-control --volume-max 130 up",
-    "on-scroll-down": "pulseaudio-control --volume-max 130 down"
+    "on-scroll-down": "pulseaudio-control --volume-max 130 down",
+    "tooltip": false
   },
 
   "clock": {

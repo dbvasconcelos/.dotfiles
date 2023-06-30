@@ -5,7 +5,7 @@ return {
 		{
 			"folke/which-key.nvim",
 			opts = {
-				defaults = {
+				groups = {
 					["<leader>m"] = { name = "+marks" },
 				},
 			},

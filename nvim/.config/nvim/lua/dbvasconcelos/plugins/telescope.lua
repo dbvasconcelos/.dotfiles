@@ -1,5 +1,88 @@
 return {
 	"nvim-telescope/telescope.nvim",
+	dependencies = {
+		{ "nvim-lua/plenary.nvim" },
+		{ "nvim-lua/popup.nvim" },
+		{ "kkharji/sqlite.lua" },
+		{
+			"ahmedkhalf/project.nvim",
+			event = "VeryLazy",
+			opts = {},
+			config = function(_, opts)
+				require("project_nvim").setup(opts)
+				require("telescope").load_extension("projects")
+			end,
+			keys = {
+				{ "<leader>sP", "<cmd>Telescope projects<cr>", desc = "Projects" },
+			},
+		},
+		{
+			"AckslD/nvim-neoclip.lua",
+			event = "VeryLazy",
+			opts = {},
+			config = function(_, opts)
+				require("neoclip").setup(opts)
+				require("telescope").load_extension("neoclip")
+			end,
+			keys = {
+				{ "<leader>c", "<cmd>Telescope neoclip<cr>", desc = "Clipboard" },
+			},
+		},
+		{
+			"nvim-telescope/telescope-media-files.nvim",
+			event = "VeryLazy",
+			config = function()
+				require("telescope").load_extension("media_files")
+			end,
+			keys = {
+				{ "<leader>si", "<cmd>Telescope media_files<cr>", desc = "Images" },
+			},
+		},
+		{
+			"ghassan0/telescope-glyph.nvim",
+			event = "VeryLazy",
+			config = function()
+				require("telescope").load_extension("glyph")
+			end,
+			keys = {
+				{ "<leader>se", "<cmd>Telescope glyph<cr>", desc = "Emoji" },
+			},
+		},
+		{
+			"debugloop/telescope-undo.nvim",
+			event = "VeryLazy",
+			config = function()
+				require("telescope").load_extension("undo")
+			end,
+			keys = {
+				{ "<leader>u", "<cmd>Telescope undo<cr>", desc = "Undo Tree" },
+			},
+		},
+		{
+			"nvim-telescope/telescope-fzy-native.nvim",
+			event = "VeryLazy",
+			config = function()
+				require("telescope").load_extension("fzy_native")
+			end,
+		},
+		{
+			"nvim-telescope/telescope-dap.nvim",
+			event = "VeryLazy",
+			config = function()
+				require("telescope").load_extension("dap")
+			end,
+		},
+		{
+			"tsakirist/telescope-lazy.nvim",
+			event = "VeryLazy",
+			config = function()
+				require("telescope").load_extension("lazy")
+			end,
+			keys = {
+				{ "<leader>sp", "<cmd>Telescope lazy<cr>", desc = "Plugins" },
+			},
+		},
+	},
 	cmd = "Telescope",
 	opts = {
 		defaults = {
@@ -44,45 +127,24 @@ return {
 				},
 			},
 			extensions = {
-				fzy_native = {
-					override_generic_sorter = true,
-					override_file_sorter = true,
+				undo = {
+					side_by_side = true,
+					layout_strategy = "vertical",
+					layout_config = {
+						preview_height = 0.8,
+					},
 				},
 			},
 		},
 	},
-	config = function()
-		require("telescope").load_extension("dap")
-		require("telescope").load_extension("fzy_native")
-		require("telescope").load_extension("media_files")
-		require("telescope").load_extension("neoclip")
-		require("telescope").load_extension("projects")
-		require("telescope").load_extension("smart_history")
-	end,
 	keys = {
-		{ "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
 		{ "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
 		{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-		-- find
-		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-		{ "<leader>ff", "<cmd>Telescope find_files", desc = "Find Files" },
-		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-		-- git
-		{ "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
-		{ "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
-		-- search
+		{ "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+		{ "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
 		{ "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
-		{ "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
-		{ "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
 		{ "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
-		{ "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document diagnostics" },
-		{ "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace diagnostics" },
-		{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-		{ "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
 		{ "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
-		{ "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
-		{ "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
 		{ "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
-		{ "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
 	},
 }
