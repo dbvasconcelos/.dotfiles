@@ -36,8 +36,8 @@ export BROWSER="google-chrome-stable"
 export READER="zathura"
 export PAGER="less"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export OPENER="xdg-open"
 export DIFFPROG="nvim -d $1"
+export SUDO_ASKPASS="/home/derek/.local/bin/askpass"
 
 # Shell
 export HISTFILE="$XDG_DATA_HOME/shell_history"
@@ -52,9 +52,6 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME/shell/starship_prompt.toml"
 export LESS=-R
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export LESSHISTFILE="-"
-
-# Ask sudo password in dmenu
-export SUDO_ASKPASS="$HOME/.local/bin/askpass"
 
 # GTK
 export GTK_IM_MODULE=cedilla
@@ -73,5 +70,5 @@ export GOPATH="$XDG_DATA_HOME/go"
 PATH="$PATH:$GOPATH/bin"
 
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  exec Hyprland
+  exec Hyprland > /dev/null
 fi

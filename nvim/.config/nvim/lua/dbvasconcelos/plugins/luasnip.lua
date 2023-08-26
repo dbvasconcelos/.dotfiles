@@ -20,7 +20,7 @@ return {
 			},
 		}
 	end,
-	keys = function()
+	--[[ keys = function()
 		local ls = require("luasnip")
 		return {
 			{
@@ -34,5 +34,5 @@ return {
 				desc = "Change snippet choice",
 			},
 		}
-	end,
+	end, ]]--
 }
