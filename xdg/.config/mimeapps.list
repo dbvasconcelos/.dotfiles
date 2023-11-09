@@ -3,46 +3,26 @@
 
 [Default Applications]
 
-application/pdf=zathura.desktop;
-application/postscript=zathura.desktop;
+application/pdf=org.pwmt.zathura.desktop
+application/postscript=org.pwmt.zathura.desktop
 
 application/x-directory=lf.desktop
 inode/directory=lf.desktop
 
-image/png=sxiv.desktop;
-image/jpg=sxiv.desktop;
-image/jpeg=sxiv.desktop;
-image/gif=sxiv.desktop;
+inode/x-empty=nvim.desktop
+text/x-shellscript=nvim.desktop
+text/plain=nvim.desktop
+application/xml=nvim.desktop
+application/json=nvim.desktop
+application/yaml=nvim.desktop
+application/yml=nvim.desktop
 
-text/x-shellscript=nvim.desktop;
-text/plain=nvim.desktop;
-application/xml=nvim.desktop;
-application/json=nvim.desktop;
-application/yaml=nvim.desktop;
-application/yml=nvim.desktop;
-
-application/msword=ms-office-online-nativefier.desktop
-application/vnd.openxmlformats-officedocument.wordprocessingml.document=ms-office-online-nativefier.desktop
-application/vnd.openxmlformats-officedocument.wordprocessingml.template=ms-office-online-nativefier.desktop
-application/vnd.ms-word.document.macroEnabled.12=ms-office-online-nativefier.desktop
-application/vnd.ms-word.template.macroEnabled.12=ms-office-online-nativefier.desktop
-application/vnd.ms-excel=ms-office-online-nativefier.desktop
-application/vnd.ms-excel=ms-office-online-nativefier.desktop
-application/vnd.ms-excel=ms-office-online-nativefier.desktop
-application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=ms-office-online-nativefier.desktop
-application/vnd.openxmlformats-officedocument.spreadsheetml.template=ms-office-online-nativefier.desktop
-application/vnd.ms-excel.sheet.macroEnabled.12=ms-office-online-nativefier.desktop
-application/vnd.ms-excel.template.macroEnabled.12=ms-office-online-nativefier.desktop
-application/vnd.ms-excel.addin.macroEnabled.12=ms-office-online-nativefier.desktop
-application/vnd.ms-excel.sheet.binary.macroEnabled.12=ms-office-online-nativefier.desktop
-application/vnd.ms-powerpoint=ms-office-online-nativefier.desktop
-application/vnd.ms-powerpoint=ms-office-online-nativefier.desktop
-application/vnd.ms-powerpoint=ms-office-online-nativefier.desktop
-application/vnd.ms-powerpoint=ms-office-online-nativefier.desktop
-application/vnd.openxmlformats-officedocument.presentationml.presentation=ms-office-online-nativefier.desktop
-application/vnd.openxmlformats-officedocument.presentationml.template=ms-office-online-nativefier.desktop
-application/vnd.openxmlformats-officedocument.presentationml.slideshow=ms-office-online-nativefier.desktop
-application/vnd.ms-powerpoint.addin.macroEnabled.12=ms-office-online-nativefier.desktop
-application/vnd.ms-powerpoint.presentation.macroEnabled.12=ms-office-online-nativefier.desktop
-application/vnd.ms-powerpoint.template.macroEnabled.12=ms-office-online-nativefier.desktop
-application/vnd.ms-powerpoint.slideshow.macroEnabled.12=ms-office-online-nativefier.desktop
+image/bmp=imv.desktop
+image/gif=imv.desktop
+image/jpeg=imv.desktop
+image/jpg=imv.desktop
+image/png=imv.desktop
+image/tiff=imv.desktop
+image/x-bmp=imv.desktop
+image/x-png=imv.desktop
+image/x-xbitmap=imv.desktop

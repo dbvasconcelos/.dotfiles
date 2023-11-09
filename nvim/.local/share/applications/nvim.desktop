@@ -1,5 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=Text editor
-Exec=kitty nvim %F
-Terminal=true
+Exec=kitty --class NVIM nvim %F

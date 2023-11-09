@@ -9,17 +9,19 @@ done; unset command
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 # Use exa for ls.
-[ -x "$(command -v exa)" ] && alias ls="exa --icons --color=always --group-directories-first"
+[ -x "$(command -v eza)" ] && alias ls="eza --icons --color=always --group-directories-first"
 
 # use yay for pacman.
-pkgmgr=pacman
-[ -x "$(command -v yay)" ] && alias pacman="yay" && pkgmgr=yay
-
-# use ripgrep for grep.
-[ -x "$(command -v rg)" ] && alias grep="rg"
+[ -x "$(command -v yay)" ] && alias pacman="yay"
 
 # use bat for cat.
 [ -x "$(command -v bat)" ] && alias cat="bat"
+
+# use batgrep for grep.
+[ -x "$(command -v batgrep)" ] && alias grep="batgrep"
+
+# use batman for grep.
+[ -x "$(command -v batman)" ] && alias man="batman"
 
 # fix ssh for kitty.
 [ -x "$(command -v kitty)" ] && alias ssh="kitty +kitten ssh"
@@ -42,14 +44,11 @@ else
     alias mv="mv -iv"
 fi
 
-# Verbosity on trash.
-[ -x "$(command -v trash-put)" ] && alias trash="trash-put -f"
-
 # Colorization.
 alias diff="diff --color=auto"
 
 # remove orphaned packages.
-alias autoremove='if [ -z "$($pkgmgr -Qtdq)" ]; then echo "no orphan packages"; else $pkgmgr -Rns $($pkgmgr -Qtdq); fi'
+alias autoremove='if [ -z "$(yay -Qtdq)" ]; then echo "no orphan packages"; else yay -Rns $(yay -Qtdq); fi'
 
 # get error messages from journalctl.
 alias jctl="journalctl -p 4 -xb"
@@ -59,9 +58,3 @@ qdelall="qselect -u $USER | xargs qdel"
 
 # enable correct editor when sudoing.
 alias sudo="sudo EDITOR=$EDITOR"
-
-# nvidia settings.
-[ -x "$(command -v nvidia-settings)" ] && alias nvidia-settings="nvidia-settings --config /home/derek/.config/nvidia/settings"
-
-# pacdiff.
-alias pacdiff="sudo -E pacdiff"

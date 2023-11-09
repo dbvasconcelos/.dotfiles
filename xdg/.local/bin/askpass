@@ -1,2 +1,3 @@
 #!/bin/sh
-zenity --password --title="sudo password prompt" --timeout=10
+# Prompt for password when sudoing
+zenity --password --title "Authentication required for $USER"

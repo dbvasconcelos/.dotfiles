@@ -65,3 +65,10 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	group = group,
 	desc = "Auto create dir when saving a file, in case some intermediate directory does not exist",
 })
+
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+-- 	pattern = { "*/waybar/config", "*/waybar/style.css" },
+-- 	command = "!killall -SIGUSR1 waybar",
+-- 	group = group,
+-- 	desc = "Restart waybar when config is updated",
+-- })

@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=sxiv
-GenericName=Image Viewer
-Exec=imageviewer %F
-NoDisplay=true
-Icon=sxiv

@@ -1,0 +1,23 @@
+{
+    "pyprland": {
+        "plugins": [
+            "scratchpads"
+        ]
+    },
+    "scratchpads": {
+        "term": {
+            "command": "kitty --class term-dropterm",
+            "animation": "fromTop",
+            "unfocus": "hide"
+        },
+        "tasks": {
+            "command": "kitty --class tasks-dropterm btm --default_widget_type proc -e",
+            "animation": "fromTop",
+            "unfocus": "hide"
+        },
+        "filebrowser": {
+            "command": "kitty --class filebrowser-dropterm lf",
+            "unfocus": "hide"
+        }
+    }
+}

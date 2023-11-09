@@ -1,13 +1,14 @@
 # Bookmarked Directories. Comments allowed.
+bin=$HOME/.local/bin
 cache=$XDG_CACHE_HOME
 conf=$XDG_CONFIG_HOME
 docs=$XDG_DOCUMENTS_DIR
 dot=$HOME/.dotfiles
 downl=$XDG_DOWNLOAD_DIR
+etc=$HOME/.local/etc
 gdrive=$HOME/GoogleDrive
 home=$HOME
-bin=$HOME/.local/bin
-etc=$HOME/.local/etc
+media=/run/media
 onedrive=$HOME/OneDrive
 scratch=/mnt/UNISIM/scratch
 share=$XDG_DATA_HOME
