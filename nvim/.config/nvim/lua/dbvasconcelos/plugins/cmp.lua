@@ -16,7 +16,7 @@ return {
 		local cmp = require("cmp")
 
 		-- Search completion
-		cmp.setup.cmdline("/", {
+		cmp.setup.cmdline({ "/", "?" }, {
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp_document_symbol" },
@@ -52,8 +52,7 @@ return {
 				["<C-d>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<C-e>"] = cmp.mapping.abort(),
-				["<C-y>"] = cmp.mapping.confirm({ select = true }),
-				["<C-Y>"] = cmp.mapping.confirm({
+				["<CR>"] = cmp.mapping.confirm({
 					select = true,
 					behavior = cmp.ConfirmBehavior.Replace,
 				}),

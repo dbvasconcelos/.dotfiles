@@ -12,23 +12,6 @@ local keybindings = function(bufnr)
 	vim.keymap.set("n", "gr", "<cmd>Trouble lsp_references<cr>", opts)
 end
 
--- Format
-local formatting = function(bufnr)
-	local group = vim.api.nvim_create_augroup("LspFormatting", {})
-	vim.api.nvim_create_autocmd("BufWritePre", {
-		group = group,
-		buffer = bufnr,
-		callback = function()
-			vim.lsp.buf.format({
-				filter = function(client)
-					return client.name == "null-ls"
-				end,
-				bufnr = bufnr,
-			})
-		end,
-	})
-end
-
 -- Show line diagnostics automatically in hover window
 local diagnostics_hover = function(bufnr)
 	vim.api.nvim_create_autocmd("CursorHold", {
@@ -63,7 +46,6 @@ end
 local M = function(client, bufnr)
 	keybindings(bufnr)
 	diagnostics_hover(bufnr)
-	formatting(bufnr)
 	if client.server_capabilities.documentHighlightProvider then
 		document_highlight(bufnr)
 	end

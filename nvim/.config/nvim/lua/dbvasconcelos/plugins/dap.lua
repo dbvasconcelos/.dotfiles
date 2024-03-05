@@ -56,10 +56,10 @@ return {
 			dependencies = "williamboman/mason.nvim",
 			opts = function()
 				local debuggers = {}
-				local servers = require("dbvasconcelos.plugins.lsp.servers")
-				for _, server in pairs(servers) do
-					if server.debugger then
-						table.insert(debuggers, server.debugger)
+				local filetypes = require("dbvasconcelos.plugins.lsp.filetypes")
+				for _, ft in pairs(filetypes) do
+					if ft.debugger then
+						table.insert(debuggers, ft.debugger)
 					end
 				end
 				return {

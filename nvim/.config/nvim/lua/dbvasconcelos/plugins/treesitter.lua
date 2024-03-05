@@ -5,73 +5,70 @@ return {
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
-	opts = {
-		ensure_installed = {
-			"bash",
-			"dockerfile",
-			"go",
-			"gomod",
-			"lua",
-			"make",
-			"proto",
-			"regex",
-			"yaml",
-		},
-
-		highlight = { enable = true },
-		indent = { enable = true },
-		context_commentstring = { enable = true, enable_autocmd = false },
-		autopairs = { enable = true },
-
-		textobjects = {
-			select = {
-				enable = true,
-				lookahead = true,
-				keymaps = {
-					["af"] = "@function.outer",
-					["if"] = "@function.inner",
-
-					["ac"] = "@conditional.outer",
-					["ic"] = "@conditional.inner",
-
-					["aa"] = "@parameter.outer",
-					["ia"] = "@parameter.inner",
-				},
+	config = function()
+		require("nvim-treesitter.configs").setup({
+			ensure_installed = {
+				"bash",
+				"dockerfile",
+				"go",
+				"gomod",
+				"lua",
+				"make",
+				"proto",
+				"regex",
+				"yaml",
 			},
 
-			move = {
-				enable = true,
-				set_jumps = true,
+			highlight = { enable = true },
+			indent = { enable = true },
+			context_commentstring = { enable = true, enable_autocmd = false },
+			autopairs = { enable = true },
 
-				goto_next_start = {
-					["]p"] = "@parameter.inner",
-					["]m"] = "@function.outer",
-					["]]"] = "@class.outer",
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true,
+					keymaps = {
+						["af"] = { query = "@function.outer", desc = "Around Function" },
+						["if"] = { query = "@function.inner", desc = "Inside Function" },
+
+						["ac"] = { query = "@class.outer", desc = "Around Class" },
+						["ic"] = { query = "@class.inner", desc = "Inside Class" },
+					},
 				},
-				goto_next_end = {
-					["]M"] = "@function.outer",
-					["]["] = "@class.outer",
+
+				move = {
+					enable = true,
+					set_jumps = true,
+
+					goto_next_start = {
+						["]m"] = "@function.outer",
+						["]]"] = "@class.outer",
+					},
+					goto_next_end = {
+						["]M"] = "@function.outer",
+						["]["] = "@class.outer",
+					},
+					goto_previous_start = {
+						["[m"] = "@function.outer",
+						["[["] = "@class.outer",
+					},
+					goto_previous_end = {
+						["[M"] = "@function.outer",
+						["[]"] = "@class.outer",
+					},
 				},
-				goto_previous_start = {
-					["[p"] = "@parameter.inner",
-					["[m"] = "@function.outer",
-					["[["] = "@class.outer",
-				},
-				goto_previous_end = {
-					["[M"] = "@function.outer",
-					["[]"] = "@class.outer",
+
+				swap = {
+					enable = true,
+					swap_next = {
+						["<M-l>"] = "@parameter.inner",
+					},
+					swap_previous = {
+						["<M-h>"] = "@parameter.inner",
+					},
 				},
 			},
-
-			swap = {
-				enable = true,
-				swap_next = {
-					["<M-l>"] = "@parameter.inner",
-				},
-				swap_previous = {
-					["<M-h>"] = "@parameter.inner",
-				},
-			},
-		},
-	},
+		})
+	end,
 }

@@ -1,11 +1,11 @@
 return {
 	"L3MON4D3/LuaSnip",
-	dependencies = {
-		"rafamadriz/friendly-snippets",
-		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
-		end,
-	},
+	-- dependencies = {
+	-- 	"rafamadriz/friendly-snippets",
+	-- 	config = function()
+	-- 		require("luasnip.loaders.from_vscode").lazy_load()
+	-- 	end,
+	-- },
 	opts = function()
 		local types = require("luasnip.util.types")
 		return {
@@ -34,5 +34,6 @@ return {
 				desc = "Change snippet choice",
 			},
 		}
-	end, ]]--
+	end, ]]
+	--
 }

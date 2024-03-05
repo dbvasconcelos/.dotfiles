@@ -1,58 +1,59 @@
-vim.keymap.set("x", "p", [["_dP]], { desc = "Blackhole paste" })
-vim.keymap.set("v", "<M-j>", ":m '>+1<cr>gv=gv", { desc = "Move lines down" })
-vim.keymap.set("v", "<M-k>", ":m '<-2<cr>gv=gv", { desc = "Move lines up" })
-vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
-vim.keymap.set("v", ">", ">gv", { desc = "Indent right" })
-vim.keymap.set("c", "<C-p>", "<Up>", { desc = "Previous command" })
-vim.keymap.set("c", "<C-n>", "<Down>", { desc = "Next command" })
-vim.keymap.set("c", "<C-h>", "<Left>", { desc = "Move cursor left" })
-vim.keymap.set("c", "<C-l>", "<Right>", { desc = "Move cursor right" })
-vim.keymap.set("c", "<C-b>", "<S-Left>", { desc = "Move cursor word backwards" })
-vim.keymap.set("c", "<C-e>", "<S-Right>", { desc = "Move cursor word forward" })
-vim.keymap.set(
-	"c",
-	"w!!",
-	"execute 'silent! write !sudo tee % >/dev/null' <bar> edit!",
-	{ desc = "Save file as sudo" }
-)
-vim.keymap.set("i", "<M-j>", "<esc><cmd>m .+1<CR>==gi", { desc = "Move line down" })
-vim.keymap.set("i", "<M-k>", "<esc><cmd>m .-2<CR>==gi", { desc = "Move line up" })
-vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
-vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Focus left window" })
-vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Focus right window" })
-vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Focus above window" })
-vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Focus below window" })
-vim.keymap.set({ "t", "n" }, "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "- size horz" })
-vim.keymap.set({ "t", "n" }, "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "+ size horz" })
-vim.keymap.set({ "t", "n" }, "<C-Down>", "<cmd>resize -2<cr>", { desc = "- size vert" })
-vim.keymap.set({ "t", "n" }, "<C-Up>", "<cmd>resize +2<cr>", { desc = "+ size vert" })
-vim.keymap.set("n", "Q", "<nop>", { desc = "Disable ex mode" })
-vim.keymap.set(
-	"n",
-	"<cr>",
-	"{-> v:hlsearch ? ':nohl<cr>' : '<cr>'}()",
-	{ expr = true, desc = "Clear highlights" }
-)
-vim.keymap.set("n", "<M-j>", ":m .+1<cr>==", { desc = "Move line down" })
-vim.keymap.set("n", "<M-k>", ":m .-2<cr>==", { desc = "Move line up" })
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Focus left window" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Focus below window" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Focus above window" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Focus right window" })
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Page up" })
-vim.keymap.set("n", "J", "mzJ`z", { desc = "Concat lines" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous match" })
-vim.keymap.set("n", "n", "nzzzv", { desc = "Next match" })
-vim.keymap.set(
-	"n",
-	"j",
-	"v:count == 0 ? 'gj' : 'j'",
-	{ expr = true, silent = true, desc = "Move Down" }
-)
-vim.keymap.set(
-	"n",
-	"k",
-	"v:count == 0 ? 'gk' : 'k'",
-	{ expr = true, silent = true, desc = "Move Up" }
-)
+local keymap = vim.keymap
+
+-- Resize
+keymap.set({ "t", "n" }, "<C-Down>", "<cmd>resize -2<cr>", { desc = "- size vert" })
+keymap.set({ "t", "n" }, "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "- size horz" })
+keymap.set({ "t", "n" }, "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "+ size horz" })
+keymap.set({ "t", "n" }, "<C-Up>", "<cmd>resize +2<cr>", { desc = "+ size vert" })
+
+-- Move lines
+keymap.set("i", "<M-j>", "<esc><cmd>m .+1<CR>==gi", { desc = "Move line down" })
+keymap.set("i", "<M-k>", "<esc><cmd>m .-2<CR>==gi", { desc = "Move line up" })
+keymap.set("v", "<M-j>", ":m '>+1<cr>gv=gv", { desc = "Move lines down" })
+keymap.set("v", "<M-k>", ":m '<-2<cr>gv=gv", { desc = "Move lines up" })
+keymap.set("n", "<M-j>", ":m .+1<cr>==", { desc = "Move line down" })
+keymap.set("n", "<M-k>", ":m .-2<cr>==", { desc = "Move line up" })
+
+-- Cmd mode cursor
+keymap.set("c", "<C-b>", "<S-Left>", { desc = "Move cursor word backwards" })
+keymap.set("c", "<C-e>", "<S-Right>", { desc = "Move cursor word forward" })
+keymap.set("c", "<C-h>", "<Left>", { desc = "Move cursor left" })
+keymap.set("c", "<C-l>", "<Right>", { desc = "Move cursor right" })
+keymap.set("c", "<C-n>", "<Down>", { desc = "Next command" })
+keymap.set("c", "<C-p>", "<Up>", { desc = "Previous command" })
+
+-- Windows
+keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Focus left window" })
+keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Focus right window" })
+keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Focus above window" })
+keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Focus below window" })
+keymap.set("t", "<esc><esc>", "<C-\\><C-n>", { desc = "Leave terminal mode" })
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "Focus left window" })
+keymap.set("n", "<C-j>", "<C-w>j", { desc = "Focus below window" })
+keymap.set("n", "<C-k>", "<C-w>k", { desc = "Focus above window" })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Focus right window" })
+
+-- Indentation
+keymap.set("v", "<", "<gv", { desc = "Indent left" })
+keymap.set("v", ">", ">gv", { desc = "Indent right" })
+
+-- Buffer Navigation
+keymap.set("n", "n", "nzzzv", { desc = "Next match" })
+keymap.set("n", "N", "Nzzzv", { desc = "Previous match" })
+keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Move Down", expr = true, silent = true })
+keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "Move Up" })
+keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down" })
+keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Page up" })
+
+-- Clipboard
+keymap.set("x", "p", [["_dP]], { desc = "Blackhole paste" })
+keymap.set("x", "c", [["_c]], { desc = "Blackhole change" })
+keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy selection to clipboard" })
+keymap.set("n", "<leader>Y", [["+Y]], { desc = "Copy line to clipboard" })
+
+-- Buffer Operations
+keymap.set("c", "w!!", "execute 'silent! write !sudo tee % >/dev/null' <bar> edit!", { desc = "Save file as sudo" })
+keymap.set("n", "J", "mzJ`z", { desc = "Concat lines" })
+keymap.set("n", "Q", "<nop>", { desc = "Disable ex mode" })
+keymap.set("n", "<esc>", "{-> v:hlsearch ? ':nohl<cr>' : '<esc>'}()", { expr = true, desc = "Clear highlights" })
+keymap.set("n", "<leader>w", ":w<cr>", { desc = "Write File" })

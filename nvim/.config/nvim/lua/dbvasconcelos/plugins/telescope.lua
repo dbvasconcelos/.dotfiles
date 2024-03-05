@@ -54,9 +54,6 @@ return {
 			config = function()
 				require("telescope").load_extension("undo")
 			end,
-			keys = {
-				{ "<leader>u", "<cmd>Telescope undo<cr>", desc = "Undo Tree" },
-			},
 		},
 		{
 			"nvim-telescope/telescope-fzy-native.nvim",
@@ -103,9 +100,7 @@ return {
 						return require("trouble.providers.telescope").open_with_trouble(...)
 					end,
 					["<a-t>"] = function(...)
-						return require("trouble.providers.telescope").open_selected_with_trouble(
-							...
-						)
+						return require("trouble.providers.telescope").open_selected_with_trouble(...)
 					end,
 					["<C-j>"] = function(...)
 						return require("telescope.actions").cycle_history_next(...)

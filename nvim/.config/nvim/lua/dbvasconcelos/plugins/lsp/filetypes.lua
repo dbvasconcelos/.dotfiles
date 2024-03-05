@@ -1,18 +1,8 @@
 local M = {
-	-- Bash
-	bash = {
-		lsp = "bashls",
-		config = true,
-		formatter = "shfmt",
-		linter = "shellcheck",
-	},
-	-- Docker
 	dockerfile = {
 		lsp = "dockerls",
-		config = true,
 		linter = "hadolint",
 	},
-	-- Golang
 	go = {
 		lsp = "gopls",
 		config = {
@@ -23,14 +13,13 @@ local M = {
 			},
 		},
 		formatter = "goimports",
-		linter = "golangci_lint",
+		linter = "golangci-lint",
 		debugger = "delve",
 	},
-	-- HTML
-	html = { lsp = "html", config = true },
-	-- JSON
-	json = { lsp = "jsonls", config = true },
-	-- Lua
+	json = {
+		lsp = "jsonls",
+		formatter = "prettier",
+	},
 	lua = {
 		lsp = "lua_ls",
 		config = {
@@ -56,10 +45,18 @@ local M = {
 		formatter = "stylua",
 		linter = "luacheck",
 	},
-	php = { lsp = "intelephense", config = true },
-	python = { lsp = "pyright", config = true },
-	tex = { lsp = "texlab", config = true },
-	yaml = { lsp = "yamlls", config = true },
+	python = {
+		lsp = "pyright",
+	},
+	sh = {
+		lsp = "bashls",
+		formatter = "shfmt",
+		linter = "shellcheck",
+	},
+	yaml = {
+		lsp = "yamlls",
+		formatter = "prettier",
+	},
 }
 
 return M

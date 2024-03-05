@@ -26,3 +26,4 @@ image/tiff=imv.desktop
 image/x-bmp=imv.desktop
 image/x-png=imv.desktop
 image/x-xbitmap=imv.desktop
+x-scheme-handler/mailto=google-chrome.desktop

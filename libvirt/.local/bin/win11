@@ -1,5 +1,6 @@
 #!/bin/sh
 
 [ "$(powerprofile status)" = "performance" ] || cpupower-gui -p
-echo "will change monitor source in 5 seconds..."
 sudo -A virsh start win11
+sleep 2
+looking-glass-client -F

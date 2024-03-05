@@ -19,7 +19,7 @@ return {
 		-- diff component
 		local diff = {
 			"diff",
-			symbols = { added = " ", modified = "柳", removed = " " },
+			symbols = { added = " ", modified = " ", removed = " " },
 			diff_color = {
 				added = { fg = "#6f8352" },
 				modified = { fg = "#b47109" },

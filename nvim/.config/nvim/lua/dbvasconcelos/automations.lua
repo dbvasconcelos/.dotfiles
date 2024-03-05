@@ -1,43 +1,37 @@
-local group = vim.api.nvim_create_augroup("vimrc", { clear = true })
+local group = vim.api.nvim_create_augroup("automations", { clear = true })
 
-vim.api.nvim_create_autocmd(
-	{ "BufNew", "BufEnter" },
-	{ command = "setlocal formatoptions-=cro", group = group, desc = "Disable auto comment" }
-)
-
-vim.api.nvim_create_autocmd(
-	"BufWritePre",
-	{ command = [[ %s/\s\+$//e ]], group = group, desc = "Delete trailing whitespaces" }
-)
-
-vim.api.nvim_create_autocmd(
-	"BufWritePre",
-	{ command = [[ %s/\n\+\%$//e ]], group = group, desc = "Delete trailing newlines" }
-)
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = "dunstrc",
-	command = "!killall dunst; notify-send 'Dunst' 'Notifications Settings Updated'",
+vim.api.nvim_create_autocmd({ "BufNew", "BufEnter" }, {
+	desc = "Disable auto comment",
+	command = "setlocal formatoptions-=cro",
 	group = group,
-	desc = "Restart dunst when config is updated",
 })
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = { "user-bookmarks.files", "user-bookmarks.dirs" },
-	command = "!bookmarkgen",
+vim.api.nvim_create_autocmd("BufWritePre", {
+	desc = "Delete trailing whitespaces",
+	command = [[ %s/\s\+$//e ]],
 	group = group,
-	desc = "When bookmarks files are updated, renew configs with new material",
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	desc = "Delete trailing newlines",
+	command = [[ %s/\n\+\%$//e ]],
+	group = group,
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight yanks",
 	callback = function()
 		vim.highlight.on_yank()
 	end,
 	group = group,
-	desc = "Highlight yanks",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+	desc = "Close filetypes with <q>",
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+	end,
 	pattern = {
 		"help",
 		"lspinfo",
@@ -46,15 +40,11 @@ vim.api.nvim_create_autocmd("FileType", {
 		"qf",
 		"checkhealth",
 	},
-	callback = function(event)
-		vim.bo[event.buf].buflisted = false
-		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-	end,
 	group = group,
-	desc = "Close filetypes with <q>",
 })
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	desc = "Auto create parent dirs when saving a file",
 	callback = function(event)
 		if event.match:match("^%w%w+://") then
 			return
@@ -63,7 +53,20 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,
 	group = group,
-	desc = "Auto create dir when saving a file, in case some intermediate directory does not exist",
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	desc = "Regenerate when bookmarks files are updated",
+	command = "!bookmarkgen",
+	pattern = { "user-bookmarks.files", "user-bookmarks.dirs" },
+	group = group,
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	desc = "Restart dunst when config is updated",
+	command = "!killall dunst; notify-send 'Dunst' 'Notifications Settings Updated'",
+	pattern = "dunstrc",
+	group = group,
 })
 
 -- vim.api.nvim_create_autocmd("BufWritePost", {
