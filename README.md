@@ -8,10 +8,25 @@ The files structure follows how it is supposed to be relative to the user home f
 
 For example:
 
-.dotfiles/
-    program-1/
+    .dotfiles/
+        program-1/
+            .program-1.conf
+        program-2/
+            .config/
+                program-2/
+                    [some files...]
+            .local/
+                share/
+                    program-2/
+                        [some files...]
+        program-3/
+            .program-3/
+                [some files...]
+
+Will result in:
+
+    $HOME/
         .program-1.conf
-    program-2/
         .config/
             program-2/
                 [...some files]
@@ -19,23 +34,8 @@ For example:
             share/
                 program-2/
                     [...some files]
-    program-3/
         .program-3/
             [...some files]
-
-Will result in:
-
-/home/user/
-    .program-1.conf
-    .config/
-        program-2/
-            [...some files]
-    .local/
-        share/
-            program-2/
-                [...some files]
-    .program-3/
-        [...some files]
 
 ## Installation
 
