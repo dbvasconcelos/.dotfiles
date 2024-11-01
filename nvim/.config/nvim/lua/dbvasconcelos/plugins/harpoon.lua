@@ -7,8 +7,8 @@ return {
 	},
 	branch = "harpoon2",
 	config = function()
-		require("which-key").register({
-			["<leader>m"] = { name = "Marks" },
+		require("which-key").add({
+			{ "<leader>m", group = "Marks" },
 		})
 	end,
 	keys = {

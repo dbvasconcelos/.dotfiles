@@ -28,13 +28,15 @@ return {
 		-- Command Mode completion
 		cmp.setup.cmdline(":", {
 			mapping = cmp.mapping.preset.cmdline(),
-			sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{ name = "cmdline" },
+			}),
+			matching = { disallow_symbol_nonprefix_matching = false },
 		})
 
 		return {
-			completion = {
-				completeopt = "menu,menuone,noinsert",
-			},
 			snippet = {
 				expand = function(args)
 					require("luasnip").lsp_expand(args.body)
@@ -52,7 +54,7 @@ return {
 				["<C-d>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<C-e>"] = cmp.mapping.abort(),
-				["<CR>"] = cmp.mapping.confirm({
+				["<C-y>"] = cmp.mapping.confirm({
 					select = true,
 					behavior = cmp.ConfirmBehavior.Replace,
 				}),
@@ -75,11 +77,6 @@ return {
 						nvim_lua = "[NVIM]",
 					},
 				}),
-			},
-			experimental = {
-				ghost_text = {
-					hl_group = "LspCodeLens",
-				},
 			},
 		}
 	end,

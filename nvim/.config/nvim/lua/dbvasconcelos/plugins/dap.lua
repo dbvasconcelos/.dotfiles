@@ -1,6 +1,7 @@
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
+		{ "folke/which-key.nvim" },
 		{
 			"theHamsta/nvim-dap-virtual-text",
 			opts = {
@@ -10,11 +11,12 @@ return {
 		},
 		{
 			"rcarriga/nvim-dap-ui",
+			dependencies = { "nvim-neotest/nvim-nio" },
 			keys = {
 				{
 					"<leader>du",
 					function()
-						require("dapui").toggle({})
+						require("dapui").toggle()
 					end,
 					desc = "UI Toggle",
 				},
@@ -32,24 +34,19 @@ return {
 				local dap = require("dap")
 				local dapui = require("dapui")
 				dapui.setup(opts)
-				dap.listeners.after.event_initialized["dapui_config"] = function()
-					dapui.open({})
+				dap.listeners.before.attach.dapui_config = function()
+					dapui.open()
 				end
-				dap.listeners.before.event_terminated["dapui_config"] = function()
-					dapui.close({})
+				dap.listeners.before.launch.dapui_config = function()
+					dapui.open()
 				end
-				dap.listeners.before.event_exited["dapui_config"] = function()
-					dapui.close({})
+				dap.listeners.before.event_terminated.dapui_config = function()
+					dapui.close()
+				end
+				dap.listeners.before.event_exited.dapui_config = function()
+					dapui.close()
 				end
 			end,
-		},
-		{
-			"folke/which-key.nvim",
-			opts = {
-				defaults = {
-					["<leader>d"] = { name = "+debug" },
-				},
-			},
 		},
 		{
 			"jay-babu/mason-nvim-dap.nvim",
@@ -69,6 +66,9 @@ return {
 		},
 	},
 	config = function()
+		require("which-key").add({
+			{ "<leader>d", group = "Debug" },
+		})
 		vim.fn.sign_define(
 			"DapBreakpoint",
 			{ text = " ", texthl = "LspDiagnosticsSignError", linehl = "", numhl = "" }

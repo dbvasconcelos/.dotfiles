@@ -1,7 +1,7 @@
 return {
 	{
-		"moll/vim-bbye",
-		lazy = false,
+		"famiu/bufdelete.nvim",
+		event = "VimEnter",
 		keys = {
 			{
 				"<leader>q",

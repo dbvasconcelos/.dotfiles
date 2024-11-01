@@ -3,7 +3,7 @@
   "height": 50,
   "modules-left": ["custom/launcher","hyprland/workspaces","hyprland/window"],
   "modules-center": ["custom/updates"],
-  "modules-right": ["cpu", "memory", "disk", "temperature", "custom/acpi", "custom/volume", "tray", "custom/weather", "clock", "custom/session"],
+  "modules-right": ["cpu", "memory", "disk", "temperature", "power-profiles-daemon", "custom/volume", "tray", "custom/weather", "clock", "custom/session"],
 
   "custom/launcher": {
     "format": "",
@@ -47,13 +47,16 @@
     "on-click": "kitty --title systmp sh -c 'btm --default_widget_type temp -e'"
   },
 
-  "custom/acpi": {
-    "exec": "powerprofile status",
-    "interval": 60,
-    "format": "󰈐 {}",
-    "on-click": "powerprofile toggle",
-    "tooltip": false,
-    "signal": 2
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+	}
   },
 
   "custom/weather": {
@@ -68,7 +71,7 @@
   },
 
   "custom/volume": {
-    "exec": "pulseaudio-control --format '$NODE_NICKNAME ${VOL_LEVEL}%' --node-nickname '*hdmi-stereo*:' --node-nickname '*HyperX_Cloud_Flight_Wireless_Headset*: ' listen",
+    "exec": "pulseaudio-control --format '$NODE_NICKNAME ${VOL_LEVEL}%' --node-nickname '*surround*:' --node-nickname '*HyperX_Cloud_Flight_Wireless_Headset*: ' listen",
     "on-click": "pulseaudio-control togmute",
     "on-click-right": "pulseaudio-control next-node",
     "on-scroll-up": "pulseaudio-control --volume-max 130 up",

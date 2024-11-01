@@ -21,28 +21,20 @@ return {
 				end,
 			},
 			{
-				"mhartington/formatter.nvim",
+				"stevearc/conform.nvim",
 				opts = function()
-					local filetype = {}
+					local formatters = {}
 					for ftstr, ft in pairs(filetypes) do
 						if ft.formatter then
-							filetype[ftstr] = {
-								require("formatter.filetypes." .. ftstr)[ft.formatter],
-							}
+							formatters[ftstr] = { ft.formatter }
 						end
 					end
-					vim.api.nvim_create_autocmd("BufWritePost", {
-						callback = function()
-							local ft = filetypes[vim.bo.filetype]
-							if ft and ft.formatter then
-								vim.cmd(":FormatWrite")
-							else
-								vim.lsp.buf.format()
-							end
-						end,
-						group = vim.api.nvim_create_augroup("__formatter__", {}),
-					})
-					return { filetype = filetype }
+					return {
+						formatters_by_ft = formatters,
+						format_on_save = {
+							lsp_format = "fallback",
+						},
+					}
 				end,
 			},
 			{
@@ -93,10 +85,5 @@ return {
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 			end
 		end,
-
-		keys = {
-			{ "[d", vim.diagnostic.goto_prev, desc = "Previous Diagnostic" },
-			{ "]d", vim.diagnostic.goto_next, desc = "Next Diagnostic" },
-		},
 	},
 }

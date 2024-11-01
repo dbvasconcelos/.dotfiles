@@ -20,9 +20,6 @@ done; unset command
 # use batgrep for grep.
 [ -x "$(command -v batgrep)" ] && alias grep="batgrep"
 
-# use batman for grep.
-[ -x "$(command -v batman)" ] && alias man="batman"
-
 # fix ssh for kitty.
 [ -x "$(command -v kitty)" ] && alias ssh="kitty +kitten ssh"
 

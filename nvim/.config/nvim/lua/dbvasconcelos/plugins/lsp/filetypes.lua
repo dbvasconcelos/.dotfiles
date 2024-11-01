@@ -1,25 +1,44 @@
 local M = {
+	-- Bash
+	sh = {
+		lsp = "bashls",
+		formatter = "shfmt",
+		linter = "shellcheck",
+	},
+	-- Docker
 	dockerfile = {
 		lsp = "dockerls",
 		linter = "hadolint",
 	},
+	-- Golang
 	go = {
 		lsp = "gopls",
 		config = {
 			settings = {
 				gopls = {
+					analyses = {
+						unusedparams = true,
+						shadow = true,
+					},
 					buildFlags = { "-tags=wireinject" },
+					experimentalPostfixCompletions = true,
+					staticcheck = true,
 				},
+			},
+			init_options = {
+				usePlaceholders = true,
 			},
 		},
 		formatter = "goimports",
 		linter = "golangci-lint",
 		debugger = "delve",
 	},
+	-- JSON
 	json = {
 		lsp = "jsonls",
 		formatter = "prettier",
 	},
+	-- Lua
 	lua = {
 		lsp = "lua_ls",
 		config = {
@@ -45,14 +64,11 @@ local M = {
 		formatter = "stylua",
 		linter = "luacheck",
 	},
+	-- Python
 	python = {
 		lsp = "pyright",
 	},
-	sh = {
-		lsp = "bashls",
-		formatter = "shfmt",
-		linter = "shellcheck",
-	},
+	-- YAML
 	yaml = {
 		lsp = "yamlls",
 		formatter = "prettier",

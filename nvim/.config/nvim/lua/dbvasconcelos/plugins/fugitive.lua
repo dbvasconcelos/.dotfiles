@@ -6,10 +6,8 @@ return {
 			{ "folke/which-key.nvim" },
 		},
 		config = function()
-			require("which-key").register({
-				["<leader>g"] = {
-					name = "Git",
-				},
+			require("which-key").add({
+				{ "<leader>g", group = "Git" },
 			})
 		end,
 		keys = {

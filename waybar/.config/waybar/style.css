@@ -33,7 +33,7 @@ tooltip label {
 #memory,
 #disk,
 #temperature,
-#custom-acpi,
+#power-profiles-daemon,
 #custom-volume,
 #tray,
 #custom-weather,
@@ -53,7 +53,7 @@ tooltip label {
 }
 
 /* right-most */
-#workspaces, #disk, #custom-acpi, #clock {
+#workspaces, #disk, #power-profiles-daemon, #clock {
   border-radius: 0px 10px 10px 0px;
   margin-right: 10px;
 }
@@ -124,7 +124,7 @@ tooltip label {
   border-right: 0px;
 }
 
-#custom-volume {
+#pulseaudio {
   color: #7daea3;
   border-left: 0px;
   border-right: 0px;

@@ -1,8 +1,8 @@
 local group = vim.api.nvim_create_augroup("automations", { clear = true })
 
-vim.api.nvim_create_autocmd({ "BufNew", "BufEnter" }, {
+vim.api.nvim_create_autocmd("BufWinEnter", {
 	desc = "Disable auto comment",
-	command = "setlocal formatoptions-=cro",
+	command = "set formatoptions-=cro",
 	group = group,
 })
 
@@ -33,12 +33,13 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
 	end,
 	pattern = {
+		"checkhealth",
+		"git",
 		"help",
 		"lspinfo",
 		"man",
 		"notify",
 		"qf",
-		"checkhealth",
 	},
 	group = group,
 })
@@ -69,9 +70,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	group = group,
 })
 
--- vim.api.nvim_create_autocmd("BufWritePost", {
--- 	pattern = { "*/waybar/config", "*/waybar/style.css" },
--- 	command = "!killall -SIGUSR1 waybar",
--- 	group = group,
--- 	desc = "Restart waybar when config is updated",
--- })
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = { "*/waybar/config", "*/waybar/style.css" },
+	command = "!killall -SIGUSR2 waybar",
+	group = group,
+	desc = "Restart waybar when config is updated",
+})

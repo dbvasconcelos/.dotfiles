@@ -19,8 +19,8 @@ return {
 			},
 		},
 		config = function()
-			require("which-key").register({
-				["<leader>t"] = { name = "Tools" },
+			require("which-key").add({
+				{ "<leader>t", group = "Tools" },
 			})
 		end,
 		opts = function()

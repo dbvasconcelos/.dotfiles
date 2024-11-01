@@ -1,6 +1,7 @@
 local opt = vim.opt
 
 opt.colorcolumn = "100"
+opt.completeopt = { "menu", "menuone", "noselect" }
 opt.confirm = true
 opt.cursorline = true
 opt.inccommand = "split"

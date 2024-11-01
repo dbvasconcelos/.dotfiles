@@ -23,7 +23,14 @@ _comp_options+=(globdots)
 typeset -U PATH path
 
 # History Settings
-setopt histignoredups histignorespace
+setopt append_history
+setopt share_history
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+setopt hist_reduce_blanks
 
 # Automatically cd into typed directory
 setopt autocd
@@ -47,28 +54,41 @@ zle -N exit_zsh
 bindkey '^D' exit_zsh
 
 ## Plugins
+plugins=(
+	"zsh-vi-mode"
+	"fast-syntax-highlighting"
+	"zsh-autosuggestions"
+)
+for plugin in "${plugins[@]}"; do
+	file="$(printf "/usr/share/zsh/plugins/%s/%s.plugin.zsh" "$plugin" "$plugin")"
+	[ -f "$file" ] && source "$file"
+done
 
-# FZF
-[ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
-[ -f "/usr/share/fzf/completion.zsh" ] && source "/usr/share/fzf/completion.zsh"
 
-# Vi mode plugin
-[ -f "/usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ] && source "/usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+keybindings() {
+	## Keybindings
+	bindkey '^y' autosuggest-accept
+	# Menu navigation
+	bindkey -M menuselect '^h' vi-backward-char
+	bindkey -M menuselect '^k' vi-up-line-or-history
+	bindkey -M menuselect '^l' vi-forward-char
+	bindkey -M menuselect '^j' vi-down-line-or-history
+}
 
-# Auto Suggestions Plugin
-[ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh" ] && source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
-bindkey '^ ' autosuggest-accept
+# Integrations
+integrations() {
+	#FZF
+	fzf_completion="/usr/share/fzf/completion.zsh"
+	[ -f "$fzf_completion" ] && source "$fzf_completion"
+	fzf_keybindings="/usr/share/fzf/key-bindings.zsh"
+	[ -f "$fzf_keybindings" ] && source "$fzf_keybindings"
+}
+zvm_after_init_commands+=(integrations keybindings)
 
-# Syntax Highlighting Plugin
-[ -f "/usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" ] && source "/usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+# Python
+export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
+[ -d "$PYENV_ROOT/bin" ] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
-## Keybindings
-
-# Menu navigation
-bindkey -M menuselect '^h' vi-backward-char
-bindkey -M menuselect '^k' vi-up-line-or-history
-bindkey -M menuselect '^l' vi-forward-char
-bindkey -M menuselect '^j' vi-down-line-or-history
-
-# Prompt
+# Starship Prompt
 eval "$(starship init zsh)"

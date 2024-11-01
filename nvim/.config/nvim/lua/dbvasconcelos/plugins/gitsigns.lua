@@ -6,21 +6,18 @@ return {
 	},
 	opts = {
 		signs = {
-			add = { text = "▎" },
-			change = { text = "▎" },
+			add = { text = "┃" },
+			change = { text = "┃" },
 			delete = { text = "" },
 			topdelete = { text = "" },
-			changedelete = { text = "▎" },
+			changedelete = { text = "┃" },
 		},
 		preview_config = {
 			border = "rounded",
 		},
 		on_attach = function(bufnr)
-			require("which-key").register({
-				["<leader>h"] = {
-					name = "Hunks",
-					_ = "which_key_ignore",
-				},
+			require("which-key").add({
+				{ "<leader>h", group = "Hunks" },
 			})
 
 			local gs = package.loaded.gitsigns

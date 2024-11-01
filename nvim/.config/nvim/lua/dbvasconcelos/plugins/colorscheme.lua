@@ -2,12 +2,24 @@ return {
 	"eddyekofo94/gruvbox-flat.nvim",
 	lazy = false,
 	priority = 1000,
-	config = function()
+	init = function()
 		vim.g.gruvbox_sidebars = {
 			"qf",
 			"terminal",
 			"Trouble",
 		}
-		vim.cmd([[colorscheme gruvbox-flat]])
+		vim.g.gruvbox_theme = {
+			TelescopePreviewBorder = { fg = "fg", bg = "bg2" },
+			TelescopePreviewNormal = { bg = "bg2" },
+			TelescopePreviewTitle = { fg = "bg2", bg = "green" },
+			TelescopePromptBorder = { fg = "fg", bg = "bg2" },
+			TelescopePromptNormal = { fg = "fg", bg = "bg2" },
+			TelescopePromptPrefix = { fg = "red", bg = "bg2" },
+			TelescopePromptTitle = { fg = "bg2", bg = "red" },
+			TelescopeResultsBorder = { fg = "bg2", bg = "bg2" },
+			TelescopeResultsNormal = { bg = "bg2" },
+			TelescopeResultsTitle = { fg = "bg2", bg = "bg2" },
+		}
+		vim.cmd.colorscheme("gruvbox-flat")
 	end,
 }

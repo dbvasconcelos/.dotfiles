@@ -11,5 +11,14 @@ return {
 				},
 			},
 		},
+		keys = {
+			{
+				"<leader>?",
+				function()
+					require("whick-key").show({ global = false })
+				end,
+				desc = "Buffer Local Keymaps",
+			},
+		},
 	},
 }
