@@ -2,9 +2,9 @@
 
 Personal Linux Customization
 
-These configurations follows the stow[https://www.gnu.org/software/stow/] software approach of linked files.
+The configuration follows the stow[https://www.gnu.org/software/stow/] software approach of linked files.
 
-The files structure follows how it is supposed to be relative to the user home folder.
+The files are linked relative to the user home folder.
 
 For example:
 
@@ -37,10 +37,10 @@ Will result in:
         .program-3/
             [...some files]
 
-## Installation
+## Install
 
 To install the configuration files run ```make install```
 
-## Removal
+## Uninstall
 
-To uninstall the configuration files run ```make clean```
+To uninstall the configuration files run ```make uninstall```

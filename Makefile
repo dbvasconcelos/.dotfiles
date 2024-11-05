@@ -1,11 +1,11 @@
 # .dotfiles targets
 
-DIRS=$(shell find . -mindepth 1 -maxdepth 1 -not -name ".*" -type d -printf '%P\n')
+PKGS=$(shell find . -mindepth 1 -maxdepth 1 -not -name ".*" -type d -printf '%P\n')
 
 .PHONY: install
 install:
-	$(foreach dir, $(DIRS), stow -v -t "${HOME}" $(dir);)
+	$(foreach pkg, $(PKGS), stow $(pkg);)
 
-.PHONY: clean
+.PHONY: uninstall
 clean:
-	$(foreach dir, $(DIRS), stow -v -t "${HOME}" -D $(dir);)
+	$(foreach pkg, $(PKGS), stow -D $(pkg);)
