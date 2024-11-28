@@ -62,7 +62,7 @@
   "custom/weather": {
     "interval" : 3600,
     "tooltip": false,
-    "exec": "echo $(curl -sf 'v3.wttr.in/campinas?format=%c%t' | tr -d ' +')",
+    "exec": "echo $((curl -sf 'v3.wttr.in/campinas?format=%c%t' || echo '󱓤 ') | tr -d ' +')",
   },
 
   "tray": {
@@ -87,7 +87,7 @@
 
   "custom/session": {
     "format": " ",
-    "on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
+    "on-click": "sh -c '(sleep 0.5s; wleave)' & disown",
     "tooltip": false
   },
 }

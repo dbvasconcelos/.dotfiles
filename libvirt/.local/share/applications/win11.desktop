@@ -1,5 +1,6 @@
 [Desktop Entry]
-Type=Application
-Name=Windows 11 VM
+Name=Win11
+Comment=Windows 11 Virtual Machine
 Exec=win11
-Terminal=true
+Icon=distributor-logo-windows
+Type=Application

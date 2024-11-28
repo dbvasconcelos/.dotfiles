@@ -67,7 +67,7 @@ done
 
 keybindings() {
 	## Keybindings
-	bindkey '^y' autosuggest-accept
+	bindkey '^ ' autosuggest-accept
 	# Menu navigation
 	bindkey -M menuselect '^h' vi-backward-char
 	bindkey -M menuselect '^k' vi-up-line-or-history

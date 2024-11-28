@@ -1,0 +1,26 @@
+# Pyprland Window Manager Plugin Configuration.
+
+[pyprland]
+plugins = ["scratchpads"]
+
+[scratchpads.terminals]
+animation = ""
+size = "75% 60%"
+max_size = "1920px 100%"
+unfocus = "hide"
+
+[scratchpads.term]
+command = "kitty --class term-dropterm"
+class = "term-dropterm"
+use = "terminals"
+
+[scratchpads.tasks]
+command = "kitty --class tasks-dropterm btm --default_widget_type proc -e"
+class = "tasks-dropterm"
+use = "terminals"
+
+[scratchpads.filebrowser]
+command = "kitty --class filebrowser-dropterm yazi"
+class = "filebrowser-dropterm"
+use = "terminals"
+margin = "50%"

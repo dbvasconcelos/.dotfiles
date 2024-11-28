@@ -72,7 +72,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = { "*/waybar/config", "*/waybar/style.css" },
-	command = "!killall -SIGUSR2 waybar",
+	command = "!systemctl --user restart waybar",
 	group = group,
 	desc = "Restart waybar when config is updated",
 })

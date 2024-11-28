@@ -33,6 +33,10 @@ local M = {
 		linter = "golangci-lint",
 		debugger = "delve",
 	},
+	-- Hyprlang
+	hyprlang = {
+		lsp = "hyprls",
+	},
 	-- JSON
 	json = {
 		lsp = "jsonls",
@@ -67,6 +71,10 @@ local M = {
 	-- Python
 	python = {
 		lsp = "pyright",
+	},
+	-- TOML
+	toml = {
+		lsp = "taplo",
 	},
 	-- YAML
 	yaml = {

@@ -1,6 +1,5 @@
 #!/bin/sh
-
-[ "$(powerprofilesctl get)" = "performance" ] || powerprofilesctl set performance
-sudo -A virsh start win11
-sleep 5
+# Start VM and looking glass to it.
+sudo virsh start win11
+sleep 2
 looking-glass-client -F

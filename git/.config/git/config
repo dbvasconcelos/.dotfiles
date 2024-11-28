@@ -2,7 +2,7 @@
 
 [user]
 	name=Derek Vasconcelos
-	email=derek@cepetro.unicamp.br
+	email=derekvasconcelos@gmail.com
 
 [init]
 	defaultBranch = main
@@ -15,3 +15,11 @@
 
 [diff]
 	colorMoved = zebra
+[core]
+	editor = nvim
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

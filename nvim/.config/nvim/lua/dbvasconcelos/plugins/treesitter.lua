@@ -12,6 +12,7 @@ return {
 				"dockerfile",
 				"go",
 				"gomod",
+				"hyprlang",
 				"lua",
 				"make",
 				"proto",

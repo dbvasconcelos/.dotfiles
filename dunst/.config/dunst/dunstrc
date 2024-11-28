@@ -4,7 +4,7 @@
     follow = keyboard
     width = 370
     height = 350
-    offset = 5x55
+    offset = 20x20
     frame_width = 1
     corner_radius = 7
     frame_color = "#d4be98"
@@ -13,6 +13,8 @@
     mouse_left_click = do_action, close_current
     mouse_middle_click = close_all
     mouse_right_click = close_current
+    icon_theme = Gruvbox-Material-Dark
+    enable_recursive_icon_lookup = true
 
 [urgency_low]
     background = "#32302f"

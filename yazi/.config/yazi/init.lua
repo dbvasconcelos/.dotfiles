@@ -1,0 +1,3 @@
+require("yamb"):setup {
+	bookmarks = {},
+}

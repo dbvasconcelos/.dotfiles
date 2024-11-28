@@ -1,0 +1,29 @@
+[[manager.prepend_keymap]]
+on = "!"
+run = 'shell "$SHELL" --block --confirm'
+desc = "Open shell here"
+
+[[manager.prepend_keymap]]
+on = "y"
+run = ['''
+	shell \
+	  'for path in "$@"; do echo "file://$path"; done \
+	  | wl-copy -t text/uri-list' \
+	--confirm
+	''', "yank"]
+desc = "Yank files to clipboard"
+
+[[manager.prepend_keymap]]
+on = ["u", "a"]
+run = "plugin yamb --args=save"
+desc = "Add bookmark"
+
+[[manager.prepend_keymap]]
+on = ["u", "d"]
+run = "plugin yamb --args=delete_by_fzf"
+desc = "Delete bookmark"
+
+[[manager.prepend_keymap]]
+on = ["g", "u"]
+run = "plugin yamb --args=jump_by_fzf"
+desc = "Go to bookmark"

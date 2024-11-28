@@ -1,0 +1,5 @@
+[plugin]
+deps = [{ use = "h-hg/yamb", rev = "0598b8d" }]
+
+[flavor]
+deps = [{ use = "bennyyip/gruvbox-dark", rev = "c204853" }]
