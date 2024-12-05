@@ -29,7 +29,7 @@ local M = {
 				usePlaceholders = true,
 			},
 		},
-		formatter = "goimports",
+		formatter = "gci",
 		linter = "golangci-lint",
 		debugger = "delve",
 	},
