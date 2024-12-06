@@ -1,7 +1,6 @@
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
-		{ "folke/which-key.nvim" },
 		{
 			"theHamsta/nvim-dap-virtual-text",
 			opts = {
@@ -66,9 +65,6 @@ return {
 		},
 	},
 	config = function()
-		require("which-key").add({
-			{ "<leader>d", group = "Debug" },
-		})
 		vim.fn.sign_define(
 			"DapBreakpoint",
 			{ text = " ", texthl = "LspDiagnosticsSignError", linehl = "", numhl = "" }

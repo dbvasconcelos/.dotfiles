@@ -10,14 +10,26 @@ return {
 					text_objects = false, -- no help for text objects triggered after entering an operator
 				},
 			},
+			spec = {
+				{ "[",         group = "prev" },
+				{ "]",         group = "next" },
+				{ "g",         group = "goto" },
+				{ "<leader>b", group = "buffer" },
+				{ "<leader>d", group = "debug" },
+				{ "<leader>g", group = "git" },
+				{ "<leader>h", group = "hunks" },
+				{ "<leader>m", group = "marks" },
+				{ "<leader>s", group = "search" },
+				{ "<leader>t", group = "tools" },
+			}
 		},
 		keys = {
 			{
 				"<leader>?",
 				function()
-					require("whick-key").show({ global = false })
+					require("which-key").show({ global = false })
 				end,
-				desc = "Buffer Local Keymaps",
+				desc = "Buffer Keymaps",
 			},
 		},
 	},

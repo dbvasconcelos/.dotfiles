@@ -1,15 +1,6 @@
 return {
 	{
 		"tpope/vim-fugitive",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			{ "folke/which-key.nvim" },
-		},
-		config = function()
-			require("which-key").add({
-				{ "<leader>g", group = "Git" },
-			})
-		end,
 		keys = {
 			{
 				"<leader>gs",

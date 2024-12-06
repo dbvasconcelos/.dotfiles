@@ -2,6 +2,10 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons" },
+		{
+			"letieu/harpoon-lualine",
+			dependencies = { { "ThePrimeagen/harpoon", branch = "harpoon2" } },
+		},
 	},
 	opts = function()
 		local hide_in_width = function()
@@ -13,18 +17,12 @@ return {
 			"b:gitsigns_head",
 			icon = "",
 			separator = "",
-			cond = hide_in_width,
 		}
 
 		-- diff component
 		local diff = {
 			"diff",
 			symbols = { added = " ", modified = " ", removed = " " },
-			diff_color = {
-				added = { fg = "#6f8352" },
-				modified = { fg = "#b47109" },
-				removed = { fg = "#c14a4a" },
-			},
 			source = function()
 				local gitsigns = vim.b.gitsigns_status_dict
 				if gitsigns then
@@ -36,6 +34,12 @@ return {
 				end
 			end,
 			cond = hide_in_width,
+		}
+
+		local harpoon = {
+			"harpoon2",
+			no_harpoon = "",
+			padding = { left = 0 },
 		}
 
 		-- lsp diagnostics component
@@ -65,6 +69,11 @@ return {
 			padding = { left = 1, right = 0 },
 		}
 
+		local filename = {
+			"filename",
+			padding = { left = 0, right = 1 },
+		}
+
 		-- encoding component
 		local encoding = { "encoding", cond = hide_in_width }
 
@@ -75,12 +84,11 @@ return {
 			options = {
 				theme = "gruvbox-flat",
 				component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
 			},
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { branch, diff },
-				lualine_c = { filetype, "filename" },
+				lualine_c = { filetype, filename, harpoon },
 				lualine_x = {
 					diagnostics,
 					encoding,
@@ -90,7 +98,18 @@ return {
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
-			extensions = { "quickfix", "fugitive", "fzf", "nvim-tree", "toggleterm" },
+			extensions = {
+				"fugitive",
+				"fzf",
+				"lazy",
+				"mason",
+				"neo-tree",
+				"nvim-dap-ui",
+				"oil",
+				"quickfix",
+				"toggleterm",
+				"trouble",
+			},
 		}
 	end,
 }

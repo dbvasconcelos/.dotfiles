@@ -52,14 +52,14 @@ return {
 		},
 		config = function()
 			local lspconfig = require("lspconfig")
-
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			-- Register LSP servers
 			for _, ft in pairs(filetypes) do
 				local config = {}
 				if type(ft.config) == "table" then
 					config = vim.tbl_deep_extend("force", {
 						on_attach = require("dbvasconcelos.plugins.lsp.onattach"),
-						capabilities = require("cmp_nvim_lsp").default_capabilities(),
+						capabilities = capabilities
 					}, ft.config)
 				end
 				lspconfig[ft.lsp].setup(config)

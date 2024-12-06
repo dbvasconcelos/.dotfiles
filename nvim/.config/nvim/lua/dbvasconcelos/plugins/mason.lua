@@ -2,7 +2,6 @@ return {
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = {
-			{ "folke/which-key.nvim" },
 			{
 				"williamboman/mason.nvim",
 				cmd = "Mason",
@@ -14,15 +13,10 @@ return {
 				},
 				keys = {
 					{ "<leader>tp", "<cmd>Lazy sync<cr>", desc = "Plugins" },
-					{ "<leader>tl", "<cmd>Mason<cr>", desc = "LSP" },
+					{ "<leader>tl", "<cmd>Mason<cr>",     desc = "LSP" },
 				},
 			},
 		},
-		config = function()
-			require("which-key").add({
-				{ "<leader>t", group = "Tools" },
-			})
-		end,
 		opts = function()
 			local tools = {}
 			local filetypes = require("dbvasconcelos.plugins.lsp.filetypes")

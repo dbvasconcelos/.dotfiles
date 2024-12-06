@@ -7,6 +7,7 @@ return {
 			"qf",
 			"terminal",
 			"Trouble",
+			"neo-tree",
 		}
 		vim.g.gruvbox_theme = {
 			TelescopePreviewBorder = { fg = "fg", bg = "bg2" },
@@ -20,6 +21,8 @@ return {
 			TelescopeResultsNormal = { bg = "bg2" },
 			TelescopeResultsTitle = { fg = "bg2", bg = "bg2" },
 		}
+	end,
+	config = function()
 		vim.cmd.colorscheme("gruvbox-flat")
 	end,
 }

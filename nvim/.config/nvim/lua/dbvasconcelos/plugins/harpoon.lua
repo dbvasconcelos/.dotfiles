@@ -1,31 +1,29 @@
 return {
 	"ThePrimeagen/harpoon",
-	event = { "BufReadPre", "BufNewFile" },
+	branch = "harpoon2",
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
-		{ "folke/which-key.nvim" },
 	},
-	branch = "harpoon2",
-	config = function()
-		require("which-key").add({
-			{ "<leader>m", group = "Marks" },
-		})
-	end,
+	opts = {
+		settings = {
+			save_on_toggle = true,
+		},
+	},
 	keys = {
 		{
 			"<leader>ma",
 			function()
-				require("harpoon"):list():append()
+				require("harpoon"):list():add()
 			end,
-			desc = "Add",
+			desc = "Add Mark",
 		},
 		{
-			"<leader>ms",
+			"<leader>mm",
 			function()
 				local harpoon = require("harpoon")
 				harpoon.ui:toggle_quick_menu(harpoon:list())
 			end,
-			desc = "Search",
+			desc = "List Marks",
 		},
 		{
 			"<leader>mn",

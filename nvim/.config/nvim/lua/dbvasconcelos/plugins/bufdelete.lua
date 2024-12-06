@@ -1,7 +1,6 @@
 return {
 	{
 		"famiu/bufdelete.nvim",
-		event = "VimEnter",
 		keys = {
 			{
 				"<leader>q",
