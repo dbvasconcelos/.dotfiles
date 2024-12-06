@@ -26,20 +26,31 @@ return {
 			end,
 		},
 	},
-	opts = {
-		close_if_last_window = true,
-		filesystem = {
-			follow_current_file = {
-				enabled = true,
+	opts = function(_, opts)
+		local function on_move(data)
+			Snacks.rename.on_rename_file(data.source, data.destination)
+		end
+		local events = require("neo-tree.events")
+		opts.event_handlers = opts.event_handlers or {}
+		vim.list_extend(opts.event_handlers, {
+			{ event = events.FILE_MOVED, handler = on_move },
+			{ event = events.FILE_RENAMED, handler = on_move },
+		})
+		return {
+			close_if_last_window = true,
+			filesystem = {
+				follow_current_file = {
+					enabled = true,
+				},
 			},
-		},
-		window = {
-			mappings = {
-				["l"] = "open",
-				["h"] = "close_node",
+			window = {
+				mappings = {
+					["l"] = "open",
+					["h"] = "close_node",
+				},
 			},
-		},
-	},
+		}
+	end,
 	keys = {
 		{ "<leader>e", "<cmd>Neotree toggle<cr>", desc = "File Tree" },
 	},

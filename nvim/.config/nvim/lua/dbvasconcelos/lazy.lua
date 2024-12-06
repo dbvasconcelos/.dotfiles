@@ -16,6 +16,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("dbvasconcelos.plugins", {
+	install = {
+		colorscheme = { "gruvbox-flat" },
+	},
 	ui = {
 		border = "rounded",
 		title = "Plugins",
