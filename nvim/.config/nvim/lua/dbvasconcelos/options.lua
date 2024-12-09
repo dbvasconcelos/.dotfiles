@@ -18,7 +18,6 @@ opt.shortmess:append("c")
 opt.showmatch = true
 opt.showmode = false
 opt.sidescrolloff = 8
-opt.signcolumn = "yes"
 opt.smartcase = true
 opt.smartindent = true
 opt.splitbelow = true

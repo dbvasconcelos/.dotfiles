@@ -29,7 +29,7 @@ local M = {
 				usePlaceholders = true,
 			},
 		},
-		formatter = "gci",
+		formatter = "golines",
 		linter = "golangci-lint",
 		debugger = "delve",
 	},
@@ -55,11 +55,11 @@ local M = {
 					},
 					diagnostics = {
 						-- Get the language server to recognize the `vim` global
-						globals = { "vim" },
+						globals = { "vim", "Snacks" },
 					},
 					workspace = {
 						-- Make the server aware of Neovim runtime files
-						library = vim.api.nvim_get_runtime_file("", true),
+						library = vim.env.VIMRUNTIME,
 						checkThirdParty = false,
 					},
 				},

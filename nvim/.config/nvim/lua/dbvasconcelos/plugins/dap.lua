@@ -52,10 +52,10 @@ return {
 			dependencies = "williamboman/mason.nvim",
 			opts = function()
 				local debuggers = {}
-				local filetypes = require("dbvasconcelos.plugins.lsp.filetypes")
-				for _, ft in pairs(filetypes) do
-					if ft.debugger then
-						table.insert(debuggers, ft.debugger)
+				local languages = require("dbvasconcelos.plugins.lspconfig.lang")
+				for _, lang in pairs(languages) do
+					if lang.debugger then
+						table.insert(debuggers, lang.debugger)
 					end
 				end
 				return {

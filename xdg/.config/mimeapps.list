@@ -9,8 +9,6 @@ application/postscript=org.pwmt.zathura.desktop
 application/x-directory=yazi.desktop
 inode/directory=yazi.desktop
 
-inode/x-empty=nvim.desktop
-text/x-shellscript=nvim.desktop
 text/plain=nvim.desktop
 text/csv=nvim.desktop
 application/xml=nvim.desktop

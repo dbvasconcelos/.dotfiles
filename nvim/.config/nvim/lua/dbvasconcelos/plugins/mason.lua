@@ -3,33 +3,39 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = {
 			{
-				"williamboman/mason.nvim",
-				cmd = "Mason",
-				build = ":MasonUpdate",
-				opts = {
-					ui = {
-						border = "rounded",
+				{ "williamboman/mason-lspconfig.nvim" },
+				{
+					"williamboman/mason.nvim",
+					cmd = "Mason",
+					build = ":MasonUpdate",
+					opts = {
+						ui = {
+							border = "rounded",
+						},
 					},
-				},
-				keys = {
-					{ "<leader>tp", "<cmd>Lazy sync<cr>", desc = "Plugins" },
-					{ "<leader>tl", "<cmd>Mason<cr>",     desc = "LSP" },
+					keys = {
+						{ "<leader>tl", "<cmd>Mason<cr>", desc = "LSP" },
+					},
 				},
 			},
 		},
 		opts = function()
 			local tools = {}
-			local filetypes = require("dbvasconcelos.plugins.lsp.filetypes")
-			for _, ft in pairs(filetypes) do
-				if ft.formatter then
-					table.insert(tools, ft.formatter)
+			local languages = require("dbvasconcelos.plugins.lspconfig.lang")
+			for _, lang in pairs(languages) do
+				if lang.lsp then
+					table.insert(tools, lang.lsp)
 				end
-				if ft.linter then
-					table.insert(tools, ft.linter)
+				if lang.formatter then
+					table.insert(tools, lang.formatter)
+				end
+				if lang.linter then
+					table.insert(tools, lang.linter)
 				end
 			end
 			return {
 				ensure_installed = tools,
+				auto_update = true,
 			}
 		end,
 	},
