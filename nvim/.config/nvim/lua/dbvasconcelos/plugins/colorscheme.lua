@@ -17,9 +17,9 @@ return {
 			TelescopePromptNormal = { fg = "fg", bg = "bg2" },
 			TelescopePromptPrefix = { fg = "red", bg = "bg2" },
 			TelescopePromptTitle = { fg = "bg2", bg = "red" },
-			TelescopeResultsBorder = { fg = "bg2", bg = "bg2" },
+			TelescopeResultsBorder = { fg = "fg", bg = "bg2" },
 			TelescopeResultsNormal = { bg = "bg2" },
-			TelescopeResultsTitle = { fg = "bg2", bg = "bg2" },
+			TelescopeResultsTitle = { fg = "bg2", bg = "blue" },
 		}
 	end,
 	config = function()

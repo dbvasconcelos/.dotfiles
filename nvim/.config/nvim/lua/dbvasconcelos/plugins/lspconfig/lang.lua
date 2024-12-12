@@ -37,6 +37,10 @@ local M = {
 	hyprlang = {
 		lsp = "hyprls",
 	},
+	-- Java
+	java = {
+		lsp = "jdtls",
+	},
 	-- JSON
 	json = {
 		lsp = "jsonls",

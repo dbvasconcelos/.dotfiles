@@ -24,35 +24,35 @@ return {
 					vim.keymap.set(
 						"n",
 						"gd",
-						require("telescope.builtin").lsp_definitions,
+						"<cmd>Trouble lsp_definitions toggle<cr>",
 						{ buffer = event.buf, desc = "go to definition" }
 					)
 
 					vim.keymap.set(
 						"n",
 						"gD",
-						vim.lsp.buf.declaration,
+						"<cmd>Trouble lsp_declarations toggle<cr>",
 						{ buffer = event.buf, desc = "go to declaration" }
 					)
 
 					vim.keymap.set(
 						"n",
 						"gr",
-						require("telescope.builtin").lsp_references,
+						"<cmd>Trouble lsp_references toggle<cr>",
 						{ buffer = event.buf, desc = "go to references" }
 					)
 
 					vim.keymap.set(
 						"n",
 						"gI",
-						require("telescope.builtin").lsp_implementations,
+						"<cmd>Trouble lsp_implementations toggle<cr>",
 						{ buffer = event.buf, desc = "go to implementations" }
 					)
 
 					vim.keymap.set(
 						"n",
 						"<leader>lt",
-						require("telescope.builtin").lsp_type_definitions,
+						"<cmd>Trouble lsp_type_definitions toggle<cr>",
 						{ buffer = event.buf, desc = "Type definition" }
 					)
 
