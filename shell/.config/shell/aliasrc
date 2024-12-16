@@ -21,8 +21,8 @@
 # All-in-one unzip utility.
 # [ -x "$(command -v aunpack)" ] && alias extract="aunpack"
 
-# Verbosity on remove.
-alias rm="rm -vI"
+# Trash instead of rm.
+alias rm="trash -vi"
 
 # Verbosity on mkdir.
 alias mkdir="mkdir -pv"
