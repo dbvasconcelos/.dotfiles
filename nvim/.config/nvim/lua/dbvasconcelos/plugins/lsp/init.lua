@@ -28,15 +28,15 @@ return {
 					keymaps.setup(event.buf)
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					local feats =
-						features.setup(client, event.buf, vim.api.nvim_create_augroup("lsp-features", { clear = true }))
+					local augroup = vim.api.nvim_create_augroup("lsp-features", { clear = true })
+					features.setup(client, event.buf, augroup)
 
 					-- Cleanup
 					vim.api.nvim_create_autocmd("LspDetach", {
 						group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
 						callback = function(event2)
 							vim.lsp.buf.clear_references()
-							vim.api.nvim_clear_autocmds({ group = feats, buffer = event2.buf })
+							vim.api.nvim_clear_autocmds({ group = augroup, buffer = event2.buf })
 						end,
 					})
 				end,
