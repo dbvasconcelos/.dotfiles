@@ -7,7 +7,6 @@ return {
 		{ "nvim-lua/popup.nvim" },
 		{ "nvim-tree/nvim-web-devicons" },
 		{ "nvim-treesitter/nvim-treesitter" },
-		{ "folke/which-key.nvim" },
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-telescope/telescope-media-files.nvim" },
 		{ "nvim-telescope/telescope-dap.nvim" },
@@ -20,10 +19,6 @@ return {
 		},
 	},
 	config = function()
-		require("which-key").add({
-			{ "<leader>s", group = "Search" },
-			{ "<leader>v", name = "Vim" },
-		})
 		require("telescope").setup({
 			defaults = {
 				sorting_strategy = "ascending",
@@ -43,7 +38,6 @@ return {
 
 		require("telescope").load_extension("fzf")
 		require("telescope").load_extension("ui-select")
-		require("telescope").load_extension("projects")
 		require("telescope").load_extension("media_files")
 		require("telescope").load_extension("dap")
 	end,

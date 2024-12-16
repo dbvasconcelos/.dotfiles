@@ -2,7 +2,11 @@ local M = {
 	-- Bash
 	sh = {
 		lsp = "bashls",
-		formatter = "shfmt",
+		formatters = {
+			shfmt = {
+				prepend_args = { "-i", "2" },
+			},
+		},
 		linter = "shellcheck",
 	},
 	-- Docker
@@ -20,7 +24,15 @@ local M = {
 						unusedparams = true,
 						shadow = true,
 					},
-					buildFlags = { "-tags=wireinject" },
+					hints = {
+						assignVariableTypes = true,
+						compositeLiteralFields = true,
+						compositeLiteralTypes = true,
+						constantValues = true,
+						functionTypeParameters = true,
+						parameterNames = true,
+						rangeVariableTypes = true,
+					},
 					experimentalPostfixCompletions = true,
 					staticcheck = true,
 				},
@@ -29,7 +41,7 @@ local M = {
 				usePlaceholders = true,
 			},
 		},
-		formatter = "golines",
+		formatters = { "golines", "goimports" },
 		linter = "golangci-lint",
 		debugger = "delve",
 	},
@@ -44,32 +56,12 @@ local M = {
 	-- JSON
 	json = {
 		lsp = "jsonls",
-		formatter = "prettier",
+		formatters = { "prettier" },
 	},
 	-- Lua
 	lua = {
 		lsp = "lua_ls",
-		config = {
-			settings = {
-				Lua = {
-					runtime = {
-						-- LuaJIT in the case of Neovim
-						version = "LuaJIT",
-						path = vim.split(package.path, ";"),
-					},
-					diagnostics = {
-						-- Get the language server to recognize the `vim` global
-						globals = { "vim", "Snacks" },
-					},
-					workspace = {
-						-- Make the server aware of Neovim runtime files
-						library = vim.env.VIMRUNTIME,
-						checkThirdParty = false,
-					},
-				},
-			},
-		},
-		formatter = "stylua",
+		formatters = { "stylua" },
 		linter = "luacheck",
 	},
 	-- Python
@@ -83,7 +75,7 @@ local M = {
 	-- YAML
 	yaml = {
 		lsp = "yamlls",
-		formatter = "prettier",
+		formatters = { "prettier" },
 	},
 }
 

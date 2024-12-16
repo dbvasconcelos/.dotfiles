@@ -1,11 +1,11 @@
 local opt = vim.opt
 
 opt.colorcolumn = "100"
-opt.completeopt = { "menu", "menuone", "noselect" }
+opt.completeopt = "menu,menuone,noselect"
 opt.confirm = true
 opt.cursorline = true
-opt.inccommand = "split"
 opt.ignorecase = true
+opt.inccommand = "split"
 opt.isfname:append("@-@")
 opt.list = true
 opt.listchars = { eol = "↲", nbsp = "␣", tab = "» ", trail = "·" }

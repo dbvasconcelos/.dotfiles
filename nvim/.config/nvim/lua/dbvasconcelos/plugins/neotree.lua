@@ -17,7 +17,7 @@ return {
 						-- filter using buffer options
 						bo = {
 							-- if the file type is one of following, the window will be ignored
-							filetype = { "neo-tree", "neo-tree-popup", "notify" },
+							filetype = { "neo-tree", "neo-tree-popup", "notify", "trouble" },
 							-- if the buffer type is one of following, the window will be ignored
 							buftype = { "terminal", "quickfix" },
 						},
@@ -39,6 +39,9 @@ return {
 		return {
 			close_if_last_window = true,
 			filesystem = {
+				filtered_items = {
+					hide_dotfiles = false,
+				},
 				follow_current_file = {
 					enabled = true,
 				},

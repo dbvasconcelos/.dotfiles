@@ -6,8 +6,6 @@ return {
 		vim.g.gruvbox_sidebars = {
 			"qf",
 			"terminal",
-			"Trouble",
-			"neo-tree",
 		}
 		vim.g.gruvbox_theme = {
 			TelescopePreviewBorder = { fg = "fg", bg = "bg2" },
