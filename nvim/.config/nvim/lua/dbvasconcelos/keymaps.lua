@@ -14,14 +14,6 @@ keymap.set("v", "<M-k>", ":m '<-2<cr>gv=gv", { desc = "Move lines up" })
 keymap.set("n", "<M-j>", ":m .+1<cr>==", { desc = "Move line down" })
 keymap.set("n", "<M-k>", ":m .-2<cr>==", { desc = "Move line up" })
 
--- Cmd mode cursor
-keymap.set("c", "<C-b>", "<S-Left>", { desc = "Move cursor word backwards" })
-keymap.set("c", "<C-e>", "<S-Right>", { desc = "Move cursor word forward" })
-keymap.set("c", "<C-h>", "<Left>", { desc = "Move cursor left" })
-keymap.set("c", "<C-l>", "<Right>", { desc = "Move cursor right" })
-keymap.set("c", "<C-n>", "<Down>", { desc = "Next command" })
-keymap.set("c", "<C-p>", "<Up>", { desc = "Previous command" })
-
 -- Windows
 keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Focus left window", remap = true })
 keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Focus right window", remap = true })

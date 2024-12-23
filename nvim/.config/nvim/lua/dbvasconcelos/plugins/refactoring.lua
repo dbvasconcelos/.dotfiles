@@ -5,27 +5,46 @@ return {
 		{ "nvim-treesitter/nvim-treesitter" },
 	},
 	opts = {
-		-- prompt for return type
 		prompt_func_return_type = {
 			go = true,
+			cpp = true,
 			java = true,
 		},
-		-- prompt for function parameters
 		prompt_func_param_type = {
 			go = true,
+			cpp = true,
 			java = true,
 		},
 	},
 	keys = {
 		{
 			"<leader>dP",
-			"<cmd>lua require('refactoring').debug.cleanup({})<cr>",
+			function()
+				require("refactoring").debug.cleanup({})
+			end,
 			desc = "Undo Prints",
 		},
 		{
 			"<leader>dp",
-			"<cmd>lua require('refactoring').debug.printf({below = false})<cr>",
+			function()
+				require("refactoring").debug.printf({ below = false })
+			end,
 			desc = "Print Function",
+		},
+		{
+			"<leader>dv",
+			function()
+				require("refactoring").debug.print_var({})
+			end,
+			desc = "Print Var",
+		},
+		{
+			"<leader>lr",
+			function()
+				require("refactoring").select_refactor({})
+			end,
+			mode = { "n", "x" },
+			desc = "Refactor",
 		},
 	},
 }

@@ -49,23 +49,6 @@ return {
 		},
 	},
 	{
-		"jay-babu/mason-nvim-dap.nvim",
-		dependencies = "williamboman/mason.nvim",
-		opts = function()
-			local ret = {
-				ensure_installed = {},
-				automatic_installation = true,
-			}
-			local languages = require("dbvasconcelos.plugins.lsp.lang")
-			for _, lang in pairs(languages) do
-				if lang.debugger then
-					table.insert(ret.ensure_installed, lang.debugger)
-				end
-			end
-			return ret
-		end,
-	},
-	{
 		"mfussenegger/nvim-dap",
 		config = function()
 			vim.fn.sign_define(

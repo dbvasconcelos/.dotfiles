@@ -9,21 +9,25 @@ return {
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = {
 				"bash",
+				"css",
+				"csv",
 				"dockerfile",
 				"go",
 				"gomod",
 				"hyprlang",
+				"java",
+				"json",
 				"lua",
 				"make",
 				"proto",
+				"python",
 				"regex",
+				"toml",
 				"yaml",
 			},
 
 			highlight = { enable = true },
 			indent = { enable = true },
-			context_commentstring = { enable = true, enable_autocmd = false },
-			autopairs = { enable = true },
 
 			textobjects = {
 				select = {

@@ -15,31 +15,55 @@ return {
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = {
-			{
-				{ "williamboman/mason.nvim" },
-				{ "williamboman/mason-lspconfig.nvim", opts = {} },
-				{ "jay-babu/mason-nvim-dap.nvim" },
-				{ "jay-babu/mason-null-ls.nvim" },
-			},
+			{ "williamboman/mason.nvim" },
 		},
 		opts = function()
-			local languages = require("dbvasconcelos.plugins.lsp.lang")
 			local tools = {}
-			for _, lang in pairs(languages) do
-				if lang.lsp then
-					table.insert(tools, lang.lsp)
-				end
-				if lang.formatter then
-					for _, f in pairs(lang.formatter) do
-						if type(f) == "string" then
-							table.insert(tools, f)
-						end
-					end
-				end
-				if lang.linter then
-					table.insert(tools, lang.linter)
-				end
-			end
+			-- LSP
+			table.insert(tools, {
+				"bash-language-server",
+				"buf",
+				"css-lsp",
+				"dockerfile-language-server",
+				"gitlab-ci-ls",
+				"gopls",
+				"hyprls",
+				"jdtls",
+				"json-lsp",
+				"lua-language-server",
+				"pyright",
+				"taplo",
+				"texlab",
+				"yaml-language-server",
+			})
+			-- Debug
+			table.insert(tools, {
+				"bash-debug-adapter",
+				"debugpy",
+				"delve",
+			})
+			-- Format
+			table.insert(tools, {
+				"black",
+				"goimports",
+				"golines",
+				"isort",
+				"prettier",
+				"shfmt",
+				"stylua",
+			})
+			-- Lint
+			table.insert(tools, {
+				"gitlint",
+				"golangci-lint",
+				"hadolint",
+				"jsonlint",
+				"luacheck",
+				"protolint",
+				"flake8",
+				"shellcheck",
+				"yamllint",
+			})
 			return {
 				ensure_installed = tools,
 				auto_update = true,

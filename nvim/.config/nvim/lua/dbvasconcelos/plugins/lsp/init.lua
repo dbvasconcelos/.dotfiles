@@ -8,15 +8,48 @@ return {
 			local lspconfig = require("lspconfig")
 
 			-- Register LSP servers
-			local languages = require("dbvasconcelos.plugins.lsp.lang")
-			for _, lang in pairs(languages) do
-				local config = lspconfig.util.default_config
-				if type(lang.config) == "table" then
-					vim.tbl_deep_extend("force", config, lang.config)
-				end
+			local languages = {
+				bashls = {},
+				buf_ls = {},
+				dockerls = {},
+				gopls = {
+					settings = {
+						gopls = {
+							analyses = {
+								unusedparams = true,
+								shadow = true,
+							},
+							hints = {
+								assignVariableTypes = true,
+								compositeLiteralFields = true,
+								compositeLiteralTypes = true,
+								constantValues = true,
+								functionTypeParameters = true,
+								parameterNames = true,
+								rangeVariableTypes = true,
+							},
+							experimentalPostfixCompletions = true,
+							staticcheck = true,
+						},
+					},
+					init_options = {
+						usePlaceholders = true,
+					},
+				},
+				hyprls = {},
+				jdtls = {},
+				jsonls = {},
+				lua_ls = {},
+				pyright = {},
+				taplo = {},
+				yamlls = {},
+			}
+			for lsp, conf in pairs(languages) do
+				local def = lspconfig.util.default_config
+				vim.tbl_deep_extend("force", def, conf)
 				local autocompletion = require("cmp_nvim_lsp").default_capabilities()
-				config.capabilities = vim.tbl_deep_extend("force", config.capabilities, autocompletion)
-				lspconfig[lang.lsp].setup(config)
+				def.capabilities = vim.tbl_deep_extend("force", def.capabilities, autocompletion)
+				lspconfig[lsp].setup(def)
 			end
 
 			-- On attach config
