@@ -1,0 +1,10 @@
+#!/bin/sh
+
+event=$1
+mount=$2
+
+if [ "$event" = "device_mounted" ]; then
+  id="$(basename "$mount")"
+  hook="$XDG_CONFIG_HOME/udiskie/mount.d/$id.sh"
+  [ -f "$hook" ] && sh "$hook" "$mount"
+fi

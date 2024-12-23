@@ -22,79 +22,42 @@ set -x
 # one path per line.
 # If nothing is printed, then the operation is assumed to have been canceled.
 
-multiple="$1"
-directory="$2"
 save="$3"
 path="$4"
 out="$5"
-cmd="yazi"
-# "wezterm start --always-new-process" if you use wezterm
-termcmd="${TERMCMD:-kitty --class filechooser}"
-# change this to "/tmp/xxxxxxx/.last_selected" if you only want to save last selected location
-# in session (flushed after reset device)
-last_selected_path_cfg="$XDG_CACHE_HOME/.yazi_last_selected"
-mkdir -p "$(dirname last_selected_path_cfg)"
-if [ ! -f "$last_selected_path_cfg" ]; then
-    touch "$last_selected_path_cfg"
-fi
-last_selected="$(cat "$last_selected_path_cfg")"
 
-# Restore last selected path
-if [ -d "$last_selected" ]; then
-    save_to_file=""
-    if [ "$save" = "1" ]; then
-        save_to_file="$(basename "$path")"
-        path="${last_selected}/${save_to_file}"
+last_selected_storage="$XDG_CACHE_HOME/.yazi_last_selected"
+
+if [ -z "$path" ]; then
+    if [ -f "$last_selected_storage" ]; then
+        path="$(cat "$last_selected_storage")"
     else
-        path="${last_selected}"
+        path="$HOME"
     fi
-fi
-if [[ -z "$path" ]]; then
-    path="$HOME"
 fi
 
 if [ "$save" = "1" ]; then
-    # Save/download file
-    printf '%s' 'xdg-desktop-portal-termfilechooser saving files tutorial
+    printf '%s' '
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!                 === DUMMY FILE! ===                !!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    Instructions:
+    1) Move this file wherever you want.
+    2) Rename the file if needed.
+    3) Confirm your selection by opening the file, for
+       example by pressing <Enter>.
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!                 === WARNING! ===                 !!!
-!!! The contents of *whatever* file you open last in !!!
-!!! yazi will be *overwritten*!                    !!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-Instructions:
-1) Move this file wherever you want.
-2) Rename the file if needed.
-3) Confirm your selection by opening the file, for
-   example by pressing <Enter>.
-
-Notes:
-1) This file is provided for your convenience. You
-   could delete it and choose another file to overwrite
-   that.
-2) If you quit yazi without opening a file, this file
-   will be removed and the save operation aborted.
-' >"$path"
-    set -- --chooser-file="$out" --cwd-file="$last_selected_path_cfg" "$path"
-elif [ "$directory" = "1" ]; then
-    # upload files from a directory
-    set -- --cwd-file="$out" "$path"
-elif [ "$multiple" = "1" ]; then
-    # upload multiple files
-    set -- --chooser-file="$out" --cwd-file="$last_selected_path_cfg" "$path"
-else
-    # upload only 1 file
-    set -- --chooser-file="$out" --cwd-file="$last_selected_path_cfg" "$path"
+    Notes:
+    1) This file is provided for your convenience. You
+       could delete it and choose another file to overwrite
+       that.
+    2) If you quit yazi without opening a file, this file
+       will be removed and the save operation aborted.
+    ' >"$path"
 fi
 
-$termcmd -- $cmd "$@"
-
-# Save the last selected path for the next time, only upload files from a directory operation is need
-# because `--cwd-file` will do the same thing for files(s) upload and download operations
-if [ "$save" = "0" ] && [ "$directory" = "1" ]; then
-    echo "$(head -n 1 <"$out")" >"$last_selected_path_cfg"
-fi
+set -- --chooser-file="$out" --cwd-file="$last_selected_storage" "$path"
+kitty --class filechooser -- yazi "$@"
 
 # Remove file if the save operation aborted
 if [ "$save" = "1" ] && [ ! -s "$out" ]; then
