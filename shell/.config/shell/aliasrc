@@ -18,9 +18,6 @@
 # fix ssh for kitty.
 [ -x "$(command -v kitty)" ] && alias ssh="kitty +kitten ssh"
 
-# All-in-one unzip utility.
-# [ -x "$(command -v aunpack)" ] && alias extract="aunpack"
-
 # Trash instead of rm.
 alias rm="trash -vi"
 

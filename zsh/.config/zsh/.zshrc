@@ -53,7 +53,9 @@ plugins=(
 for plugin in "${plugins[@]}"; do
 	file="$(printf "/usr/share/zsh/plugins/%s/%s.plugin.zsh" "$plugin" "${plugin%-git}")"
 	[ -f "$file" ] && source "$file"
+	unset file
 done
+unset plugins
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
@@ -66,7 +68,10 @@ eval "$(pyenv init -)"
 ## Keybindings
 # VI mode
 bindkey -v
-bindkey '^ ' autosuggest-accept
+bindkey '^y' autosuggest-accept
+
+# Zoxide
+eval "$(zoxide init --cmd cd zsh)"
 
 # Starship Prompt
 eval "$(starship init zsh)"
