@@ -1,9 +1,16 @@
 {
+  "wallpaper.image": "/home/derek/.local/share/backgrounds/fantasy.jpg",
   "scalingPriority": "hyprland",
   "bar.layouts": {
     "*": {
-      "left": ["dashboard", "workspaces", "windowtitle"],
-      "middle": ["media"],
+      "left": [
+        "dashboard",
+        "workspaces",
+        "windowtitle"
+      ],
+      "middle": [
+        "media"
+      ],
       "right": [
         "updates",
         "volume",
@@ -23,7 +30,13 @@
   "bar.media.show_active_only": true,
   "bar.windowtitle.custom_title": false,
   "bar.windowtitle.class_name": false,
-  "bar.windowtitle.title_map": [["webcord", "", "Discord"]],
+  "bar.windowtitle.title_map": [
+    [
+      "webcord",
+      "",
+      "Discord"
+    ]
+  ],
   "bar.workspaces.ignored": "-98|-97|-96",
   "bar.workspaces.numbered_active_indicator": "highlight",
   "bar.workspaces.show_numbered": true,
@@ -262,6 +275,6 @@
   "theme.notification.label": "#83a598",
   "theme.notification.labelicon": "#83a598",
   "theme.notification.text": "#ebdbb2",
-  "theme.notification.time": "#928374"
+  "theme.notification.time": "#928374",
+  "bar.customModules.ram.labelType": "percentage"
 }
-
