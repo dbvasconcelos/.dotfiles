@@ -63,17 +63,3 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	end,
 	group = group,
 })
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-	desc = "Restart dunst when config is updated",
-	command = "!killall dunst; notify-send 'Dunst' 'Notifications Settings Updated'",
-	pattern = "dunstrc",
-	group = group,
-})
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = { "*/waybar/config", "*/waybar/style.css" },
-	command = "!systemctl --user restart waybar",
-	group = group,
-	desc = "Restart waybar when config is updated",
-})

@@ -11,9 +11,6 @@ return {
 				},
 			},
 			spec = {
-				{ "[", group = "prev" },
-				{ "]", group = "next" },
-				{ "g", group = "goto" },
 				{ "<leader>b", group = "buffer" },
 				{ "<leader>d", group = "debug" },
 				{ "<leader>g", group = "git" },

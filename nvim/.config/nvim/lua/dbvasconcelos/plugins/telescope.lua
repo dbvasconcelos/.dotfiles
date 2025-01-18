@@ -1,7 +1,6 @@
 local telescope = require("telescope")
 local config = require("telescope.config")
 local builtin = require("telescope.builtin")
-local themes = require("telescope.themes")
 
 return {
 	"nvim-telescope/telescope.nvim",
