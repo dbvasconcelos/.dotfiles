@@ -188,5 +188,6 @@
   "theme.notification.labelicon": "#d8a657",
   "theme.notification.text": "#ebdbb2",
   "theme.notification.time": "#928374",
-  "menus.media.noMediaText": ""
+  "menus.media.noMediaText": "",
+  "bar.customModules.ram.labelType": "percentage"
 }
