@@ -1,0 +1,31 @@
+# Notification settings.
+
+[global]
+    follow = keyboard
+    width = 370
+    offset = (20, 20)
+    frame_width = 1
+    corner_radius = 10
+    frame_color = "#d4be98"
+    separator_color = auto
+    font = monospace 12
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = close_all
+    mouse_right_click = close_current
+    icon_theme = Gruvbox-Material-Dark
+    enable_recursive_icon_lookup = true
+
+[urgency_low]
+    background = "#32302f"
+    foreground = "#d4be98"
+    timeout = 3
+
+[urgency_normal]
+    background = "#32302f"
+    foreground = "#d4be98"
+    timeout = 5
+
+[urgency_critical]
+    background = "#32302f"
+    foreground = "#d4be98"
+    timeout = 10

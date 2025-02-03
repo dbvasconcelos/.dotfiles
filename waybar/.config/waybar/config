@@ -1,0 +1,92 @@
+{
+  "layer": "top",
+  "position": "top",
+  "reload_style_on_change": true,
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-center": ["custom/updates"],
+  "modules-right": [
+    "pulseaudio",
+    "cpu",
+    "temperature",
+    "memory",
+    "tray",
+    "custom/weather",
+    "clock"
+  ],
+
+  "hyprland/workspaces": {
+    "format": "{name}"
+  },
+
+  "hyprland/window": {
+    "format": " {title}",
+    "separate-outputs": true
+  },
+
+  "custom/updates": {
+    "format": " {}",
+    "interval": 3600,
+    "signal": 8,
+    "exec": "pkgs=$(($(checkupdates 2>/dev/null | wc -l) + $(yay -Qum 2>/dev/null | wc -l))); if [ $pkgs -gt 0 ]; then echo $pkgs; else echo ''; fi",
+    "on-click": "kitty sh -c 'sudo pacman -Syu; yay; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": " ",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "default": ["", ""]
+    },
+    "on-click": "pwvucontrol",
+    "on-click-right": "pactl --format=json list sinks short | jq -cM --unbuffered \"[.[].name] | .[((index(\\\"$(pactl get-default-sink)\\\")+1)%length)]\" | xargs pactl set-default-sink",
+    "ignored-sinks": []
+  },
+
+  "cpu": {
+    "format": " {usage}%",
+    "states": {
+      "warning": 60,
+      "critical": 90
+    }
+  },
+
+  "temperature": {
+    "critical-threshold": 80,
+    "format": " {temperatureC}°C",
+	"hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon3/temp1_input"
+  },
+
+  "memory": {
+    "format": " {percentage}%",
+    "states": {
+      "warning": 60,
+      "critical": 90
+    }
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+
+  "custom/weather": {
+    "interval" : 2300,
+    "exec": "echo $((curl -sf 'v3.wttr.in/campinas?format=%c%t' || echo '󱓤 ') | tr -d ' +')",
+    "tooltip": false
+  },
+
+  "clock": {
+    "locale":"pt_BR.UTF-8",
+    "format": " {:L%d/%b (%a)  %H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "format":{
+	"today":"<span background='#45403d'><u>{}</u></span>"
+      }
+    }
+  }
+
+}
