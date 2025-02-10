@@ -74,7 +74,7 @@
 
   "custom/weather": {
     "interval" : 2300,
-    "exec": "echo $((curl -sf 'v3.wttr.in/campinas?format=%c%t' || echo '󱓤 ') | tr -d ' +')",
+    "exec": "echo $((curl -sf 'v3.wttr.in/campinas?format=%c%t' | sed 's/Unknown.*//') | tr -d ' +')",
     "tooltip": false
   },
 
