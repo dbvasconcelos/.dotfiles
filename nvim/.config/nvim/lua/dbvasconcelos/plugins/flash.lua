@@ -1,7 +1,8 @@
 return {
 	"folke/flash.nvim",
+	event = "VeryLazy",
 	opts = {
-		mode = {
+		modes = {
 			search = {
 				enabled = true,
 			},
@@ -10,7 +11,7 @@ return {
 	keys = {
 		{
 			"s",
-			mode = { "n", "x" },
+			mode = { "n", "x", "o" },
 			function()
 				require("flash").jump()
 			end,

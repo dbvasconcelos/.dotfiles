@@ -15,6 +15,7 @@ return {
 		local hidden_arg = "--hidden"
 		local glob_arg = "--glob"
 		local dotgit_pattern = "!**/.git/*"
+
 		local vimgrep_arguments = { unpack(config.values.vimgrep_arguments) }
 		table.insert(vimgrep_arguments, hidden_arg)
 		table.insert(vimgrep_arguments, glob_arg)
