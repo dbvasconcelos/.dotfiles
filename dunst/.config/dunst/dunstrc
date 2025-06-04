@@ -8,7 +8,7 @@
     corner_radius = 10
     frame_color = "#d4be98"
     separator_color = auto
-    font = monospace 12
+    font = monospace 14
     mouse_left_click = do_action, close_current
     mouse_middle_click = close_all
     mouse_right_click = close_current
