@@ -3,7 +3,7 @@
 # Use neovim for vim.
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
-# Use exa for ls.
+# Use eza for ls.
 [ -x "$(command -v eza)" ] && alias ls="eza --icons --color=always --group-directories-first"
 
 # use yay for pacman.
@@ -11,12 +11,6 @@
 
 # use bat for cat.
 [ -x "$(command -v bat)" ] && alias cat="bat"
-
-# use batgrep for grep.
-[ -x "$(command -v batgrep)" ] && alias grep="batgrep"
-
-# fix ssh for kitty.
-[ -x "$(command -v kitty)" ] && alias ssh="kitty +kitten ssh"
 
 # Trash instead of rm.
 alias rm="trash -vi"
@@ -44,7 +38,3 @@ alias jctl="journalctl -p 4 -xb"
 
 # kill all pbs jobs.
 qdelall="qselect -u $USER | xargs qdel"
-
-# etckeeper.
-alias etcs="sudo etckeeper vcs status"
-alias etca="sudo etckeeper vcs add"

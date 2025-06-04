@@ -1,20 +1,19 @@
-# User configuration file of GNU readline, which provides customizable
-# command line user interfaces for many important interactive programs
+# User configuration file for GNU Readline, which provides customizable
+# command line user interfaces for many important interactive programs.
 
 $include /etc/inputrc
 
 set editing-mode vi
-set colored-stats On
-set completion-ignore-case On
+set colored-stats on
+set completion-ignore-case on
 set completion-prefix-display-length 3
-set mark-symlinked-directories On
-set show-all-if-ambiguous On
-set show-all-if-unmodified On
-set visible-stats On
+set mark-symlinked-directories on
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set visible-stats on
 
 $if mode=vi
     set show-mode-in-prompt on
-
     # Mode cursor shape
     $if term=linux
         set vi-ins-mode-string \1\e[?0c\2
@@ -23,11 +22,4 @@ $if mode=vi
         set vi-ins-mode-string \1\e[6 q\2
         set vi-cmd-mode-string \1\e[2 q\2
     $endif
-
-    set keymap vi-command
-    "\C-l": clear-screen
-
-    set keymap vi-insert
-    "\C-l": clear-screen
-    "\C-a": beginning-of-line
 $endif
