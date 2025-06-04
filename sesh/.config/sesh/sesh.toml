@@ -1,2 +1,2 @@
 [default_session]
-startup_command = "nvim +'Telescope find_files'"
+startup_command = "nvim"
