@@ -60,3 +60,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 # Golang
 export GOPATH="$XDG_DATA_HOME/go"
 PATH="$PATH:$GOPATH/bin"
+
+# UNISIM
+export CMG_LIC_HOST=lic.unisim.cepetro.unicamp.br:27003
+export RLM_LICENSE=27003@lic.unisim.cepetro.unicamp.br

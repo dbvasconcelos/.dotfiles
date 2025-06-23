@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "sleep 1 && hyprctl dispatch dpms off",
+    "action" : "hyprlock",
     "text" : "",
 	"keybind" : "l"
 }
