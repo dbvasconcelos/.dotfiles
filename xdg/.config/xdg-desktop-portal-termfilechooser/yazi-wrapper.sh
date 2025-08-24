@@ -57,7 +57,7 @@ if [ "$save" = "1" ]; then
 fi
 
 set -- --chooser-file="$out" --cwd-file="$last_selected_storage" "$path"
-kitty --class filechooser -- yazi "$@"
+$TERMINAL --class=filechooser -e yazi "$@"
 
 # Remove file if the save operation aborted
 if [ "$save" = "1" ] && [ ! -s "$out" ]; then

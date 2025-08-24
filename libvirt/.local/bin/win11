@@ -1,5 +1,5 @@
 #!/bin/sh
 # Start VM and looking glass to it.
 sudo virsh start win11
-sleep 2
+sleep 8
 looking-glass-client -F
