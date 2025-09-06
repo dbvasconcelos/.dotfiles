@@ -1,20 +1,18 @@
 # Git global configuration.
 
-[user]
-	name=Derek Vasconcelos
-	email=derekvasconcelos@gmail.com
+[alias]
+	undo = reset --hard @{1}
 
-[init]
-	defaultBranch = main
+[branch]
+	sort = -commiterdate
+	ammend = commit -a --amend --no-edit
 
-[pull]
-	rebase = true
+# command output in columns
+[column]
+	ui = auto
 
-[fetch]
-	prune = true
-
-[diff]
-	colorMoved = zebra
+[commit]
+	verbose = true
 
 [core]
 	editor = nvim
@@ -24,3 +22,46 @@
 
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/gh auth git-credential
+
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+
+[help]
+	autocorrect = prompt
+
+[init]
+	defaultBranch = main
+
+[merge]
+	conflictstyle = zdiff3
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+	followTags = true
+
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+
+[rerere]
+	enabled = true
+	autoupdate = true
+
+[tag]
+	sort = version:refname
+
+[user]
+	name=Derek Vasconcelos
+	email=derekvasconcelos@gmail.com
