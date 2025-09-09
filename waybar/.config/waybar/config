@@ -6,6 +6,7 @@
   "modules-center": ["custom/updates"],
   "modules-right": [
     "pulseaudio",
+    "power-profiles-daemon",
     "cpu",
     "temperature",
     "memory",
@@ -19,8 +20,7 @@
   },
 
   "hyprland/window": {
-    "format": " {title}",
-    "separate-outputs": true
+    "format": " {title}"
   },
 
   "custom/updates": {
@@ -43,6 +43,18 @@
     "on-click": "pwvucontrol",
     "on-click-right": "pactl --format=json list sinks short | jq -cM --unbuffered \"[.[].name] | .[((index(\\\"$(pactl get-default-sink)\\\")+1)%length)]\" | xargs pactl set-default-sink",
     "ignored-sinks": []
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
   },
 
   "cpu": {

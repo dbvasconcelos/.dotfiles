@@ -20,27 +20,3 @@ button:focus, button:active, button:hover {
     background-color: #32302f;
     outline-style: none;
 }
-
-#lock {
-    background-image: url("/usr/share/wleave/icons/lock.svg"), url("/usr/local/share/wleave/icons/lock.svg");
-}
-
-#logout {
-    background-image: url("/usr/share/wleave/icons/logout.svg"), url("/usr/local/share/wleave/icons/logout.svg");
-}
-
-#shutdown {
-    background-image: url("/usr/share/wleave/icons/shutdown.svg"), url("/usr/local/share/wleave/icons/shutdown.svg");
-}
-
-#reboot {
-    background-image: url("/usr/share/wleave/icons/reboot.svg"), url("/usr/local/share/wleave/icons/reboot.svg");
-}
-
-#suspend {
-    background-image: url("/usr/share/wleave/icons/suspend.svg"), url("/usr/local/share/wleave/icons/suspend.svg");
-}
-
-#hibernate {
-    background-image: url("/usr/share/wleave/icons/hibernate.svg"), url("/usr/local/share/wleave/icons/hibernate.svg");
-}

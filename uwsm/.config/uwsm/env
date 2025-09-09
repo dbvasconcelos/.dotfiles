@@ -1,4 +1,6 @@
 #!/bin/sh
+# VDPAU
+export VDPAU_DRIVER=radeonsi
 # SDL
 export SDL_VIDEODRIVER=wayland
 # Clutter

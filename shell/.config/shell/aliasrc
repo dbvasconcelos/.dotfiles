@@ -13,7 +13,7 @@
 [ -x "$(command -v bat)" ] && alias cat="bat"
 
 # Trash instead of rm.
-alias rm="trash -vi"
+[ -x "$(command -v trash)" ] && alias rm="trash -v"
 
 # Verbosity on mkdir.
 alias mkdir="mkdir -pv"

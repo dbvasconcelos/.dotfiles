@@ -2,4 +2,4 @@
 # Start VM and looking glass to it.
 sudo virsh start win11
 sleep 8
-looking-glass-client -F
+looking-glass-client -F -g OpenGL
