@@ -1,7 +1,7 @@
 #!/bin/bash
 # Interactive bash startup script.
 
-export HISTCONTROL=erasedups
+export HISTCONTROL=erasedups:ignorespace
 
 # shellcheck source=/dev/null
 [ -f "$ALIASRC" ] && source "$ALIASRC"

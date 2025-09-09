@@ -1,0 +1,25 @@
+{
+  "buttons": [
+    {
+      "label": "lock",
+      "action": "sleep 1 && hyprctl dispatch dpms off",
+      "text": "",
+      "keybind": "l",
+      "icon": "/usr/share/wleave/icons/lock.svg"
+    },
+    {
+      "label": "shutdown",
+      "action": "systemctl poweroff",
+      "text": "",
+      "keybind": "s",
+      "icon": "/usr/share/wleave/icons/shutdown.svg"
+    },
+    {
+      "label": "reboot",
+      "action": "systemctl reboot",
+      "text": "",
+      "keybind": "r",
+      "icon": "/usr/share/wleave/icons/reboot.svg"
+    }
+  ]
+}

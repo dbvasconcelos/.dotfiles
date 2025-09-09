@@ -45,7 +45,6 @@ ZVM_INIT_MODE=sourcing
 
 ## Plugins
 plugins=(
-	"zsh-vi-mode"
 	"fast-syntax-highlighting"
 	"zsh-autosuggestions"
 	"fzf-tab-git"
@@ -59,11 +58,6 @@ unset plugins
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
-
-# Python Environments
-export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
-[ -d "$PYENV_ROOT/bin" ] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 ## Keybindings
 # VI mode

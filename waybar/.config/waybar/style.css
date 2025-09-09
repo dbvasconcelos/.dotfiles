@@ -1,8 +1,9 @@
 * {
   border: none;
-  font-family: "JetBrainsMono";
-  font-size: 18;
+  font-family: monospace;
+  font-size: 18px;
   font-weight: bold;
+  min-height: 0;
 }
 
 window#waybar {
@@ -19,7 +20,7 @@ tooltip label {
   color: #d4be98;
 }
 
-.module{
+.module {
   padding: 1px 8px 1px 8px;
   margin: 3px;
   border-radius: 10px;
@@ -76,5 +77,5 @@ tooltip label {
 }
 
 #custom-weather {
-  padding-top: 5px;
+  padding-top: 3px;
 }
