@@ -1,5 +1,5 @@
-#!/bin/bash
-# Interactive bash startup script.
+#!/usr/bin/env bash
+# Interactive non-login shell startup script.
 
 export HISTCONTROL=erasedups:ignorespace
 
