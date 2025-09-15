@@ -1,31 +1,41 @@
 # Notification settings.
 
 [global]
-    follow = keyboard
-    width = 370
-    offset = (20, 20)
-    frame_width = 1
+    background = "#282828"
     corner_radius = 10
-    frame_color = "#d4be98"
-    separator_color = auto
+    enable_recursive_icon_lookup = true
+    follow = keyboard
     font = monospace 14
+    foreground = "#D4BE98"
+    frame_width = 1
+    gap_size = 3
+    horizontal_padding = 10
+    icon_theme = Gruvbox-Material-Dark
     mouse_left_click = do_action, close_current
     mouse_middle_click = close_all
     mouse_right_click = close_current
-    icon_theme = Gruvbox-Material-Dark
-    enable_recursive_icon_lookup = true
+    offset = 5x5
+    padding = 10
+    progress_bar_corner_radius = 2
+    progress_bar_max_width = 380
+    progress_bar_min_width = 380
+    separator_color = auto
+    width = 400
 
 [urgency_low]
-    background = "#32302f"
-    foreground = "#d4be98"
-    timeout = 3
+    highlight = "#7DAEA3"
+    frame_color = "#7DAEA3"
+    default_icon = "dialog-information"
+    format = "<b><span foreground='#7DAEA3'>%s</span></b>\n%b"
 
 [urgency_normal]
-    background = "#32302f"
-    foreground = "#d4be98"
-    timeout = 5
+    highlight = "#D8A657"
+    frame_color = "#D8A657"
+    default_icon = "dialog-warning"
+    format = "<b><span foreground='#D8A657'>%s</span></b>\n%b"
 
 [urgency_critical]
-    background = "#32302f"
-    foreground = "#d4be98"
-    timeout = 10
+    highlight = "#EA6962"
+    frame_color = "#EA6962"
+    default_icon = "dialog-error"
+    format = "<b><span foreground='#EA6962'>%s</span></b>\n%b"

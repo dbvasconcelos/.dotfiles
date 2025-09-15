@@ -1,3 +1,5 @@
+@import "./gruvbox-material.css";
+
 * {
   border: none;
   font-family: monospace;
@@ -7,73 +9,74 @@
 }
 
 window#waybar {
-  color: #d4be98;
+  color: @fg0;
   background: none;
 }
 
 tooltip {
-  background: alpha(#282828, 0.8);
+  background: alpha(@bg0, 0.8);
   border-radius: 10px;
 }
 
 tooltip label {
-  color: #d4be98;
+  color: @fg0;
 }
 
 .module {
   padding: 1px 8px 1px 8px;
   margin: 3px;
   border-radius: 10px;
-  background: alpha(#282828, 0.8);
+  background: alpha(@bg0, 0.8);
 }
 
 #workspaces button {
   padding: 5px;
-  color: #3c3836;
+  color: @bg1;
   border-radius: 10px;
 }
 
 #workspaces button.active {
-  color:#d4be98;
+  color: @fg0;
+  background: @bg3;
 }
 
 #workspaces button.focused {
-  color: #333e34;
-  background: #a9b665;
+  color: @green;
+  background: @bg_visual_green;
 }
 
 #workspaces button.urgent {
-  color: #442e2d;
-  background: #ea6962;
+  color: @red;
+  background: @bg_visual_red;
 }
 
 #workspaces button:hover {
-  background: alpha(#45403d, 0.8);
-  color: #d4be98;
+  background: alpha(@bg2, 0.8);
+  color: @fg1;
 }
 
 #custom-updates {
-  color: #d8a657;
+  color: @yellow;
 }
 
 #cpu.warning {
-  color: #b47109;
+  color: @orange;
 }
 
 #cpu.critical {
-  color: #ea6962;
+  color: @red;
 }
 
 #temperature.critical {
-  color: #ea6962;
+  color: @red;
 }
 
 #memory.warning {
-  color: #b47109;
+  color: @orange;
 }
 
 #memory.critical {
-  color: #ea6962;
+  color: @red;
 }
 
 #custom-weather {
