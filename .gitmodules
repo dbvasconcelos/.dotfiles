@@ -1,6 +1,0 @@
-[submodule "bat/.config/bat/themes/gruvbox-material-bat"]
-	path = bat/.config/bat/themes/gruvbox-material-bat
-	url = https://github.com/molchalin/gruvbox-material-bat
-[submodule "ghostty/.config/ghostty/themes/gruvbox-material-ghostty"]
-	path = ghostty/.config/ghostty/themes/gruvbox-material-ghostty
-	url = https://github.com/vlanx/gruvbox-material-ghostty
