@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=Udiskie
+Exec=udiskie --appindicator --event-hook "udiskie-dispatcher"
+Type=Application
