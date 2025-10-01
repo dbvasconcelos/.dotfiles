@@ -26,7 +26,7 @@ export SQLITE_HISTORY="${XDG_STATE_HOME}/sqlite_history"
 
 # Default Programs
 export EDITOR="nvim"
-export TERMINAL="ghostty"
+export TERMINAL="kitty"
 export BROWSER="zen-browser"
 export READER="zathura"
 export PAGER="less"

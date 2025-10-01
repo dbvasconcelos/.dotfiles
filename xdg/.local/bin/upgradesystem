@@ -1,0 +1,6 @@
+#!/bin/sh
+echo 'Upgrading system...'
+sudo pacman -Syu
+yay -Syu
+echo 'Done - Press enter to exit'
+read

@@ -82,7 +82,7 @@ return {
 
 		return {
 			options = {
-				theme = "gruvbox-flat",
+				theme = "gruvbox-material",
 				component_separators = { left = "", right = "" },
 			},
 			sections = {

@@ -28,7 +28,7 @@
     "interval": 3600,
     "signal": 8,
     "exec": "pkgs=$(($(checkupdates 2>/dev/null | wc -l) + $(yay -Qum 2>/dev/null | wc -l))); if [ $pkgs -gt 0 ]; then echo $pkgs; else echo ''; fi",
-    "on-click": "$TERMINAL -e 'sudo pacman -Syu; yay; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+    "on-click": "$TERMINAL upgradesystem; pkill -SIGRTMIN+8 waybar",
     "tooltip": false
   },
 

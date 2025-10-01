@@ -40,14 +40,12 @@ exit_zsh() { exit }
 zle -N exit_zsh
 bindkey '^D' exit_zsh
 
-# Do the initialization when the script is sourced (i.e. Initialize instantly)
-ZVM_INIT_MODE=sourcing
-
 ## Plugins
 plugins=(
 	"fast-syntax-highlighting"
 	"zsh-autosuggestions"
 	"fzf-tab-git"
+	"zsh-vi-mode"
 )
 for plugin in "${plugins[@]}"; do
 	file="$(printf "/usr/share/zsh/plugins/%s/%s.plugin.zsh" "$plugin" "${plugin%-git}")"

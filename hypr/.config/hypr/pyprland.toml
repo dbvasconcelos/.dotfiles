@@ -10,17 +10,17 @@ max_size = "1920px 100%"
 unfocus = "hide"
 
 [scratchpads.term]
-command = "$TERMINAL --class=term-dropterm"
+command = "$TERMINAL --class term-dropterm"
 class = "term-dropterm"
 use = "terminals"
 
 [scratchpads.tasks]
-command = "$TERMINAL --class=tasks-dropterm -e btm --default_widget_type proc -e"
+command = "$TERMINAL --class tasks-dropterm btm --default_widget_type proc -e"
 class = "tasks-dropterm"
 use = "terminals"
 
 [scratchpads.filebrowser]
-command = "$TERMINAL --class=filebrowser-dropterm -e yazi"
+command = "$TERMINAL --class filebrowser-dropterm yazi"
 class = "filebrowser-dropterm"
 use = "terminals"
 margin = "50%"
