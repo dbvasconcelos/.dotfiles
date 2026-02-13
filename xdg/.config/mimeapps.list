@@ -34,3 +34,5 @@ image/x-tga=imv.desktop
 image/x-xbitmap=imv.desktop
 image/heif=imv.desktop
 image/avif=imv.desktop
+x-scheme-handler/http=zen.desktop
+x-scheme-handler/https=zen.desktop

@@ -37,6 +37,7 @@ export SUDO_ASKPASS="${HOME}/.local/bin/askpass"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export HISTFILE="${XDG_STATE_HOME}/shell_history"
 export HISTSIZE=500000
+export SAVEHIST=500000
 export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
 export ALIASRC="$XDG_CONFIG_HOME/shell/aliasrc"
 
@@ -58,3 +59,11 @@ PATH="$PATH:$GOPATH/bin"
 # Rust
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 PATH="$PATH:$CARGO_HOME/bin"
+
+# Maven
+export MAVEN_OPTS=-Dmaven.repo.local="$XDG_DATA_HOME"/maven/repository
+export MAVEN_ARGS="--settings $XDG_CONFIG_HOME/maven/settings.xml"
+
+if uwsm check may-start; then
+    exec uwsm start hyprland.desktop
+fi

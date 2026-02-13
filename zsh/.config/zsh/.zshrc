@@ -2,6 +2,7 @@
 
 # Completion
 autoload -Uz compinit && compinit
+
 # Auto completion of command line switches for aliases
 setopt complete_aliases
 # Auto completion with case insensitivity
@@ -42,17 +43,14 @@ bindkey '^D' exit_zsh
 
 ## Plugins
 plugins=(
-	"fast-syntax-highlighting"
-	"zsh-autosuggestions"
-	"fzf-tab-git"
-	"zsh-vi-mode"
+	"/usr/share/zsh/plugins/fzf-tab-git/fzf-tab.plugin.zsh"
+	"/usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+	"/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+	"/usr/share/zsh/plugins/zsh-sudo/sudo.plugin.zsh"
 )
 for plugin in "${plugins[@]}"; do
-	file="$(printf "/usr/share/zsh/plugins/%s/%s.plugin.zsh" "$plugin" "${plugin%-git}")"
-	[ -f "$file" ] && source "$file"
-	unset file
+	[ -f "$plugin" ] && source "$plugin"
 done
-unset plugins
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)

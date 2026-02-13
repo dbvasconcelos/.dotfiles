@@ -35,6 +35,3 @@ alias autoremove='if [ -z "$(yay -Qtdq)" ]; then echo "no orphan packages"; else
 
 # get error messages from journalctl.
 alias jctl="journalctl -p 4 -xb"
-
-# kill all pbs jobs.
-qdelall="qselect -u $USER | xargs qdel"

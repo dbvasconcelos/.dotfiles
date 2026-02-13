@@ -1,6 +1,4 @@
 #!/bin/sh
-# VDPAU
-export VDPAU_DRIVER=radeonsi
 # SDL
 export SDL_VIDEODRIVER=wayland
 # Clutter
@@ -12,9 +10,7 @@ export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export QT_QPA_PLATFORMTHEME=qt6ct
 # GTK
 export GDK_BACKEND="wayland,x11,*"
-export GTK_THEME=Gruvbox-Material-Dark-HIDPI
-export XCURSOR_THEME=BreezeX-RosePine-Linux
-export XCURSOR_SIZE=24
+export GTK_THEME=Gruvbox-Material-Dark
 # Electron
 export OZONE_PLATFORM=wayland
 export ELECTRON_OZONE_PLATFORM_HINT=wayland

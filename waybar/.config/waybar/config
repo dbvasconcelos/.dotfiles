@@ -40,7 +40,7 @@
       "headset": "",
       "default": ["", ""]
     },
-    "on-click": "pwvucontrol",
+    "on-click": "uwsm app -- hyprpwcenter",
     "on-click-right": "pactl --format=json list sinks short | jq -cM --unbuffered \"[.[].name] | .[((index(\\\"$(pactl get-default-sink)\\\")+1)%length)]\" | xargs pactl set-default-sink",
     "ignored-sinks": []
   },
