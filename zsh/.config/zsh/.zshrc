@@ -44,21 +44,10 @@ bindkey '^D' exit_zsh
 
 ## Plugins
 plugins=(
-<<<<<<< HEAD
 	"/usr/share/zsh/plugins/fzf-tab-git/fzf-tab.plugin.zsh"
 	"/usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 	"/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 	"/usr/share/zsh/plugins/zsh-sudo/sudo.plugin.zsh"
-||||||| parent of 6624b5f (mass updates)
-	"zsh-vi-mode"
-	"fast-syntax-highlighting"
-	"zsh-autosuggestions"
-	"fzf-tab-git"
-=======
-	"fast-syntax-highlighting"
-	"zsh-autosuggestions"
-	"fzf-tab-git"
->>>>>>> 6624b5f (mass updates)
 )
 for plugin in "${plugins[@]}"; do
 	[ -f "$plugin" ] && source "$plugin"
