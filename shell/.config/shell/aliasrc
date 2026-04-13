@@ -1,13 +1,15 @@
 # Shell aliases definition
 
+aur=paru
+
 # Use neovim for vim.
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 # Use eza for ls.
 [ -x "$(command -v eza)" ] && alias ls="eza --icons --color=always --group-directories-first"
 
-# use yay for pacman.
-[ -x "$(command -v yay)" ] && alias pacman="yay"
+# use aur for pacman.
+[ -x "$(command -v paru)" ] && alias pacman="$aur"
 
 # use bat for cat.
 [ -x "$(command -v bat)" ] && alias cat="bat"
@@ -19,19 +21,14 @@
 alias mkdir="mkdir -pv"
 
 # Verbosity on mv/cp.
-if [ -x "$(command -v advcp)" ]; then
-    alias cp="advcp -giv"
-    alias mv="advmv -giv"
-else
-    alias cp="cp -iv"
-    alias mv="mv -iv"
-fi
+alias cp="cp -iv"
+alias mv="mv -iv"
 
 # Colorization.
 alias diff="diff --color=auto"
 
 # remove orphaned packages.
-alias autoremove='if [ -z "$(yay -Qtdq)" ]; then echo "no orphan packages"; else yay -Rns $(yay -Qtdq); fi'
+alias autoremove='if [ -z "$($aur -Qtdq)" ]; then echo "no orphan packages"; else $aur -Rns $($aur -Qtdq); fi'
 
 # get error messages from journalctl.
 alias jctl="journalctl -p 4 -xb"

@@ -27,7 +27,7 @@
     "format": " {}",
     "interval": 3600,
     "signal": 8,
-    "exec": "pkgs=$(($(checkupdates 2>/dev/null | wc -l) + $(yay -Qum 2>/dev/null | wc -l))); if [ $pkgs -gt 0 ]; then echo $pkgs; else echo ''; fi",
+    "exec": "pkgs=$(($(checkupdates 2>/dev/null | wc -l) + $(paru -Qum 2>/dev/null | wc -l))); if [ $pkgs -gt 0 ]; then echo $pkgs; else echo ''; fi",
     "on-click": "$TERMINAL upgradesystem; pkill -SIGRTMIN+8 waybar",
     "tooltip": false
   },
@@ -40,7 +40,7 @@
       "headset": "",
       "default": ["", ""]
     },
-    "on-click": "uwsm app -- hyprpwcenter",
+    "on-click": "uwsm app -- pwvucontrol",
     "on-click-right": "pactl --format=json list sinks short | jq -cM --unbuffered \"[.[].name] | .[((index(\\\"$(pactl get-default-sink)\\\")+1)%length)]\" | xargs pactl set-default-sink",
     "ignored-sinks": []
   },

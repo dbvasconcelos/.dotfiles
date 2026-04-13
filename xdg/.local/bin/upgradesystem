@@ -1,6 +1,6 @@
 #!/bin/sh
 echo 'Upgrading system...'
 sudo pacman -Syu
-yay -Syu
+paru -Syu
 echo 'Done - Press enter to exit'
 read
