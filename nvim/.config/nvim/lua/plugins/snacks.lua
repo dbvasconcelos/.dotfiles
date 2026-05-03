@@ -69,28 +69,28 @@ return {
 			function()
 				Snacks.picker.smart()
 			end,
-			desc = "Search Files",
+			desc = "Files",
 		},
 		{
 			"<leader>sb",
 			function()
 				Snacks.picker.buffers()
 			end,
-			desc = "Search Buffers",
+			desc = "Buffers",
 		},
 		{
 			"<leader>ss",
 			function()
 				Snacks.picker.grep()
 			end,
-			desc = "Search String",
+			desc = "String",
 		},
 		{
 			"<leader>sw",
 			function()
 				Snacks.picker.grep_word()
 			end,
-			desc = "Search Word",
+			desc = "Word",
 			mode = { "n", "x" },
 		},
 		{
@@ -98,7 +98,7 @@ return {
 			function()
 				Snacks.picker.git_files()
 			end,
-			desc = "Search Git Index",
+			desc = "Git Index",
 		},
 		{
 			"<leader>s/",
@@ -115,11 +115,18 @@ return {
 			desc = "Command History",
 		},
 		{
+			"<leader>s.",
+			function()
+				Snacks.picker.files({ cwd = vim.fn.expand("$HOME/.config"), hidden = true, follow = true })
+			end,
+			desc = "Dotfiles",
+		},
+		{
 			"<leader>v.",
 			function()
 				Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
 			end,
-			desc = "Vim Config Files",
+			desc = "Vim Config",
 		},
 		{
 			"<leader>gb",
@@ -177,13 +184,6 @@ return {
 				Snacks.picker.lsp_implementations()
 			end,
 			desc = "Goto Implementation",
-		},
-		{
-			"gy",
-			function()
-				Snacks.picker.lsp_type_definitions()
-			end,
-			desc = "Goto T[y]pe Definition",
 		},
 		{
 			"<leader>ls",

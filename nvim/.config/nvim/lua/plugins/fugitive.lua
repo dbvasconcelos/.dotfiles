@@ -22,16 +22,6 @@ return {
 				"<cmd>Git fetch --all<cr>",
 				desc = "Git Fetch",
 			},
-			{
-				"<leader>gg",
-				"<cmd>diffget //2<cr>",
-				desc = "Pick left change",
-			},
-			{
-				"<leader>gh",
-				"<cmd>diffget //3<cr>",
-				desc = "Pick right change",
-			},
 		},
 	},
 }

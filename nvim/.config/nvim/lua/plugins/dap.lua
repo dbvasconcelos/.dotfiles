@@ -1,55 +1,7 @@
 return {
 	{
-		"rcarriga/nvim-dap-ui",
-		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
-		keys = {
-			{
-				"<leader>dd",
-				function()
-					require("dapui").toggle()
-				end,
-				desc = "UI Toggle",
-			},
-			{
-				"<leader>de",
-				function()
-					require("dapui").eval()
-				end,
-				desc = "Eval",
-				mode = { "n", "v" },
-			},
-		},
-		opts = {},
-		config = function(_, _)
-			local dap = require("dap")
-			local dapui = require("dapui")
-			dapui.setup()
-
-			dap.listeners.before.attach.dapui_config = function()
-				dapui.open()
-			end
-
-			dap.listeners.before.launch.dapui_config = function()
-				dapui.open()
-			end
-
-			dap.listeners.before.event_terminated.dapui_config = function()
-				dapui.close()
-			end
-
-			dap.listeners.before.event_exited.dapui_config = function()
-				dapui.close()
-			end
-		end,
-	},
-	{
-		"theHamsta/nvim-dap-virtual-text",
-		opts = {
-			highlight_new_as_changed = true,
-		},
-	},
-	{
 		"mfussenegger/nvim-dap",
+		event = "VeryLazy",
 		config = function()
 			vim.fn.sign_define(
 				"DapBreakpoint",
@@ -84,6 +36,13 @@ return {
 					require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 				end,
 				desc = "Breakpoint Condition",
+			},
+			{
+				"<leader>dx",
+				function()
+					require("dap").clear_breakpoints()
+				end,
+				desc = "Clear Breakpoints",
 			},
 			{
 				"<F1>",
@@ -137,10 +96,63 @@ return {
 			{
 				"<leader>dr",
 				function()
-					require("dap").repl.open()
+					require("dap").repl.toggle()
 				end,
 				desc = "Repl",
 			},
+		},
+	},
+	{
+		"rcarriga/nvim-dap-ui",
+		event = "VeryLazy",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"nvim-neotest/nvim-nio",
+		},
+		opts = {},
+		config = function(_, opts)
+			local dap = require("dap")
+			local dapui = require("dapui")
+			dapui.setup(opts)
+
+			dap.listeners.before.attach.dapui_config = function()
+				dapui.open()
+			end
+
+			dap.listeners.before.launch.dapui_config = function()
+				dapui.open()
+			end
+
+			dap.listeners.before.event_terminated.dapui_config = function()
+				dapui.close()
+			end
+
+			dap.listeners.before.event_exited.dapui_config = function()
+				dapui.close()
+			end
+		end,
+		keys = {
+			{
+				"<leader>dd",
+				function()
+					require("dapui").toggle()
+				end,
+				desc = "UI Toggle",
+			},
+			{
+				"<leader>de",
+				function()
+					require("dapui").eval()
+				end,
+				desc = "Eval",
+				mode = { "n", "v" },
+			},
+		},
+	},
+	{
+		"theHamsta/nvim-dap-virtual-text",
+		opts = {
+			highlight_new_as_changed = true,
 		},
 	},
 }

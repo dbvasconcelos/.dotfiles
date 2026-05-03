@@ -4,13 +4,21 @@ local group = vim.api.nvim_create_augroup("automations", { clear = true })
 autocmd("BufWritePre", {
 	desc = "Delete trailing whitespaces",
 	group = group,
-	command = [[ %s/\s\+$//e ]],
+	callback = function()
+		local cursor_pos = vim.fn.getpos(".")
+		vim.cmd([[%s/\s\+$//e]])
+		vim.fn.setpos(".", cursor_pos)
+	end,
 })
 
 autocmd("BufWritePre", {
 	desc = "Delete trailing newlines",
 	group = group,
-	command = [[ %s/\n\+\%$//e ]],
+	callback = function()
+		local cursor_pos = vim.fn.getpos(".")
+		vim.cmd([[%s/\n\+\%$//e]])
+		vim.fn.setpos(".", cursor_pos)
+	end,
 })
 
 autocmd("TextYankPost", {
@@ -97,6 +105,6 @@ autocmd("BufWritePost", {
 autocmd("BufWritePost", {
 	desc = "Restart waybar when config is updated",
 	group = group,
-	pattern = "*/waybar/config",
+	pattern = "*/waybar/config.jsonc",
 	command = "!systemctl --user restart waybar",
 })

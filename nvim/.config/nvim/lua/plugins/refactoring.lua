@@ -27,16 +27,16 @@ return {
 		{
 			"<leader>dp",
 			function()
-				require("refactoring").debug.printf({ below = false })
+				require("refactoring.debug").print_loc({ output_location = "below" })
 			end,
-			desc = "Print Function",
+			desc = "Print Location",
 		},
 		{
 			"<leader>dv",
 			function()
-				require("refactoring").debug.print_var({})
+				require("refactoring.debug").print_var({ output_location = "below" })
 			end,
-			desc = "Print Var",
+			{ desc = "Print Var", expr = true }
 		},
 		{
 			"<leader>lr",

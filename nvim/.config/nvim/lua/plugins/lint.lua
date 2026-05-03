@@ -9,8 +9,9 @@ return {
 				go = { "golangcilint" },
 				json = { "jsonlint" },
 				lua = { "luacheck" },
+				make = { "checkmake" },
 				proto = { "protolint" },
-				python = { "flake8" },
+				python = { "ruff" },
 				sh = { "shellcheck" },
 				yaml = { "yamllint" },
 			}
@@ -20,6 +21,12 @@ return {
 					require("lint").try_lint()
 				end,
 			})
+
+			require("lint").linters.luacheck.args = {
+				"--globals",
+				"vim",
+				"Snacks",
+			}
 		end,
 	},
 }

@@ -4,21 +4,31 @@ return {
 	cmd = { "ConformInfo" },
 	opts = {
 		formatters_by_ft = {
-			go = { "golines" },
+			go = { "goimports", "golines" },
 			json = { "prettier" },
 			lua = { "stylua" },
-			python = { "isort", "black" },
+			python = { "ruff" },
 			sh = { "shfmt" },
 			yaml = { "prettier" },
 		},
-		default_format_opts = {
-			lsp_format = "fallback",
-		},
 		format_on_save = {
+			lsp_format = "fallback",
 			timeout_ms = 500,
 		},
 		formatters = {
-			shfmt = { append_args = { "-i", "2" } },
+			shfmt = {
+				append_args = { "-i", "2" },
+			},
+		},
+	},
+	keys = {
+		{
+			"<leader>lf",
+			function()
+				require("conform").format({ async = true })
+			end,
+			mode = "",
+			desc = "Format",
 		},
 	},
 }
