@@ -2,7 +2,7 @@
   "buttons": [
     {
       "label": "lock",
-      "action": "sleep 1 && hyprctl dispatch dpms off",
+      "action": "sleep 1 && hyprctl dispatch 'hl.dsp.dpms({action=off})'",
       "text": "",
       "keybind": "l",
       "icon": "/usr/share/wleave/icons/lock.svg"

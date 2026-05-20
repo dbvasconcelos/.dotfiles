@@ -26,6 +26,7 @@ return {
 				"--globals",
 				"vim",
 				"Snacks",
+				"hl",
 			}
 		end,
 	},

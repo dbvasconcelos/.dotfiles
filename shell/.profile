@@ -63,7 +63,3 @@ PATH="$PATH:$CARGO_HOME/bin"
 # Maven
 export MAVEN_OPTS=-Dmaven.repo.local="$XDG_DATA_HOME"/maven/repository
 export MAVEN_ARGS="--settings $XDG_CONFIG_HOME/maven/settings.xml"
-
-if uwsm check may-start; then
-    exec uwsm start hyprland.desktop
-fi

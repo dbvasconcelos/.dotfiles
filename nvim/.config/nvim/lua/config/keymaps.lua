@@ -32,7 +32,8 @@ keymap("n", "<C-u>", "<C-u>zz", { desc = "Page up" })
 
 -- Clipboard
 keymap("x", "p", [["_dP]], { desc = "Blackhole paste" })
-keymap("x", "c", [["_c]], { desc = "Blackhole change" })
+keymap({ "n", "v" }, "c", [["_c]], { desc = "Blackhole change" })
+keymap({ "n", "v" }, "d", [["_d]], { desc = "Blackhole delete" })
 keymap({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy selection to clipboard" })
 keymap("n", "<leader>Y", [["+Y]], { desc = "Copy line to clipboard" })
 

@@ -8,6 +8,7 @@ return {
 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 				"nvim-dap-ui",
 				"neotest",
+				"/usr/share/hypr/stubs",
 			},
 		},
 	},
