@@ -1,39 +1,40 @@
-# The individual ZSH per-interactive-shell startup file
+# The individual ZSH per-interactive-shell startup file.
 
-# Completion
+# Implicit change dir.
+setopt AUTO_CD
+
+# Glob sorting.
+setopt NUMERIC_GLOB_SORT
+
+# History Settings.
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
+# Completion Settings.
 autoload -Uz compinit && compinit
-
-# Auto completion of command line switches for aliases
-setopt complete_aliases
-# Auto completion with case insensitivity
+## Case insensitivity.
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+## Do not show completion menu, so fzf-tab can capture the unambiguous prefix.
 zstyle ':completion:*' menu no
 
-# Disable paste highlighting
+# Disable paste highlighting.
 zle_highlight=('paste:none')
 
-# Include hidden files
-zmodload zsh/complist
+# Include hidden files.
 _comp_options+=(globdots)
 
-# Remove path duplicates
-typeset -U PATH path
+# Remove path duplicates.
+typeset -U path PATH
 
-# History Settings
-setopt append_history
-setopt share_history
-setopt hist_ignore_dups
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt hist_save_no_dups
-setopt hist_find_no_dups
-setopt hist_reduce_blanks
-
-# Disable ctrl-s to freeze terminal
+# Disable ctrl-s to freeze terminal.
 stty stop undef
 
-# Aliases
+# Aliases.
 [ -f "${ALIASRC}" ] && source "${ALIASRC}"
 
 # Exit even on partial line

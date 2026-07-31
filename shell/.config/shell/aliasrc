@@ -1,34 +1,46 @@
-# Shell aliases definition
+#!/usr/bin/sh
+# Shell aliases definition.
 
+# Arch User Repository Helper.
 aur=paru
 
-# Use neovim for vim.
-[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+# Use neovim as vim.
+if [ -x "$(command -v nvim)" ]; then
+  alias vim="nvim"
+  alias vimdiff="nvim -d"
+fi
 
-# Use eza for ls.
-[ -x "$(command -v eza)" ] && alias ls="eza --icons --color=always --group-directories-first"
+# Use eza as ls.
+if [ -x "$(command -v eza)" ]; then
+  alias ls="eza --icons --color=always --group-directories-first"
+fi
 
-# use aur for pacman.
-[ -x "$(command -v paru)" ] && alias pacman="$aur"
+# Use ripgrep as grep.
+alias grep="rg --color=auto"
 
-# use bat for cat.
-[ -x "$(command -v bat)" ] && alias cat="bat"
+# Use aur helper as pacman.
+if [ -x "$(command -v paru)" ]; then
+  alias pacman='$aur'
+fi
 
-# Trash instead of rm.
-[ -x "$(command -v trash)" ] && alias rm="trash"
+# Use bat as cat.
+if [ -x "$(command -v bat)" ]; then
+  bat cache --build >/dev/null 2>&1
+  alias cat="bat"
+  alias catt="bat --style=plain --paging=never"
+fi
 
-# Verbosity on mkdir.
+# Verbosity on file operations.
 alias mkdir="mkdir -pv"
-
-# Verbosity on mv/cp.
 alias cp="cp -iv"
 alias mv="mv -iv"
+alias rm="rm -Iv"
 
-# Colorization.
-alias diff="diff --color=auto"
+# Colored Diff.
+alias diff="diff --color"
 
-# remove orphaned packages.
+# Remove orphaned packages.
 alias autoremove='if [ -z "$($aur -Qtdq)" ]; then echo "no orphan packages"; else $aur -Rns $($aur -Qtdq); fi'
 
-# get error messages from journalctl.
+# Get error messages from journalctl.
 alias jctl="journalctl -p 4 -xb"

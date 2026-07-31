@@ -1,31 +1,56 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-command_timeout = 200
 format = """
-[$directory$git_branch$git_status$git_state]($style)
-$character
-"""
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$python\
+$character"""
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
 
 [directory]
+style = "blue"
 truncation_symbol = "…/"
-repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+read_only = " 󰌾"
 
 [git_branch]
-format = "[$branch]($style) "
+format = "[$branch]($style)"
+style = "bright-black"
+symbol = " "
 
 [git_status]
-format     = '[$all_status]($style)'
-ahead      = "⇡${count} "
-diverged   = "⇕⇡${ahead_count}⇣${behind_count} "
-behind     = "⇣${count} "
-conflicted = " "
-untracked  = "? "
-modified   = " "
-stashed    = ""
-staged     = ""
-renamed    = ""
-deleted    = ""
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = ""
+deleted = ""
+modified = ""
+renamed = ""
+staged = ""
+stashed = "≡"
+untracked = ""
 
-[golang]
-symbol = "󰟓 "
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[hostname]
+format = "[$ssh_symbol](blue)[$hostname]($style) [ ](blue)"
+ssh_symbol = " "
+
+[python]
+format = "[$virtualenv]($style) "
+style = "bright-black"
+detect_extensions = []
+detect_files = []
+
+[username]
+format = "[$user]($style) "

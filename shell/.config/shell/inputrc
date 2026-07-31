@@ -3,23 +3,45 @@
 
 $include /etc/inputrc
 
-set editing-mode vi
-set colored-stats on
-set completion-ignore-case on
-set completion-prefix-display-length 3
-set mark-symlinked-directories on
-set show-all-if-ambiguous on
-set show-all-if-unmodified on
-set visible-stats on
+# Briefly move the cursor to an opening parenthesis when a closing one is inserted.
+set blink-matching-paren On
 
-$if mode=vi
-    set show-mode-in-prompt on
-    # Mode cursor shape
-    $if term=linux
-        set vi-ins-mode-string \1\e[?0c\2
-        set vi-cmd-mode-string \1\e[?8c\2
-    $else
-        set vi-ins-mode-string \1\e[6 q\2
-        set vi-cmd-mode-string \1\e[2 q\2
-    $endif
+# Displays the common prefix of possible completions using a different color.
+set colored-completion-prefix On
+
+# Displays possible completions using different colors to indicate their file type.
+set colored-stats On
+
+# Filename matching and completion in a case-insensitive fashion.
+set completion-ignore-case On
+
+# Treats hyphens (-) and underscores (_) equally on filename matching and completion.
+set completion-map-case On
+
+# Replaces common prefixes longer than this value with an ellipsis.
+set completion-prefix-display-length 3
+
+# vi bindings.
+set editing-mode vi
+
+# Append a slash / to completed symlinked directory names.
+set mark-symlinked-directories On
+
+# Show all matching completions immediately on the first tab press.
+set show-all-if-ambiguous On
+set show-all-if-unmodified On
+
+# Show mode string.
+set show-mode-in-prompt On
+
+# Mode cursor shape.
+$if term=linux
+    set vi-cmd-mode-string \1\e[?8c\2
+    set vi-ins-mode-string \1\e[?0c\2
+$else
+    set vi-cmd-mode-string \1\e[2 q\2
+    set vi-ins-mode-string \1\e[6 q\2
 $endif
+
+# Append a character to identify file's type.
+set visible-stats On

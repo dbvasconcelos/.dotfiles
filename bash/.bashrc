@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 # Interactive non-login shell startup script.
 
-export HISTCONTROL=erasedups:ignorespace
+export HISTCONTROL="erasedups:ignoreboth"
 
-# shellcheck source=/dev/null
-[ -f "$ALIASRC" ] && source "$ALIASRC"
+if [ -f "$ALIASRC" ]; then
+  # shellcheck source=/dev/null
+  source "$ALIASRC"
+fi
 
 # Prompt
-# shellcheck disable=SC2155
 if [ -x "$(command -v starship)" ]; then
-    eval "$(starship init bash)"
+  eval "$(starship init bash)"
 fi

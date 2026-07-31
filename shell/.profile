@@ -2,7 +2,7 @@
 # global environment settings for login shells.
 
 # Add user binaries to PATH.
-export PATH="${PATH}:${HOME}/.local/bin"
+export PATH="${HOME}/.local/bin:${PATH}"
 
 # XDG places.
 export XDG_CONFIG_HOME="${HOME}/.config"
@@ -38,8 +38,8 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export HISTFILE="${XDG_STATE_HOME}/shell_history"
 export HISTSIZE=500000
 export SAVEHIST=500000
-export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
-export ALIASRC="$XDG_CONFIG_HOME/shell/aliasrc"
+export INPUTRC="${XDG_CONFIG_HOME}/shell/inputrc"
+export ALIASRC="${XDG_CONFIG_HOME}/shell/aliasrc"
 
 # GPG/SSH
 unset SSH_AGENT_PID
@@ -53,7 +53,7 @@ export LESSHISTFILE="-"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 
 # Golang
-export GOPATH="$XDG_DATA_HOME/go"
+export GOPATH="${XDG_DATA_HOME}/go"
 PATH="$PATH:$GOPATH/bin"
 
 # Rust
@@ -61,5 +61,5 @@ export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 PATH="$PATH:$CARGO_HOME/bin"
 
 # Maven
-export MAVEN_OPTS=-Dmaven.repo.local="$XDG_DATA_HOME"/maven/repository
-export MAVEN_ARGS="--settings $XDG_CONFIG_HOME/maven/settings.xml"
+export MAVEN_OPTS=-Dmaven.repo.local="${XDG_DATA_HOME}/maven/repository"
+export MAVEN_ARGS="--settings ${XDG_CONFIG_HOME}/maven/settings.xml"
