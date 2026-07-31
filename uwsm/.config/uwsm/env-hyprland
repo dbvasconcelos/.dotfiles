@@ -1,4 +1,4 @@
 #!/bin/sh
 # Hyprcursor
 export HYPRCURSOR_THEME=vimix-kanagawa-hyprcursors-wave
-export HYPRCURSOR_SIZE=32
+export HYPRCURSOR_SIZE=24

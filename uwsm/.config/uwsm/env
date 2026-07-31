@@ -1,6 +1,6 @@
 #!/bin/sh
 # VDPAU
-export VDPAU_DRIVER=radeonsi
+export VDPAU_DRIVER=nvidia
 # SDL
 export SDL_VIDEODRIVER=wayland
 # Clutter
@@ -12,7 +12,7 @@ export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export QT_QPA_PLATFORMTHEME=qt6ct
 # GTK
 export GDK_BACKEND="wayland,x11,*"
-export GTK_THEME=Gruvbox-Material-Dark-HIDPI
+export GTK_THEME="Gruvbox-Material-Dark"
 export XCURSOR_THEME="vimix-kanagawa-cursors-wave"
 export XCURSOR_SIZE=24
 # Electron
