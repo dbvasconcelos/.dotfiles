@@ -1,5 +1,8 @@
 -- Hyprland Window Compositor Configuration.
 
+-- Imports
+local hs = require("hyprsplit")
+
 -- Monitors
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "auto" })
 
@@ -100,8 +103,9 @@ hl.bind(keys({ mod, "mouse:273" }), hl.dsp.window.resize(), { mouse = true })
 -- Workspace Controls
 for i = 1, 10 do
 	local num = i % 10
-	hl.bind(keys({ mod, num }), hl.dsp.focus({ workspace = i }))
-	hl.bind(keys({ mod, "SHIFT", num }), hl.dsp.window.move({ workspace = i, follow = false }))
+	hl.workspace_rule({ workspace = tostring(10 + i), default_name = tostring(i) })
+	hl.bind(keys({ mod, num }), hs.dsp.focus({ workspace = i }))
+	hl.bind(keys({ mod, "SHIFT", num }), hs.dsp.window.move({ workspace = i, follow = false }))
 end
 -- Vim Bindings
 for dir, vimbind in pairs({ left = "H", down = "J", up = "K", right = "L" }) do
