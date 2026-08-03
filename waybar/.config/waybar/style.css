@@ -2,8 +2,8 @@
 
 * {
   border: none;
-  font-family: JetBrainsMono;
-  font-size: 18px;
+  font-family: JetBrainsMono,SymbolsNerdFont;
+  font-size: 16pt;
   font-weight: bold;
   min-height: 0;
 }
