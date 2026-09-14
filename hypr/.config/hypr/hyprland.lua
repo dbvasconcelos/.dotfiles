@@ -84,6 +84,16 @@ hl.window_rule({
 	workspace = "3",
 })
 
+-- Apps
+local uwsm = function(app)
+	return "uwsm app -- " .. app
+end
+
+-- Autostart
+hl.on("hyprland.start", function()
+	hl.exec_cmd(uwsm("wayle panel start"))
+end)
+
 -- Keybindings
 local mod = "SUPER"
 local keys = function(keys)
@@ -111,10 +121,6 @@ end
 -- Arrows
 for dir, offset in pairs({ left = { -100, 0 }, down = { 0, 100 }, up = { 0, -100 }, right = { 100, 0 } }) do
 	hl.bind(keys({ mod, dir }), hl.dsp.window.resize({ x = offset[1], y = offset[2], relative = true }))
-end
--- Apps
-local uwsm = function(app)
-	return "uwsm app -- " .. app
 end
 hl.bind(keys({ mod, "Backspace" }), hl.dsp.exec_cmd(uwsm("wleave")))
 hl.bind(keys({ mod, "P" }), hl.dsp.exec_cmd(uwsm("hyprshot -m region")))

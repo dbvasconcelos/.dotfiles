@@ -1,0 +1,117 @@
+# Wayle configuration file
+
+[bar]
+scale = 0.800000011920929
+bg = "transparent"
+button-variant = "basic"
+button-icon-size = 0.8999999761581421
+button-label-padding = 0.8999999761581421
+button-group-background = "bg-surface-elevated"
+
+[[bar.layout]]
+monitor = "*"
+show = true
+left = ["dashboard", "hyprland-workspaces", "window-title"]
+center = ["updates"]
+right = [
+    "media",
+    { name = "stats", modules = [
+        "cpu",
+        "ram",
+        "storage",
+    ] },
+    "volume",
+    "systray",
+    { name = "time", modules = [
+        "weather",
+        "clock",
+    ] },
+    "notifications",
+]
+
+[styling.palette]
+bg = "#282828"
+surface = "#3c3836"
+elevated = "#504945"
+fg = "#d4be98"
+fg-muted = "#d5c4a1"
+primary = "#7daea3"
+red = "#ea6962"
+yellow = "#d8a657"
+green = "#a9b665"
+blue = "#7daea3"
+
+[modules.clock]
+format = "%a %d/%m %H:%M"
+icon-color = "fg-default"
+label-color = "fg-default"
+
+[modules.cpu]
+icon-color = "fg-default"
+label-color = "fg-default"
+
+[[modules.cpu.thresholds]]
+above = 70.0
+icon-color = "status-warning"
+label-color = "status-warning"
+
+[[modules.cpu.thresholds]]
+above = 90.0
+icon-color = "status-error"
+label-color = "status-error"
+
+[modules.dashboard]
+icon-color = "fg-default"
+
+[modules.hyprland-workspaces]
+show-special = false
+workspace-padding = 1.0
+label-size = 1.2000000476837158
+active-color = "fg-default"
+
+[modules.media]
+icon-color = "fg-default"
+label-color = "fg-default"
+label-max-length = 43
+
+[modules.notifications]
+icon-color = "fg-default"
+label-show = false
+
+[modules.ram]
+icon-color = "fg-default"
+label-color = "fg-default"
+
+[[modules.ram.thresholds]]
+above = 70.0
+icon-color = "status-warning"
+label-color = "status-warning"
+
+[[modules.ram.thresholds]]
+above = 95.0
+icon-color = "status-error"
+label-color = "status-error"
+
+[modules.storage]
+icon-color = "fg-default"
+label-color = "fg-default"
+
+[modules.systray]
+icon-scale = 1.5
+
+[modules.volume]
+icon-color = "fg-default"
+label-color = "fg-default"
+
+[modules.weather]
+location = "Campinas"
+time-format = "24h"
+icon-color = "fg-default"
+label-color = "fg-default"
+
+[modules.window-title]
+icon-color = "fg-default"
+label-color = "fg-default"
+
+[wallpaper]
+engine-enabled = false
